@@ -1,10 +1,16 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
 module.exports = {
-  /* Your site config here */
-  plugins: [],
+  siteMetadata: {
+    title: `MC2`,
+    content: `MC2 - Hollywood Musicals DataViz Platform`
+  },
+  plugins: [
+    {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: `Mc3`,
+        fieldName: `mc3`,
+        url: `http://127.0.0.1:8001/api/graphql`,
+      },
+    },
+  ],
 }
