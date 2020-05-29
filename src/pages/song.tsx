@@ -4,6 +4,9 @@ import Layout from "../components/layout";
 import { Paper, Container, Typography } from '@material-ui/core';
 
 const SongPage = ({ data }) =>  {
+
+  console.log({data});
+
   return (
       <Layout>
         <Container maxWidth="md">
@@ -30,11 +33,26 @@ const SongPage = ({ data }) =>  {
           {/* numbers connected */}
           <section>
             <h3>Number(s)</h3>
+
+            {data.mc3.song.numbers.map((number) => (
+              <Paper>
+                <div>
+                  <h4>{number.title}</h4>
+                </div>
+              </Paper>
+            ))}
           </section>
 
           {/* films conneted */}
           <section>
             <h3>Film(s)</h3>
+            {data.mc3.song.films.map((film) => (
+              <Paper>
+                <div>
+            <h4>{film.title} ({film.releasedYear})</h4>
+                </div>
+              </Paper>
+            ))}
           </section>
         </Paper>
         </Container>
@@ -50,6 +68,8 @@ export const query = graphql`
       song(id: "/api/songs/99e3ac0c-46d2-40a0-929a-64a7bf9d36ae") {
         title
         year
+        numbers
+        films
       }
     }    
   }

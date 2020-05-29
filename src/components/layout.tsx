@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/header";
+import Header from "./header";
 import { createMuiTheme, ThemeProvider, Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
@@ -30,22 +30,24 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function Layout({ children }) {
-  const styles = useStyles();
-  return (
-    <ThemeProvider theme={theme}>
-      <div>
-          <Header/>
-          
-          {children}
+export default function BaseLayout({ children }) {
 
-          <section className = {styles.footer}>
-              <Typography>
-                <h2>Partnership</h2>
-                <p>This project is supported by the Labex Arts-H2H and benefits from financial support from the ANR as part of the “Investments for the future” program (ANR-10-LABX-80-01).</p>
-              </Typography>
-          </section>
-      </div>
-    </ThemeProvider>
+    const styles = useStyles();
+
+    return (
+        <ThemeProvider theme={theme}>
+            <div>
+                <Header/>
+
+                {children}
+
+                <section className = {styles.footer}>
+                    <Typography>
+                    <h2>Partnership</h2>
+                    <p>This project is supported by the Labex Arts-H2H and benefits from financial support from the ANR as part of the “Investments for the future” program (ANR-10-LABX-80-01).</p>
+                    </Typography>
+                </section>
+            </div>
+        </ThemeProvider>
   )
 }
