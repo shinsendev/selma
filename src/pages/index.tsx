@@ -1,11 +1,13 @@
 import React from "react"
 import { Link } from "gatsby"
+import Layout from "../components/layout";
+import Header from "../components/header";
 
 export default function Home() {
   return (
-      <div>
-        <h1>MC2 Homepage WIP</h1>
+      <Layout>
+        <Header/>
         <Link to="/song">Song</Link>
-    </div>
+      </Layout>
     );
 }

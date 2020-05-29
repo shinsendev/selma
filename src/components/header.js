@@ -2,7 +2,7 @@ import React from "react"
 
 const Header = (props) => {
     return (
-        <h1>{props.content}</h1>
+        <h1>MC2 WIP</h1>
     )
 }
     

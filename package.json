@@ -15,13 +15,15 @@
   },
   "dependencies": {
     "gatsby": "^2.22.11",
+    "gatsby-plugin-typescript": "^2.4.3",
     "gatsby-source-filesystem": "^2.3.8",
     "gatsby-source-graphql": "^2.5.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "typescript": "^3.9.3"
   },
   "repository": {
     "type": "git",
