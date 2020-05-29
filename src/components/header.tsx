@@ -4,7 +4,7 @@ import { AppBar, Typography, Button, Toolbar, InputBase } from '@material-ui/cor
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-
+import { Link } from "gatsby";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -76,7 +76,7 @@ const Header = (props) => {
             </IconButton>
 
             <Typography variant="h6" className={classes.title}>
-                MC3 - Hollywood musicals
+                <Link to="/">MC3 - Hollywood musicals</Link>
             </Typography>
 
             <div className={classes.search}>

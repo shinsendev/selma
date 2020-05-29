@@ -1,20 +1,43 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout";
+import { Paper, Container, Typography } from '@material-ui/core';
 
 const SongPage = ({ data }) =>  {
   return (
       <Layout>
-        <h1>{data.mc3.song.title}</h1>
+        <Container maxWidth="md">
+        <Paper>
+          <h2>{data.mc3.song.title}</h2>
 
-        <div>
-          <p>Date : {data.mc3.song.year}</p>
-          <p>Song type : todo</p>
-        </div>
+          {/* general informations */}
+          <section>
+            <p>Date : {data.mc3.song.year}</p>
+            <p>Song type : [ todo ]</p>
+          </section>
 
-        <div>
-          <p></p>
-        </div>
+          {/* composers (person) linked to the song */}
+          <section>
+            <h3>Composer(s)</h3>
+          </section>
+
+          {/* lyricists (person) linked to the song */}
+          <section>
+            <h3>Lyricist(s)</h3>
+            
+          </section>
+
+          {/* numbers connected */}
+          <section>
+            <h3>Number(s)</h3>
+          </section>
+
+          {/* films conneted */}
+          <section>
+            <h3>Film(s)</h3>
+          </section>
+        </Paper>
+        </Container>
       </Layout>
   )
 }
