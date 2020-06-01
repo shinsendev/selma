@@ -16,7 +16,9 @@ const SongPage = ({ data }) =>  {
           {/* general informations */}
           <section>
             <p>Date : {data.mc3.song.year}</p>
-            <p>Song type : [ todo ]</p>
+            <p>Song type : {data.mc3.song.songTypes.map(
+              (songType) => (songType.title) + ' ')
+            }</p>
           </section>
 
           {/* composers (person) linked to the song */}
@@ -65,11 +67,12 @@ export default SongPage;
 export const query = graphql`
   query {
     mc3 {
-      song(id: "/api/songs/99e3ac0c-46d2-40a0-929a-64a7bf9d36ae") {
+      song(id: "/api/songs/48f1475e-4f1f-48fb-a14b-53d37dc066d2") {
         title
         year
         numbers
         films
+        songTypes
       }
     }    
   }
