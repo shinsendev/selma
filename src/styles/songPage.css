@@ -27,3 +27,7 @@
 .song-element p{
     font-size: 0.8em;
 }
+
+.container {
+    margin-bottom: 60px;
+}

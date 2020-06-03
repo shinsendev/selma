@@ -2,70 +2,80 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout";
 import "../styles/songPage.css";
-import { Paper, Container, Typography } from '@material-ui/core';
+import { Paper, Container, Typography, Grid } from '@material-ui/core';
 
 const SongPage = ({ data }) =>  {
   return (
       <Layout>
-        <Container maxWidth="md">
+        <Container maxWidth="md" className='container'>
           <h2 className='song-title'>{data.mc3.song.title}</h2>
-
-          {/* general infos */}
-          <Paper>
-            <section className='song-section'>
-              <p><span className="property-title">Date:</span> {data.mc3.song.year}</p>
-              <p><span className="property-title">Song type:</span> {data.mc3.song.songTypes.map(
-                (songType) => (songType.title + ' ')
-              )}</p>
-            </section>
-          </Paper>
+          <Grid container spacing={3}>
+            {/* general infos */}
+            <Grid item xs={12} md={6}>
+              <Paper elevation={0}>
+                <section className='song-section'>
+                  <p><span className="property-title">Date:</span> {data.mc3.song.year}</p>
+                  <p><span className="property-title">Song type:</span> {data.mc3.song.songTypes.map(
+                    (songType) => (songType.title + ' ')
+                  )}</p>
+                </section>
+              </Paper>
+            </Grid>
 
             {/* composers (person) linked to the song */}
-          <Paper>
-            <section className='song-section'>
-              <p><span className="property-title">Composer(s): </span>
-              {data.mc3.song.composers.map(
-                performer => {
-                  return performer.fullname + ' ';
-                })
-              }
-              </p>
+            <Grid item xs={12} sm={6}>
+              <Paper elevation={0}>
+                <section className='song-section'>
+                  <p><span className="property-title">Composer(s): </span>
+                  {data.mc3.song.composers.map(
+                    performer => {
+                      return performer.fullname + ' ';
+                    })
+                  }
+                  </p>
 
-              {/* lyricists (person) linked to the song */}
-              <p><span className="property-title">Lyricist(s): </span>
-              {data.mc3.song.lyricists.map(
-                lyricist => {
-                  return lyricist.fullname + ' ';
-                })
-              }
-              </p>
-            </section>
-          </Paper>
+                  {/* lyricists (person) linked to the song */}
+                  <p><span className="property-title">Lyricist(s): </span>
+                  {data.mc3.song.lyricists.map(
+                    lyricist => {
+                      return lyricist.fullname + ' ';
+                    })
+                  }
+                  </p>
+                </section>
+              </Paper>
+            </Grid>
+          </Grid>
 
+          <Grid container spacing={3}>
           {/* numbers connected */}
-          <Paper>
-            <section className='song-section'>
-              <p className='section-title'>Number(s)</p>
-                {data.mc3.song.numbers.map((number) => (
+            <Grid item xs={12} md={6}>
+              <Paper elevation={0}>
+                <section className='song-section'>
+                  <p className='section-title'>Number(s)</p>
+                    {data.mc3.song.numbers.map((number) => (
+                        <div className = 'song-element'>
+                          <p>{number.title}</p>
+                        </div>
+                    ))}
+                </section>
+              </Paper>
+            </Grid>
+
+            {/* films connected */}
+            <Grid item xs={12} md={6}>
+              <Paper elevation={0}>
+                <section className='song-section'>
+                <p className='section-title'>Film(s)</p>
+                  {data.mc3.song.films.map((film) => (
                     <div className = 'song-element'>
-                      <p>{number.title}</p>
+                      <p>{film.title} ({film.releasedYear})</p>
                     </div>
-                ))}
-            </section>
-          </Paper>
-
-          {/* films connected */}
-          <Paper>
-            <section className='song-section'>
-            <p className='section-title'>Film(s)</p>
-              {data.mc3.song.films.map((film) => (
-                <div className = 'song-element'>
-                  <p>{film.title} ({film.releasedYear})</p>
-                </div>
-              ))}
-          </section>
-        </Paper>
-
+                  ))}
+                </section>
+              </Paper>
+            </Grid>
+          </Grid>
         </Container>
       </Layout>
   )

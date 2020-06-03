@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from "gatsby";
+import "../styles/header.css";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -75,9 +76,11 @@ const Header = (props) => {
                 <MenuIcon />
             </IconButton>
 
-            <Typography variant="h6" className={classes.title}>
-                <Link to="/">MC3 - Hollywood musicals</Link>
-            </Typography>
+            <div className="header-title">
+              <Typography className={classes.title}>
+                  <Link to="/">Musical MC²</Link>
+              </Typography>
+            </div>
 
             <div className={classes.search}>
               <div className={classes.searchIcon}>
