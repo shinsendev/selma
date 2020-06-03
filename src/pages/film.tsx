@@ -23,7 +23,7 @@ export default FilmPage;
 export const query = graphql`
   {
     mc3 {
-      film(id: "/api/films/6bd560f7-da50-45ad-be92-b37adc3d686a") {
+      film(id: "/api/films/7a733d0b-d172-44ff-8d4f-f70d1f22133f") {
         title
       }
     }

@@ -1,62 +1,71 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout";
+import "../styles/songPage.css";
 import { Paper, Container, Typography } from '@material-ui/core';
 
 const SongPage = ({ data }) =>  {
-
-  console.log({data});
-
   return (
       <Layout>
         <Container maxWidth="md">
-        <Paper>
-          <h2>{data.mc3.song.title}</h2>
+          <h2 className='song-title'>{data.mc3.song.title}</h2>
 
-          {/* general informations */}
-          <section>
-            <p>Date : {data.mc3.song.year}</p>
-            <p>Song type : {data.mc3.song.songTypes.map(
-              (songType) => (songType.title) + ' ')
-            }</p>
-          </section>
+          {/* general infos */}
+          <Paper>
+            <section className='song-section'>
+              <p><span className="property-title">Date:</span> {data.mc3.song.year}</p>
+              <p><span className="property-title">Song type:</span> {data.mc3.song.songTypes.map(
+                (songType) => (songType.title + ' ')
+              )}</p>
+            </section>
+          </Paper>
 
-          {/* composers (person) linked to the song */}
-          <section>
-            <h3>Composer(s)</h3>
-          </section>
+            {/* composers (person) linked to the song */}
+          <Paper>
+            <section className='song-section'>
+              <p><span className="property-title">Composer(s): </span>
+              {data.mc3.song.composers.map(
+                performer => {
+                  return performer.fullname + ' ';
+                })
+              }
+              </p>
 
-          {/* lyricists (person) linked to the song */}
-          <section>
-            <h3>Lyricist(s)</h3>
-            
-          </section>
+              {/* lyricists (person) linked to the song */}
+              <p><span className="property-title">Lyricist(s): </span>
+              {data.mc3.song.lyricists.map(
+                lyricist => {
+                  return lyricist.fullname + ' ';
+                })
+              }
+              </p>
+            </section>
+          </Paper>
 
           {/* numbers connected */}
-          <section>
-            <h3>Number(s)</h3>
+          <Paper>
+            <section className='song-section'>
+              <p className='section-title'>Number(s)</p>
+                {data.mc3.song.numbers.map((number) => (
+                    <div className = 'song-element'>
+                      <p>{number.title}</p>
+                    </div>
+                ))}
+            </section>
+          </Paper>
 
-            {data.mc3.song.numbers.map((number) => (
-              <Paper>
-                <div>
-                  <h4>{number.title}</h4>
+          {/* films connected */}
+          <Paper>
+            <section className='song-section'>
+            <p className='section-title'>Film(s)</p>
+              {data.mc3.song.films.map((film) => (
+                <div className = 'song-element'>
+                  <p>{film.title} ({film.releasedYear})</p>
                 </div>
-              </Paper>
-            ))}
-          </section>
-
-          {/* films conneted */}
-          <section>
-            <h3>Film(s)</h3>
-            {data.mc3.song.films.map((film) => (
-              <Paper>
-                <div>
-            <h4>{film.title} ({film.releasedYear})</h4>
-                </div>
-              </Paper>
-            ))}
+              ))}
           </section>
         </Paper>
+
         </Container>
       </Layout>
   )
@@ -73,6 +82,8 @@ export const query = graphql`
         numbers
         films
         songTypes
+        composers
+        lyricists
       }
     }    
   }
