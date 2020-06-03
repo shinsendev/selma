@@ -56,6 +56,7 @@ const SongPage = ({ data }) =>  {
                     {data.mc3.song.numbers.map((number) => (
                         <div className = 'song-element'>
                           <p>{number.title}</p>
+                          <p>Film : {number.film}</p>
                         </div>
                     ))}
                 </section>
