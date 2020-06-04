@@ -60,7 +60,7 @@ const CategoriesPage = ({data}) =>  {
   function displayCategory(category) {
     return (
           <div key = {category.uuid}>
-            <h3 className='category-title'>{category.title} [{category.model}]</h3>
+            <h3 className='category-title'>{category.title}</h3>
 
             <Paper elevation={0}>
               <section className='category-section'>
@@ -71,10 +71,10 @@ const CategoriesPage = ({data}) =>  {
 
             <Paper elevation={0}>
               <section className='category-section'>
-                <h4 className='property-title'>Attributes ({category.attributesCount})</h4>
+                <h4 className='property-title'>Attributes ({category.attributesCount} types)</h4>
                 <ul>
                   {category.attributes.map(attribute => (
-                    <li>{attribute.title}</li>
+                    <li>{attribute.title} ({attribute.elementsCount})</li>
                   ))}
                 </ul>
               </section>
