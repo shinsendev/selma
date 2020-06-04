@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { graphql } from "gatsby";
 import Layout from "../components/layout";
-import { Paper, Container, Typography, Grid } from "@material-ui/core";
+import { Paper, Container, Typography, Grid, Box } from "@material-ui/core";
 import "../styles/categoryPage.css";
 
 const CategoriesPage = ({data}) =>  {
@@ -56,7 +56,6 @@ const CategoriesPage = ({data}) =>  {
     return orderedCategories;
   }
 
-
   function displayCategory(category) {
     return (
           <div key = {category.uuid}>
@@ -100,7 +99,7 @@ const CategoriesPage = ({data}) =>  {
     models.map(model => {
       const modelCategoriesList = getCategoriesByModel(model, categoriesList);
 
-      response.push(<h2>{model}</h2>)
+      response.push(<h2 className="model-title">{model}</h2>)
       modelCategoriesList.map( category => {
         response.push(displayCategory(category));
       })
@@ -110,13 +109,32 @@ const CategoriesPage = ({data}) =>  {
   }
 
   function displayCategories() {
-    return getResponseForAllCategoriesByModels(['film', 'number', 'song'], getOrderedCategories());;
+    return getResponseForAllCategoriesByModels(['film', 'number', 'song'], getOrderedCategories());
+  }
+
+  function displayMenu() {
+    return (
+      <Box display={{ xs: "none", md: "block" }}>
+        <h2>Categories List</h2>
+        {categoriesState.map(({node}) => (
+          <Typography>{node.title}</Typography>
+        ))}
+
+      </Box>
+    );
   }
 
   return (
         <Layout>
-            <Container className='container' maxWidth="sm">
-              {displayCategories()}
+            <Container className='container' maxWidth="md">
+              <Grid container spacing={3}>
+                <Grid item xs={12} sm={12} md={9}>
+                  {displayCategories()}
+                </Grid>
+                <Grid item xs={12} sm={12} md={3}>
+                  {displayMenu()}
+                </Grid>
+              </Grid>
             </Container>
         </Layout>
     );
