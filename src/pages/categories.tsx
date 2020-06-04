@@ -94,37 +94,28 @@ const CategoriesPage = ({data}) =>  {
     return modelCategoriesList;
   }
 
-  function displayCategories() {
+  // get all the categories group by all the models
+  function getResponseForAllCategoriesByModels(models, categoriesList) {
     const response = [];
-    const orderCategories = getOrderedCategories();
+    models.map(model => {
+      const modelCategoriesList = getCategoriesByModel(model, categoriesList);
 
-    // todo refacto
-    const filmsCategoriesList = getCategoriesByModel('film', orderCategories);
-    const numbersCategoriesList = getCategoriesByModel('number', orderCategories);
-    const songsCategoriesList = getCategoriesByModel('song', orderCategories);
-
-    response.push(<h2>Film</h2>)
-    filmsCategoriesList.map( category => {
-      response.push(displayCategory(category));
-    })
-
-    response.push(<h2>Number</h2>)
-    numbersCategoriesList.map( category => {
-      response.push(displayCategory(category));
-    })
-
-    response.push(<h2>Song</h2>)
-    songsCategoriesList.map( category => {
-      response.push(displayCategory(category));
+      response.push(<h2>{model}</h2>)
+      modelCategoriesList.map( category => {
+        response.push(displayCategory(category));
+      })
     })
 
     return response;
   }
 
+  function displayCategories() {
+    return getResponseForAllCategoriesByModels(['film', 'number', 'song'], getOrderedCategories());;
+  }
+
   return (
         <Layout>
             <Container className='container' maxWidth="sm">
-              <div>Debug mode</div>
               {displayCategories()}
             </Container>
         </Layout>
