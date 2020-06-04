@@ -42,10 +42,8 @@ export default function BaseLayout({ children }) {
                 {children}
 
                 <section className = {styles.footer}>
-                    <Typography>
-                    <h2>Partnership</h2>
-                    <p>This project is supported by the Labex Arts-H2H and benefits from financial support from the ANR as part of the “Investments for the future” program (ANR-10-LABX-80-01).</p>
-                    </Typography>
+                  <h2>Partnership</h2>
+                  <Typography>This project is supported by the Labex Arts-H2H and benefits from financial support from the ANR as part of the “Investments for the future” program (ANR-10-LABX-80-01).</Typography>
                 </section>
             </div>
         </ThemeProvider>
