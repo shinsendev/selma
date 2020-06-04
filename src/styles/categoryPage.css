@@ -1,0 +1,18 @@
+.category-title {
+    color: #db5462;
+    text-align: center;
+    font-size: 1.9em;
+}
+
+.category-section {
+    padding: 2px 6px;
+    margin-bottom: 2px;
+}
+
+.property-title {
+    color: #db5462;
+}
+
+.container {
+    margin-bottom: 60px;
+}
