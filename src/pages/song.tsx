@@ -1,8 +1,8 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from "react";
+import { graphql } from "gatsby";
+import { Paper, Container, Typography, Grid } from '@material-ui/core';
 import Layout from "../components/layout";
 import "../styles/songPage.css";
-import { Paper, Container, Typography, Grid } from '@material-ui/core';
 
 const SongPage = ({ data }) =>  {
   return (

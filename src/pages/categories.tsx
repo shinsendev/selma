@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { graphql } from "gatsby";
-import Layout from "../components/layout";
 import { Paper, Container, Typography, Grid, Box } from "@material-ui/core";
+import Layout from "../components/layout";
 import "../styles/categoryPage.css";
 
 const CategoriesPage = ({data}) =>  {
@@ -117,7 +117,7 @@ const CategoriesPage = ({data}) =>  {
       <Box display={{ xs: "none", md: "block" }}>
         <h2>Categories List</h2>
         {categoriesState.map(({node}) => (
-          <Typography>{node.title}</Typography>
+          <p className='menu-list'>{node.title}</p>
         ))}
 
       </Box>
