@@ -127,7 +127,7 @@ const CategoriesPage = ({data}) =>  {
             <Link
               to={`/categories#${node.uuid}`}
             >
-              {node.title}
+              {displayCategoryName(node.title)}
             </Link>
           </p>)
         )
