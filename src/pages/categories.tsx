@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { graphql } from "gatsby";
 import { Paper, Container, Typography, Grid, Box } from "@material-ui/core";
+import { Link } from "gatsby"
 import Layout from "../components/layout";
 import "../styles/categoryPage.css";
 
@@ -50,7 +51,7 @@ const CategoriesPage = ({data}) =>  {
 
   function displayCategory(category) {
     return (
-      <div key = {category.uuid}>
+      <div key = {category.uuid} id={category.uuid}>
         <h3 className='category-title'>{category.title.charAt(0).toUpperCase() + category.title.slice(1)}</h3>
         {/*display category description if exists*/}
         {displayDescription(category.description)}
@@ -64,11 +65,12 @@ const CategoriesPage = ({data}) =>  {
             </ul>
           </section>
         </Paper>
+        <p className="return-top-caption"><Link to={'/categories'}>return to top</Link></p>
       </div>
     )
   }
 
-  function getCategoriesByModel(model:object, categoriesList:object[]):object[] {
+  function getCategoriesByModel(model:object, categoriesList:Array<string>):object[] {
     const modelCategoriesList = [];
     categoriesList.map(category => {
       if (category.model === model) {
@@ -80,7 +82,7 @@ const CategoriesPage = ({data}) =>  {
   }
 
   // get all the categories group by all the models
-  function getResponseForAllCategoriesByModels(models, categoriesList) {
+  function getResponseForAllCategoriesByModels(models:Array<any>, categoriesList:Array<string>):Array<any> {
     const response = [];
     models.map((model) => {
       const modelCategoriesList = getCategoriesByModel(model, categoriesList);
@@ -104,7 +106,13 @@ const CategoriesPage = ({data}) =>  {
     categoriesState.map(({node}) => {
       if (node.model === model) {
         return (
-          response.push(<p className='menu-list'>{node.title}</p>)
+          response.push(<p className='menu-list'>
+            <Link
+              to={`/categories#${node.uuid}`}
+            >
+              {node.title}
+            </Link>
+          </p>)
         )
       }
     });
@@ -114,7 +122,7 @@ const CategoriesPage = ({data}) =>  {
 
   function displayMenu() {
     return (
-      <Box display={{ xs: "none", md: "block" }}>
+      <Box display={{ xs: "none", md: "block" }} className="menu">
         {
           modelsState.map(model => {
             return (
