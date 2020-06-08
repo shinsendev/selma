@@ -35,18 +35,25 @@ const CategoriesPage = ({data}) =>  {
     return orderedCategories;
   }
 
-  function displayCategory(category) {
-    return (
-      <div key = {category.uuid}>
-        <h3 className='category-title'>{category.title}</h3>
-
+  function displayDescription(description) {
+    if(description) {
+      return (
         <Paper elevation={0}>
           <section className='category-section'>
             <h4 className='property-title'>Description</h4>
-            <p>{category.description}</p>
+            <p>{description}</p>
           </section>
         </Paper>
+      )
+    }
+  }
 
+  function displayCategory(category) {
+    return (
+      <div key = {category.uuid}>
+        <h3 className='category-title'>{category.title.charAt(0).toUpperCase() + category.title.slice(1)}</h3>
+        {/*display category description if exists*/}
+        {displayDescription(category.description)}
         <Paper elevation={0}>
           <section className='category-section'>
             <h4 className='property-title'>Attributes ({category.attributesCount} types)</h4>
