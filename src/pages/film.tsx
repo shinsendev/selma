@@ -84,7 +84,7 @@ const FilmPage = ({data}) =>  {
                     <TableBody>
                       {data.mc3.film.numbers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((number) => (
                         <TableRow key={number.uuid} hover role="checkbox" tabIndex={-1}>
-                          <TableCell component="th" scope="row">{number.order}</TableCell>
+                          <TableCell component="th" scope="row">{number.order+1}</TableCell>
                           <TableCell align="right">{number.title}</TableCell>
                           <TableCell align="right">{number.beginTc}</TableCell>
                           <TableCell align="right">{number.endTc}</TableCell>
@@ -115,7 +115,7 @@ export default FilmPage;
 export const query = graphql`
   {
     mc3 {
-      film(id: "/api/films/7a733d0b-d172-44ff-8d4f-f70d1f22133f") {
+      film(id: "/api/films/a5271157-65e1-4c53-a0f7-d8e00acdc814") {
         title
         uuid
         sample

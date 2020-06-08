@@ -5,49 +5,28 @@ import Layout from "../components/layout";
 import "../styles/categoryPage.css";
 
 const CategoriesPage = ({data}) =>  {
-
   const [categoriesState, setCategoriesState] = useState(data.mc3.categories.edges);
+  const [modelsState, setModelsState] = useState(getModels(categoriesState));
 
-  function getModelsCategories(categoriesState: object[]): string[] {
-    const modelsList = [];
-    const modelsListRaw = [];
-
-    categoriesState.map(({node}) => {
-      // if it's the first loop, modelsList is empty
-      if (modelsList.length === 0) {
-        modelsList.push({ "title": node.model, "value": 1});
-        modelsListRaw.push(node.model);
-      }
-      // else if modelsList contains a model, we check if the model has been already added to the raw list
-      else {
-        // if yes, we increase the value
-        if(modelsListRaw.includes(node.model)) {
-          modelsList.map(model => {
-            if (node.model === model.title) {
-              model.value += 1;
-            }
-          })
-        }
-        // if not, we set the models list and update the raw list
-        else {
-          modelsList.push({ "title": node.model, "value": 1});
-          modelsListRaw.push(node.model);
-        }
-      }
-    });
-
-    return modelsList;
+  // get all distinct models type from categories = film, song, number
+  function getModels(categoriesState: object[]): string[] {
+    return  [...new Set(categoriesState.map(item => item.node.model))];
   }
 
   function getOrderedCategories() {
     // group all categories by models
-    const modelsList = getModelsCategories(categoriesState);
     const orderedCategories = [];
-    console.log(modelsList);
 
-    modelsList.map(model => {
+    // alphabetically sort categories list
+    categoriesState.sort(function(a, b){
+      if(a.node.title < b.node.title) { return -1; }
+      if(a.node.title > b.node.title) { return 1; }
+      return 0;
+    })
+
+    modelsState.map(model => {
       categoriesState.map(({node}) => {
-          if (node.model === model.title) {
+          if (node.model === model) {
             orderedCategories.push(node);
           }
       })
@@ -58,31 +37,31 @@ const CategoriesPage = ({data}) =>  {
 
   function displayCategory(category) {
     return (
-          <div key = {category.uuid}>
-            <h3 className='category-title'>{category.title}</h3>
+      <div key = {category.uuid}>
+        <h3 className='category-title'>{category.title}</h3>
 
-            <Paper elevation={0}>
-              <section className='category-section'>
-                <h4 className='property-title'>Description</h4>
-                <p>{category.description}</p>
-              </section>
-            </Paper>
+        <Paper elevation={0}>
+          <section className='category-section'>
+            <h4 className='property-title'>Description</h4>
+            <p>{category.description}</p>
+          </section>
+        </Paper>
 
-            <Paper elevation={0}>
-              <section className='category-section'>
-                <h4 className='property-title'>Attributes ({category.attributesCount} types)</h4>
-                <ul>
-                  {category.attributes.map(attribute => (
-                    <li>{attribute.title} ({attribute.elementsCount})</li>
-                  ))}
-                </ul>
-              </section>
-            </Paper>
-          </div>
+        <Paper elevation={0}>
+          <section className='category-section'>
+            <h4 className='property-title'>Attributes ({category.attributesCount} types)</h4>
+            <ul>
+              {category.attributes.map(attribute => (
+                <li>{attribute.title} ({attribute.elementsCount})</li>
+              ))}
+            </ul>
+          </section>
+        </Paper>
+      </div>
     )
   }
 
-  function getCategoriesByModel(model:string, categoriesList:object[]):object[] {
+  function getCategoriesByModel(model:object, categoriesList:object[]):object[] {
     const modelCategoriesList = [];
     categoriesList.map(category => {
       if (category.model === model) {
@@ -96,10 +75,11 @@ const CategoriesPage = ({data}) =>  {
   // get all the categories group by all the models
   function getResponseForAllCategoriesByModels(models, categoriesList) {
     const response = [];
-    models.map(model => {
+    models.map((model) => {
       const modelCategoriesList = getCategoriesByModel(model, categoriesList);
 
-      response.push(<h2 className="model-title">{model}</h2>)
+      response.push(<h2 className="model-title">{model}'s Categories</h2>);
+      response.push(<hr/>);
       modelCategoriesList.map( category => {
         response.push(displayCategory(category));
       })
@@ -109,17 +89,32 @@ const CategoriesPage = ({data}) =>  {
   }
 
   function displayCategories() {
-    return getResponseForAllCategoriesByModels(['film', 'number', 'song'], getOrderedCategories());
+    return getResponseForAllCategoriesByModels(modelsState, getOrderedCategories());
+  }
+
+  function displayMenuCategoriesByModel(model:string):Array<any> {
+    const response = [<h2>{model.charAt(0).toUpperCase() + model.slice(1)}</h2>];
+    categoriesState.map(({node}) => {
+      if (node.model === model) {
+        return (
+          response.push(<p className='menu-list'>{node.title}</p>)
+        )
+      }
+    });
+
+    return response;
   }
 
   function displayMenu() {
     return (
       <Box display={{ xs: "none", md: "block" }}>
-        <h2>Categories List</h2>
-        {categoriesState.map(({node}) => (
-          <p className='menu-list'>{node.title}</p>
-        ))}
-
+        {
+          modelsState.map(model => {
+            return (
+              displayMenuCategoriesByModel(model)
+            )
+        })
+      }
       </Box>
     );
   }
