@@ -10,7 +10,7 @@ const CategoriesPage = ({data}) =>  {
   const [modelsState, setModelsState] = useState(getModels(categoriesState));
 
   // get all distinct models type from categories = film, song, number
-  function getModels(categoriesState: object[]): string[] {
+  function getModels(categoriesState: Array<object>):Array<any> {
     return  [...new Set(categoriesState.map(item => item.node.model))];
   }
 
@@ -49,19 +49,36 @@ const CategoriesPage = ({data}) =>  {
     }
   }
 
+  // return category title with an uppercase
+  function displayCategoryName(title:string):string {
+    return title.charAt(0).toUpperCase() + title.slice(1)
+  }
+
+  function displayAttributes(attributes) {
+    attributes.sort(function(a, b){
+      if(a.title < b.title) { return -1; }
+      if(a.title > b.title) { return 1; }
+      return 0;
+    })
+
+    return (
+      attributes.map(attribute => (
+        <li>{attribute.title} ({attribute.elementsCount})</li>
+      ))
+    );
+  }
+
   function displayCategory(category) {
     return (
       <div key = {category.uuid} id={category.uuid}>
-        <h3 className='category-title'>{category.title.charAt(0).toUpperCase() + category.title.slice(1)}</h3>
+        <h3 className='category-title'>{displayCategoryName(category.title)}</h3>
         {/*display category description if exists*/}
         {displayDescription(category.description)}
         <Paper elevation={0}>
           <section className='category-section'>
             <h4 className='property-title'>Attributes ({category.attributesCount} types)</h4>
             <ul>
-              {category.attributes.map(attribute => (
-                <li>{attribute.title} ({attribute.elementsCount})</li>
-              ))}
+              {displayAttributes(category.attributes)}
             </ul>
           </section>
         </Paper>
