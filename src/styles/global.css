@@ -2,3 +2,20 @@ html {
     background-color: #FAFAFA;
     font-family: "Roboto Light", sans-serif;
 }
+
+/*Main pages (song, number, film, attribute)*/
+
+.container {
+    margin-bottom: 60px;
+}
+
+.property-title {
+    color: #db5462;
+}
+
+.main-item-title {
+    color: #db5462;
+    text-align: center;
+    font-size: 1.9em;
+}
+

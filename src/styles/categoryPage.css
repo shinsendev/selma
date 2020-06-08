@@ -9,16 +9,30 @@
     margin-bottom: 2px;
 }
 
-.property-title {
-    color: #db5462;
-}
-
-.container {
-    margin-bottom: 60px;
-}
-
 .model-title {
     text-transform: uppercase;
     font-size: 2.3em;
     text-align: center;
+}
+
+.menu-list {
+    font-weight: lighter;
+    font-size: 0.9em;
+    line-height:0.5em;
+}
+
+.menu-list a {
+    text-decoration: none;
+    color: black;
+}
+
+.return-top-caption {
+    text-align: center;
+    font-weight: bold;
+}
+
+.return-top-caption a{
+    text-decoration: none;
+    color:black;
+    font-size: 0.9em;
 }
