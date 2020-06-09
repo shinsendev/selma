@@ -32,43 +32,46 @@ const FilmPage = ({data}) =>  {
         });
       }
       return response;
-
     }
 
     const film = data.mc3.film;
 
     return (
         <Layout>
-            <Container maxWidth="md">
+            <Container className='container' maxWidth="md">
                 <h2>{film.title}</h2>
 
-                <Paper>
-                  <h2>General informations</h2>
-                  <Typography>Sample: {film.sample}</Typography>
-                  <Typography>Studio: </Typography>
-                  <Typography>IMDB link: {film.imdb}</Typography>
-                  <Typography>VIAF: {film.viaf}</Typography>
-                  <Typography>Director(s): {displayList(film.directors, 'fullname')}</Typography>
-                  <Typography>Release date (New York): {film.releasedYear === 0 ? 'NA' : data.mc3.film.releasedYear  }</Typography>
-                  <Typography>Production date: {data.mc3.film.productionYear === 0 ? 'NA' : data.mc3.film.productionYear  }</Typography>
+                <Paper className='category-section' elevation={0}>
+                  <h2 className='properties-title'>General informations</h2>
+                  <Typography><span className='property-title'>Sample:</span> {film.sample}</Typography>
+                  <Typography><span className='property-title'>Studio:</span> {displayList(film.studios, 'name')}</Typography>
+                  <Typography><span className='property-title'>IMDB link:</span> {film.imdb}</Typography>
+                  <Typography><span className='property-title'>VIAF:</span> {film.viaf}</Typography>
+                  <Typography><span className='property-title'>Director(s):</span> {displayList(film.directors, 'fullname')}</Typography>
+                  <Typography><span className='property-title'>Release date (New York):</span> {film.releasedYear === 0 ? 'NA' : data.mc3.film.releasedYear  }</Typography>
+                  <Typography><span className='property-title'>Production date:</span> {data.mc3.film.productionYear === 0 ? 'NA' : data.mc3.film.productionYear  }</Typography>
                 </Paper>
 
-              <Paper>
-                <h2>Recycling</h2>
-                <Typography>Adaptation: {film.adaptation}</Typography>
-                <Typography>Shows: {film.stageshows}</Typography>
-                <Typography>Remake: {film.remake}</Typography>
+              <Paper className='category-section' elevation={0}>
+                <h2 className='properties-title'>Recycling</h2>
+                <Typography><span className='property-title'>Adaptation:</span> {film.adaptation}</Typography>
+                <Typography><span className='property-title'>Shows:</span> {film.stageshows}</Typography>
+                <Typography><span className='property-title'>Remake:</span> {film.remake}</Typography>
               </Paper>
 
-              <Paper>
-                <h2>Censorship</h2>
-                <Typography>PCA Verdict on the first submitted script: {film.pca}</Typography>
-                <Typography>Censored Content: {displayList(film.censorships)}</Typography>
-                <Typography>States where the film was censored: {displayList(film.states)}</Typography>
+              <Paper className='category-section' elevation={0}>
+                <h2 className='properties-title'>Censorship</h2>
+                <Typography><span className='property-title'>PCA Verdict on the first submitted script: </span>{film.pca}</Typography>
+                <Typography><span className='property-title'>Censored Content: </span>{displayList(film.censorships)}</Typography>
+                <Typography><span className='property-title'>States where the film was censored: </span>{displayList(film.states)}</Typography>
+                <Typography><span className='property-title'>Legion of Decency: </span>{film.legion}</Typography>
+                <Typography><span className='property-title'>Protestant Motion Picture Council: </span>{film.protestant}</Typography>
+                <Typography><span className='property-title'>Harrison's Report: </span>{film.harisson}</Typography>
+                <Typography><span className='property-title'>Film Estimate Board of National Organizations: </span>{film.board}</Typography>
               </Paper>
 
-              <Paper>
-                <h2>Numbers</h2>
+              <Paper className='category-section' elevation={0}>
+                <h2 className='properties-title'>Numbers</h2>
                 <TableContainer component={Paper}>
                   <Table size="small" aria-label="Numbers list">
                     <TableHead>
@@ -105,6 +108,8 @@ const FilmPage = ({data}) =>  {
                   onChangeRowsPerPage={handleChangeRowsPerPage}
                 />
               </Paper>
+
+              {/*todo: add stats*/}
             </Container>
         </Layout>
     );

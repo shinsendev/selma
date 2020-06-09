@@ -4,13 +4,16 @@ html {
 }
 
 /*Main pages (song, number, film, attribute)*/
-
 .container {
     margin-bottom: 60px;
 }
 
-.property-title {
+.properties-title {
     color: #db5462;
+}
+
+.property-title {
+    font-weight: bold;
 }
 
 .main-item-title {
@@ -19,3 +22,7 @@ html {
     font-size: 1.9em;
 }
 
+.category-section {
+    padding: 2px 6px;
+    margin-bottom: 6px;
+}

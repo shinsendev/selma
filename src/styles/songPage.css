@@ -4,15 +4,6 @@
     font-size: 1.9em;
 }
 
-.property-title {
-    color: #db5462;
-}
-
-.song-section {
-    padding: 2px 6px;
-    margin-bottom: 12px;
-}
-
 .section-title {
     color: #db5462;
     font-size: 1.2em;
@@ -26,8 +17,4 @@
 
 .song-element p{
     font-size: 0.8em;
-}
-
-.container {
-    margin-bottom: 60px;
 }
