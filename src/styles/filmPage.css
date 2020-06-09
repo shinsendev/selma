@@ -15,3 +15,44 @@
 .category-section p {
     margin-bottom: 0.3em;
 }
+
+.stat-value {
+    font-size: 2em;
+}
+
+.stat-box {
+    text-align: center;
+    padding:0.6em 1em;
+    border-radius: 0.2em;
+    color:white;
+    background: red;
+}
+
+.numbers-minutes-box {
+    background: #00bcd4;
+}
+
+.movie-minutes-box {
+    background: #880e4f;
+}
+
+.numbers-seconds-box {
+    background: #ff5722;
+}
+
+.film-seconds-box {
+    background: #2E7D32;
+}
+
+.ratio-box {
+    background: #ffc107;
+}
+
+.average-box {
+    background: #0D47A1;
+}
+
+.global-average-box {
+    background: #f06292;
+}
+

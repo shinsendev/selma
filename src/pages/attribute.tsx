@@ -16,10 +16,10 @@ const AttributePage = ({data}) =>  {
         }
         return (
           <Paper elevation={0}>
-            <section>
+            <section className='elements-list'>
               <h3 className="properties-title elements-title">{data.mc3.attribute.elements.length} <span className="element-model-title">{title}</span> with {data.mc3.attribute.title}</h3>
-              <Grid container spacing={3}>
-              {data.mc3.attribute.elements.map(element => (
+              <Grid container spacing={1}>
+                {data.mc3.attribute.elements.map(element => (
                 <Grid item xs={12} sm={6} lg={6} className='element'>
                     <Typography variant="body1" component="p">{element.title}</Typography>
                 </Grid>

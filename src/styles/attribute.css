@@ -27,3 +27,7 @@ section {
     margin: 0;
     height: auto;
 }
+
+.elements-list {
+    padding-bottom: 50px;
+}

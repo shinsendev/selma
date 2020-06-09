@@ -42,7 +42,7 @@ const CategoriesPage = ({data}) =>  {
         <Paper elevation={0}>
           <section className='category-section'>
             <h4 className='properties-title'>Description</h4>
-            <p>{description}</p>
+            <Typography>{description}</Typography>
           </section>
         </Paper>
       )

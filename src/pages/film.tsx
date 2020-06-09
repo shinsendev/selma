@@ -139,7 +139,54 @@ const FilmPage = ({data}) =>  {
                   />
                 </Paper>
 
-                {/*todo: add stats*/}
+              {/*// Stats*/}
+              <section>
+                <Grid container spacing={1}>
+                  <Grid item xs={12} md={6}>
+                    <Box className='stat-box numbers-minutes-box'>
+                      <div className="stat-value">{film.numbersLength/60} min</div>
+                      <div className="stat-label stat-numbers-minutes">Running time for all numbers</div>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box className='stat-box movie-minutes-box'>
+                      <div className="stat-value">{film.length/60} min</div>
+                      <div className="stat-label stat-movie-minutes">Movie running time</div>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box className='stat-box numbers-seconds-box'>
+                      <div className="stat-value">{film.numbersLength} sec</div>
+                      <div className="stat-label stat-numbers-seconds">Running time for all numbers</div>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box className='stat-box film-seconds-box'>
+                      <div className="stat-value">{film.length} sec</div>
+                      <div className="stat-label stat-film-seconds">Movie running time</div>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={12}>
+                    <Box className='stat-box ratio-box'>
+                      <div className="stat-value">{film.numberRatio}%</div>
+                      <div className="stat-label stat-ratio">Ratio number/total length</div>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box className='stat-box average-box'>
+                      <div className="stat-value">{film.averageNumberLength} sec</div>
+                      <div className="stat-label stat-average">Average running time for the numbers in Kiss Me, Kate</div>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Box className='stat-box global-average-box'>
+                      <div className="stat-value">{film.globalAverageNumberLength} sec</div>
+                      <div className="stat-label stat-global-average">Average running time for the numbers for all the movies</div>
+                    </Box>
+                  </Grid>
+
+                </Grid>
+              </section>
             </Container>
         </Layout>
     );
@@ -173,7 +220,9 @@ export const query = graphql`
         legion
         length
         numberRatio
+        numbersLength
         averageNumberLength
+        globalAverageNumberLength
       }
     }
   }
