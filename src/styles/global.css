@@ -3,9 +3,14 @@ html {
     font-family: "Roboto Light", sans-serif;
 }
 
+a {
+    color: #db5462;
+}
+
 /*Main pages (song, number, film, attribute)*/
 .container {
     margin-bottom: 60px;
+    min-height: 600px;
 }
 
 .properties-title {
