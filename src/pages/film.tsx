@@ -16,17 +16,17 @@ const FilmPage = ({data}) =>  {
       setPage(0);
     };
 
-    function displayList(list, property:string = '') {
+    function displayList(list:Array<any>, property:string = '') {
       let response = 'NA';
       if(list.length > 0) {
         response = '';
-        list.map((item, index) => {
+        list.map((item, index:number) => {
           if (index === list.length-1) {
-            response = response+item.fullname+'';
+            // if there is no property, we don't need to use it (for person, we need to get person.fullname but for censorship we directly use the value of the censorship)
+            (property)? response = response = response+item[property] :response = response+item;
           }
           else {
-            alert(index);
-            response = response+item.fullname+', ';
+            (property)? response = response+item[property]+', ' :response = response+item+', ';
           }
 
         });
@@ -55,16 +55,16 @@ const FilmPage = ({data}) =>  {
 
               <Paper>
                 <h2>Recycling</h2>
-                <Typography>Adaptation: </Typography>
-                <Typography>Shows: </Typography>
-                <Typography>Remake: </Typography>
+                <Typography>Adaptation: {film.adaptation}</Typography>
+                <Typography>Shows: {film.stageshows}</Typography>
+                <Typography>Remake: {film.remake}</Typography>
               </Paper>
 
               <Paper>
                 <h2>Censorship</h2>
-                <Typography>PCA Verdict on the first submitted script: </Typography>
-                <Typography>Censored Content: </Typography>
-                <Typography>States where the film was censored: </Typography>
+                <Typography>PCA Verdict on the first submitted script: {film.pca}</Typography>
+                <Typography>Censored Content: {displayList(film.censorships)}</Typography>
+                <Typography>States where the film was censored: {displayList(film.states)}</Typography>
               </Paper>
 
               <Paper>
@@ -126,6 +126,19 @@ export const query = graphql`
         productionYear
         releasedYear
         numbers
+        remake
+        stageshows
+        adaptation
+        censorships
+        pca
+        states
+        board
+        harrison
+        protestant
+        legion
+        length
+        numberRatio
+        averageNumberLength
       }
     }
   }
