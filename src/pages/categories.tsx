@@ -41,8 +41,8 @@ const CategoriesPage = ({data}) =>  {
       return (
         <Paper elevation={0}>
           <section className='category-section'>
-            <h4 className='property-title'>Description</h4>
-            <p>{description}</p>
+            <h4 className='properties-title'>Description</h4>
+            <Typography>{description}</Typography>
           </section>
         </Paper>
       )
@@ -76,7 +76,7 @@ const CategoriesPage = ({data}) =>  {
         {displayDescription(category.description)}
         <Paper elevation={0}>
           <section className='category-section'>
-            <h4 className='property-title'>Attributes ({category.attributesCount} types)</h4>
+            <h4 className='properties-title'>Attributes ({category.attributesCount} types)</h4>
             <ul>
               {displayAttributes(category.attributes)}
             </ul>

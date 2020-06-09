@@ -16,10 +16,10 @@ const AttributePage = ({data}) =>  {
         }
         return (
           <Paper elevation={0}>
-            <section>
-              <h3 className="property-title elements-title">{data.mc3.attribute.elements.length} <span className="element-model-title">{title}</span> with {data.mc3.attribute.title}</h3>
-              <Grid container spacing={3}>
-              {data.mc3.attribute.elements.map(element => (
+            <section className='elements-list'>
+              <h3 className="properties-title elements-title">{data.mc3.attribute.elements.length} <span className="element-model-title">{title}</span> with {data.mc3.attribute.title}</h3>
+              <Grid container spacing={1}>
+                {data.mc3.attribute.elements.map(element => (
                 <Grid item xs={12} sm={6} lg={6} className='element'>
                     <Typography variant="body1" component="p">{element.title}</Typography>
                 </Grid>
@@ -37,10 +37,10 @@ const AttributePage = ({data}) =>  {
               <h2 className='main-item-title attribute-title'>{data.mc3.attribute.title}</h2>
                 <Paper elevation={0}>
                   <section>
-                    <p><span className="property-title">Category:</span> {data.mc3.attribute.categoryTitle}</p>
-                    <p className="property-title">Definition:</p>
+                    <p><span className="properties-title">Category:</span> {data.mc3.attribute.categoryTitle}</p>
+                    <p className="properties-title">Definition:</p>
                     <p>{data.mc3.attribute.definition}</p>
-                    <p className="property-title">Example:</p>
+                    <p className="properties-title">Example:</p>
                     <p>{data.mc3.attribute.example}</p>
                   </section>
                 </Paper>
@@ -55,7 +55,7 @@ export default AttributePage;
 export const query = graphql`
   {
     mc3 {
-      attribute(id: "/api/attributes/1bd09bea-1b8a-426c-9d11-b6a3e0ee3577") {
+      attribute(id: "/api/attributes/c85df611-caac-4cd2-bb8d-78c000a04829") {
         title
         categoryTitle
         categoryUuid

@@ -3,14 +3,22 @@ html {
     font-family: "Roboto Light", sans-serif;
 }
 
-/*Main pages (song, number, film, attribute)*/
+a {
+    color: #db5462;
+}
 
+/*Main pages (song, number, film, attribute)*/
 .container {
     margin-bottom: 60px;
+    min-height: 600px;
+}
+
+.properties-title {
+    color: #db5462;
 }
 
 .property-title {
-    color: #db5462;
+    font-weight: bold;
 }
 
 .main-item-title {
@@ -19,3 +27,7 @@ html {
     font-size: 1.9em;
 }
 
+.category-section {
+    padding: 2px 6px;
+    margin-bottom: 6px;
+}

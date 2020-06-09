@@ -3,14 +3,20 @@ import Header from "./header";
 import { createMuiTheme, ThemeProvider, Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 
+
 const theme = createMuiTheme({
+  typography: {
+    body1: {
+      fontSize: 13,
+    },
+  },
   palette: {
     primary: {
       main: '#db5462', // mC2 pink
     },
     secondary: {
       main: '#4d5d5d', // footer gray
-    }
+    },
   },
 });
 
@@ -31,9 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function BaseLayout({ children }) {
-
     const styles = useStyles();
-
     return (
         <ThemeProvider theme={theme}>
             <div>

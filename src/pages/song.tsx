@@ -14,8 +14,8 @@ const SongPage = ({ data }) =>  {
             <Grid item xs={12} md={6}>
               <Paper elevation={0}>
                 <section className='song-section'>
-                  <p><span className="property-title">Date:</span> {data.mc3.song.year}</p>
-                  <p><span className="property-title">Song type:</span> {data.mc3.song.songTypes.map(
+                  <p><span className="properties-title">Date:</span> {data.mc3.song.year}</p>
+                  <p><span className="properties-title">Song type:</span> {data.mc3.song.songTypes.map(
                     (songType) => (songType.title + ' ')
                   )}</p>
                 </section>
@@ -24,9 +24,9 @@ const SongPage = ({ data }) =>  {
 
             {/* composers (person) linked to the song */}
             <Grid item xs={12} sm={6}>
-              <Paper elevation={0}>
-                <section className='song-section'>
-                  <p><span className="property-title">Composer(s): </span>
+              <Paper elevation={0} className='category-section'>
+                <section>
+                  <p><span className="properties-title">Composer(s): </span>
                   {data.mc3.song.composers.map(
                     performer => {
                       return performer.fullname + ' ';
@@ -35,7 +35,7 @@ const SongPage = ({ data }) =>  {
                   </p>
 
                   {/* lyricists (person) linked to the song */}
-                  <p><span className="property-title">Lyricist(s): </span>
+                  <p><span className="properties-title">Lyricist(s): </span>
                   {data.mc3.song.lyricists.map(
                     lyricist => {
                       return lyricist.fullname + ' ';
@@ -51,7 +51,7 @@ const SongPage = ({ data }) =>  {
           {/* numbers connected */}
             <Grid item xs={12} md={6}>
               <Paper elevation={0}>
-                <section className='song-section'>
+                <section className='category-section'>
                   <p className='section-title'>Number(s)</p>
                     {data.mc3.song.numbers.map((number) => (
                         <div className = 'song-element'>
@@ -66,7 +66,7 @@ const SongPage = ({ data }) =>  {
             {/* films connected */}
             <Grid item xs={12} md={6}>
               <Paper elevation={0}>
-                <section className='song-section'>
+                <section className='category-section'>
                 <p className='section-title'>Film(s)</p>
                   {data.mc3.song.films.map((film) => (
                     <div className = 'song-element'>
@@ -87,7 +87,7 @@ export default SongPage;
 export const query = graphql`
   query {
     mc3 {
-      song(id: "/api/songs/48f1475e-4f1f-48fb-a14b-53d37dc066d2") {
+      song(id: "/api/songs/d1cc2f8e-fc84-44d5-939c-7eeea9e70a82") {
         title
         year
         numbers
