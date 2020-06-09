@@ -3,3 +3,5 @@ start:
 
 clean:
 	gatsby clean
+
+restart: clean start

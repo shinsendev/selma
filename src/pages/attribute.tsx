@@ -55,7 +55,7 @@ export default AttributePage;
 export const query = graphql`
   {
     mc3 {
-      attribute(id: "/api/attributes/1bd09bea-1b8a-426c-9d11-b6a3e0ee3577") {
+      attribute(id: "/api/attributes/c85df611-caac-4cd2-bb8d-78c000a04829") {
         title
         categoryTitle
         categoryUuid
