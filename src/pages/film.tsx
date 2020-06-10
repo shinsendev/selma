@@ -1,5 +1,6 @@
 import React from "react"
 import Layout from "../components/layout";
+import Timecode from "../helpers/timecode";
 import {
   Paper,
   Grid,
@@ -29,6 +30,10 @@ const FilmPage = ({data}) =>  {
       setRowsPerPage(+event.target.value);
       setPage(0);
     };
+
+    function displayTimeCode(timecode:number):number {
+      return Timecode.convert(timecode);
+    }
 
     function displayList(list:Array<any>, property:string = '') {
       let response = 'NA';
@@ -64,7 +69,7 @@ const FilmPage = ({data}) =>  {
                     </Paper>
                   </Grid>
 
-                  <Grid item xs={12} sm={12} md={8} lg={9}>
+                  <Grid item xs={12} sm={12} md={8} lg={3}>
                     <Paper className='category-section' elevation={0}>
                       <h2 className='properties-title'>General informations</h2>
                       <Typography variant="body1"><span className='property-title'>Sample:</span> {film.sample}</Typography>
@@ -77,7 +82,7 @@ const FilmPage = ({data}) =>  {
                     </Paper>
                   </Grid>
 
-                  <Grid item xs={12} sm={12} md={6} lg={6}>
+                  <Grid item xs={12} sm={12} md={6} lg={3}>
                     <Paper className='category-section' elevation={0}>
                       <h2 className='properties-title'>Recycling</h2>
                       <Typography variant="body1"><span className='property-title'>Adaptation:</span> {film.adaptation}</Typography>
@@ -86,7 +91,7 @@ const FilmPage = ({data}) =>  {
                     </Paper>
                   </Grid>
 
-                  <Grid item xs={12} sm={12} md={6} lg={6}>
+                  <Grid item xs={12} sm={12} md={6} lg={3}>
                     <Paper className='category-section' elevation={0}>
                       <h2 className='properties-title'>Censorship</h2>
                       <Typography variant="body1"><span className='property-title'>PCA Verdict on the first submitted script: </span>{film.pca}</Typography>
@@ -119,9 +124,9 @@ const FilmPage = ({data}) =>  {
                           <TableRow key={number.uuid} hover role="checkbox" tabIndex={-1}>
                             <TableCell component="th" scope="row">{number.order+1}</TableCell>
                             <TableCell align="right">{number.title}</TableCell>
-                            <TableCell align="right">{number.beginTc}</TableCell>
-                            <TableCell align="right">{number.endTc}</TableCell>
-                            <TableCell align="right">{number.length}</TableCell>
+                            <TableCell align="right">{displayTimeCode(number.beginTc)}</TableCell>
+                            <TableCell align="right">{displayTimeCode(number.endTc)}</TableCell>
+                            <TableCell align="right">{displayTimeCode(number.length)}</TableCell>
                             <TableCell align="right">{displayList(number.performers, "fullname")}</TableCell>
                           </TableRow>
                         ))}
