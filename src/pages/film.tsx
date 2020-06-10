@@ -122,7 +122,7 @@ const FilmPage = ({data}) =>  {
                             <TableCell align="right">{number.beginTc}</TableCell>
                             <TableCell align="right">{number.endTc}</TableCell>
                             <TableCell align="right">{number.length}</TableCell>
-                            <TableCell align="right">NA</TableCell>
+                            <TableCell align="right">{displayList(number.performers, "fullname")}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -144,13 +144,13 @@ const FilmPage = ({data}) =>  {
                 <Grid container spacing={1}>
                   <Grid item xs={12} md={6}>
                     <Box className='stat-box numbers-minutes-box'>
-                      <div className="stat-value">{film.numbersLength/60} min</div>
+                      <div className="stat-value">{Math.round(film.numbersLength/60)} min</div>
                       <div className="stat-label stat-numbers-minutes">Running time for all numbers</div>
                     </Box>
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <Box className='stat-box movie-minutes-box'>
-                      <div className="stat-value">{film.length/60} min</div>
+                      <div className="stat-value">{Math.round(film.length/60)} min</div>
                       <div className="stat-label stat-movie-minutes">Movie running time</div>
                     </Box>
                   </Grid>
@@ -168,7 +168,7 @@ const FilmPage = ({data}) =>  {
                   </Grid>
                   <Grid item xs={12} md={12}>
                     <Box className='stat-box ratio-box'>
-                      <div className="stat-value">{film.numberRatio}%</div>
+                      <div className="stat-value">{film.numbersRatio/100}%</div>
                       <div className="stat-label stat-ratio">Ratio number/total length</div>
                     </Box>
                   </Grid>
@@ -219,7 +219,7 @@ export const query = graphql`
         protestant
         legion
         length
-        numberRatio
+        numbersRatio
         numbersLength
         averageNumberLength
         globalAverageNumberLength
