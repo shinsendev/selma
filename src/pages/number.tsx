@@ -41,7 +41,7 @@ const NumberPage = ({data}) =>  {
               <Typography variant="body1"><span className='property-title'>Beginning: </span>{number.beginning}</Typography>
               <Typography variant="body1"><span className='property-title'>Ending: </span>{number.ending}</Typography>
               <Typography variant="body1"><span className='property-title'>Completeness: </span>{displayList(number.completeness)}</Typography>
-              <Typography variant="body1"><span className='property-title'>Completeness options: </span>{number.completenessOptions}</Typography>
+              <Typography variant="body1"><span className='property-title'>Completeness options: </span>{number.completenessOption}</Typography>
               <Typography variant="body1"><span className='property-title'>Structure: </span>{number.structure}</Typography>
               <Typography variant="body1"><span className='property-title'>Shots: </span>{number.shots}</Typography>
               <Typography variant="body1"><span className='property-title'>Average shot length: </span>{computeAverageShotLength()} sec</Typography>
@@ -100,7 +100,7 @@ export default NumberPage;
 export const query = graphql`
   {
     mc3 {
-      number(id:"/api/numbers/41751cf9-7837-441b-b252-c109ada02376") {
+      number(id:"/api/numbers/5d5bee4b-3fab-4c65-b045-9b116b218d4c") {
         id
         title
         film
@@ -109,7 +109,7 @@ export const query = graphql`
         beginning
         ending
         completeness
-        completenessOptions
+        completenessOption
         structure
         shots
         averageShotLength
@@ -125,7 +125,7 @@ export const query = graphql`
         imaginaryPlace
         ethnicStereotypes
         exoticism
-        song
+        songs
         musicalEnsemble
         dubbing
         tempo

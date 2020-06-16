@@ -17,7 +17,7 @@ const AttributePage = ({data}) =>  {
         return (
           <Paper elevation={0}>
             <section className='elements-list'>
-              <h3 className="properties-title elements-title">{data.mc3.attribute.elements.length} <span className="element-model-title">{title}</span> with {data.mc3.attribute.title}</h3>
+              <h3 className="properties-title elements-title">{data.mc3.attribute.elements.length} <span className="element-model-title">{title}</span></h3>
               <Grid container spacing={1}>
                 {data.mc3.attribute.elements.map(element => (
                 <Grid item xs={12} sm={6} lg={6} className='element'>
@@ -55,7 +55,7 @@ export default AttributePage;
 export const query = graphql`
   {
     mc3 {
-      attribute(id: "/api/attributes/c85df611-caac-4cd2-bb8d-78c000a04829") {
+      attribute(id: "/api/attributes/27b11176-9555-4fa5-bda9-85aa76147843") {
         title
         categoryTitle
         categoryUuid

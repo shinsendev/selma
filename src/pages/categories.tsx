@@ -104,7 +104,7 @@ const CategoriesPage = ({data}) =>  {
     models.map((model) => {
       const modelCategoriesList = getCategoriesByModel(model, categoriesList);
 
-      response.push(<h2 className="model-title">{model}'s Categories</h2>);
+      response.push(<h2 className="model-title">{model} Categories</h2>);
       response.push(<hr/>);
       modelCategoriesList.map( category => {
         response.push(displayCategory(category));
