@@ -1,3 +1,8 @@
+// to import env var
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV || 'development'}`
+})
+
 module.exports = {
   siteMetadata: {
     title: `MC2`,
@@ -9,7 +14,7 @@ module.exports = {
       options: {
         typeName: `Mc3`,
         fieldName: `mc3`,
-        url: `http://api.mc2.website/api/graphql`,
+        url: process.env.MC3_API_URL,
       },
     },
   ],
