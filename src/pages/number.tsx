@@ -2,9 +2,14 @@ import React from "react"
 import Layout from "../components/layout";
 import { Paper, Container, Typography, Box } from "@material-ui/core";
 import { graphql } from "gatsby"
+import Timecode from "../helpers/timecode";
 
 const NumberPage = ({data}) =>  {
   const number = data.mc3.number;
+
+  function displayTimeCode(timecode:number):number {
+    return Timecode.convert(timecode);
+  }
 
   function displayList(list:Array<any>, property:string = '') {
     let response = 'NA';
@@ -36,8 +41,8 @@ const NumberPage = ({data}) =>  {
 
             <Paper className='category-section' elevation={0}>
               <h2 className='properties-title'>Description</h2>
-              <Typography variant="body1"><span className='property-title'>Starting time code: </span>{number.startingTc}</Typography>
-              <Typography variant="body1"><span className='property-title'>Ending time code: </span>{number.endingTc}</Typography>
+              <Typography variant="body1"><span className='property-title'>Starting time code: </span>{displayTimeCode(number.startingTc)}</Typography>
+              <Typography variant="body1"><span className='property-title'>Ending time code: </span>{displayTimeCode(number.endingTc)}</Typography>
               <Typography variant="body1"><span className='property-title'>Beginning: </span>{number.beginning}</Typography>
               <Typography variant="body1"><span className='property-title'>Ending: </span>{number.ending}</Typography>
               <Typography variant="body1"><span className='property-title'>Completeness: </span>{displayList(number.completeness)}</Typography>
@@ -87,7 +92,7 @@ const NumberPage = ({data}) =>  {
             <Paper className='category-section' elevation={0}>
               <h2 className='properties-title'>Intertextuality</h2>
               <Typography variant="body1"><span className='property-title'>Source: </span>{number.source}</Typography>
-              <Typography variant="body1"><span className='property-title'>Quotation: </span>{number.quotation}</Typography>
+              <Typography variant="body1"><span className='property-title'>Quotation: </span>{displayList(number.quotation)}</Typography>
             </Paper>
 
           </Container>
