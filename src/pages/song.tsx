@@ -87,7 +87,7 @@ export default SongPage;
 export const query = graphql`
   query {
     mc3 {
-      song(id: "/api/songs/f42bb9a6-09b2-44a8-a887-3f590b93cc03") {
+      song(id: "/api/songs/f571d7e5-8790-4071-852f-e7244b4da4e6") {
         title
         year
         numbers

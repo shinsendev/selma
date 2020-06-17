@@ -13,7 +13,7 @@ const NumberPage = ({data}) =>  {
       list.map((item, index:number) => {
         if (index === list.length-1) {
           // if there is no property, we don't need to use it (for person, we need to get person.fullname but for censorship we directly use the value of the censorship)
-          (property)? response = response = response+item[property] :response = response+item;
+          (property)? response = response+item[property] :response = response+item;
         }
         else {
           (property)? response = response+item[property]+', ' :response = response+item+', ';
@@ -25,7 +25,7 @@ const NumberPage = ({data}) =>  {
   }
 
   function computeAverageShotLength():number {
-    return (number.endingTc - number.startingTc)/number.shots;
+    return Math.round((number.endingTc - number.startingTc)/number.shots);
   }
 
   return (
@@ -46,7 +46,7 @@ const NumberPage = ({data}) =>  {
               <Typography variant="body1"><span className='property-title'>Shots: </span>{number.shots}</Typography>
               <Typography variant="body1"><span className='property-title'>Average shot length: </span>{computeAverageShotLength()} sec</Typography>
               <Typography variant="body1"><span className='property-title'>Performance: </span>{number.performance}</Typography>
-              <Typography variant="body1"><span className='property-title'>Performers: </span>{number.performers}</Typography>
+              <Typography variant="body1"><span className='property-title'>Performers: </span>{displayList(number.performers, 'fullname')}</Typography>
               <Typography variant="body1"><span className='property-title'>Cast: </span>{number.cast}</Typography>
               <Typography variant="body1"><span className='property-title'>Stars who don't participate: </span>{number.noParticipationStars}</Typography>
             </Paper>
@@ -100,7 +100,7 @@ export default NumberPage;
 export const query = graphql`
   {
     mc3 {
-      number(id:"/api/numbers/5d5bee4b-3fab-4c65-b045-9b116b218d4c") {
+      number(id:"/api/numbers/950f025a-3ea8-4337-8c5d-b79b4b6894e4") {
         id
         title
         film
