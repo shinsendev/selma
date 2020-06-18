@@ -64,7 +64,7 @@ const FilmPage = ({data}) =>  {
                   <Grid item xs={12} sm={12} md={4} lg={3}>
                     <Paper>
                       <Box display={{ xs: "none", md: "block" }}>
-                        <img className='poster' src="https://m.media-amazon.com/images/M/MV5BNmFmNDJlZTQtMzk1MS00MmYyLWJmMjEtY2ZjNTczZjA3ZmFhXkEyXkFqcGdeQXVyMTMxMTY0OTQ@._V1_SY1000_CR0,0,657,1000_AL_.jpg" alt="Film poster"/>
+                        <img className='poster' src={'http://mc2.labex-arts-h2h.univ-paris8.fr/img/films/'+film.imdb+'.jpg'}/>
                       </Box>
                     </Paper>
                   </Grid>

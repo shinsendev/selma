@@ -1,0 +1,74 @@
+.homepage .main h1, .homepage  .main h2 {
+    color: #db5462;
+    text-align: center;
+}
+
+.homepage .container .MuiTypography-h1 {
+    font-size: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.homepage .container .MuiTypography-h2 {
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.homepage .container .MuiTypography-h3 {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.3rem;
+    margin-top:0px;
+
+}
+
+.homepage .stats-container {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.homepage .stats {
+    font-size: 3rem;
+}
+
+.homepage .stats-box {
+    padding:0.9rem 0;
+    margin:0.3rem 0;
+}
+
+.homepage .section {
+    margin-top: 0.6rem;
+    padding: 0.9rem;
+}
+
+.homepage .film {
+    text-align: center;
+    margin: 0;
+}
+
+.homepage .films-container {
+    padding-top: 2rem;
+}
+
+.homepage .film a, .homepage .performers-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.homepage .poster {
+    width: 200px;
+    height: 300px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.homepage .performers-container {
+    margin-top: 1.6rem;
+}
+
+.homepage .chip:hover {
+    cursor:pointer;
+}
