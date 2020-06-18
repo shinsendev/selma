@@ -8,11 +8,22 @@ export default ({ pageContext: { homepage } }) => {
     <Layout>
       <Container className='container' maxWidth="md">
 
+        <h2>Films with data</h2>
         {homepage.films.map(film => (
           <Paper>
-              <h3>{film.title}</h3>
+              <h3>{film.title} ({film.releasedYear})</h3>
+              <img src="" alt=""/>
           </Paper>
         ))}
+
+        <h2>Performers</h2>
+
+        {homepage.performers.map(performer => (
+          <Paper>
+            <h3>{performer.fullname}</h3>
+          </Paper>
+        ))}
+
         <ul>
           <p>Voici = {homepage.filmsCount}</p>
           <li><Link to="/film">Film</Link></li>

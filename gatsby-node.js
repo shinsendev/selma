@@ -5,6 +5,7 @@ const get = () => axios.get(`http://127.0.0.1:8000/`);
 const getHomepageData = async () => {
       const { data: homepage } = await get();
       return { ...homepage };
+      // return await get();
 };
 
 exports.createPages = async ({ actions: { createPage } }) => {
