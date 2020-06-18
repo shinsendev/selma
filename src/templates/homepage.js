@@ -44,7 +44,9 @@ export default ({ pageContext: { homepage } }) => {
                       <Grid item xs={12} md={4} lg={3} className='section film'>
                         <Link to="/film">
                           <Box>
-                            <Typography variant="h3">{film.title} ({film.releasedYear})</Typography>
+                            <div className="film-title">
+                              <Typography variant="h3">{film.title} ({film.releasedYear})</Typography>
+                            </div>
                             <img className='poster' src={'http://mc2.labex-arts-h2h.univ-paris8.fr/img/films/'+film.imdb+'.jpg'} alt=""/>
                           </Box>
                         </Link>
