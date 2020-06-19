@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import Layout from "../components/layout";
 import { Container, Paper, Grid, Chip, Typography, Box } from "@material-ui/core"
 import "../styles/homePage.css";
+import FaceIcon from '@material-ui/icons/Face';
 
 export default ({ pageContext: { homepage } }) => {
   return (
@@ -42,7 +43,7 @@ export default ({ pageContext: { homepage } }) => {
                 <Grid container spacing={0}>
                     {homepage.films.map(film => (
                       <Grid item xs={12} md={4} lg={3} className='section film'>
-                        <Link to="/film">
+                        <Link to={/film/+film.uuid}>
                           <Box>
                             <div className="film-title">
                               <Typography variant="h3">{film.title} ({film.releasedYear})</Typography>
@@ -62,6 +63,7 @@ export default ({ pageContext: { homepage } }) => {
                   {homepage.performers.map(performer => (
                     <Link to="/person">
                     <Chip
+                      icon={<FaceIcon />}
                       label={performer.fullname}
                       variant="outlined"
                       className='chip'

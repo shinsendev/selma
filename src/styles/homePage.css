@@ -79,3 +79,7 @@
 .homepage .chip:hover {
     cursor:pointer;
 }
+
+.homepage .chip {
+    font-size: 1.3rem;
+}

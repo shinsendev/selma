@@ -200,7 +200,7 @@ const FilmPage = ({data}) =>  {
 export default FilmPage;
 
 export const query = graphql`
-  {
+  query {
     mc3 {
       film(id: "/api/films/d4d74180-70a2-442c-87c3-9de71266506d") {
         title
