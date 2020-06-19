@@ -22,6 +22,14 @@ const useStyles = makeStyles((theme: Theme) =>
         display: 'block',
       },
     },
+    link: {
+      color: 'white',
+      textDecoration: 'none',
+    },
+    categories: {
+      paddingLeft: '2rem',
+      paddingRight: '1rem',
+    },
     search: {
       position: 'relative',
       borderRadius: theme.shape.borderRadius,
@@ -96,8 +104,11 @@ const Header = (props) => {
               />
             </div>
 
-            <Button color="inherit">Login</Button>
+            <Typography className={classes.categories}>
+              <Link to="/categories" className={classes.link}>Categories</Link>
+            </Typography>
 
+            <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
         

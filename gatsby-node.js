@@ -180,20 +180,36 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   });
 
   // manage attributes
-  // const attributesGraphQL = await graphql(`
-  //   query {
-  //     mc3 {
-  //       attributes(first:`+attributesCount+`) {
-  //         edges {
-  //           node {
-  //
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }`
-  // );
+  const attributesGraphQL = await graphql(`
+    query {
+      mc3 {
+        attributes(first:`+attributesCount+`) {
+          edges {
+            node {
+              uuid
+              title
+              categoryTitle
+              categoryUuid
+              description
+              example
+              elements
+              model
+            }
+          }
+        }
+      }
+    }`
+  );
 
   // manage persons
 
+  attributesGraphQL.data.mc3.attributes.edges.forEach(({ node }) => {
+    createPage({
+      path: '/attribute/' + node.uuid,
+      component: require.resolve(`./src/templates/attribute.tsx`),
+      context: {
+        attribute: node
+      },
+    })
+  });
 };

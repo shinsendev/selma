@@ -74,9 +74,7 @@ export default ({ pageContext: { homepage } }) => {
             </Paper>
 
             <ul>
-              <li><Link to="/song">Song</Link></li>
               <li><Link to="/categories">Categories</Link></li>
-              <li><Link to="/attribute">Attribute</Link></li>
             </ul>
           </Container>
         </section>
