@@ -31,3 +31,8 @@ a {
     padding: 2px 6px;
     margin-bottom: 6px;
 }
+
+.MuiChip-root {
+    margin-right: 0.3em;
+    margin-bottom: 0.6em;
+}

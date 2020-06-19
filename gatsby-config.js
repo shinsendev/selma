@@ -15,6 +15,7 @@ module.exports = {
         typeName: `Mc3`,
         fieldName: `mc3`,
         url: process.env.MC3_API_URL,
+        refetchInterval: 600,
       },
     },
   ],
