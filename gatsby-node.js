@@ -1,10 +1,6 @@
 const axios = require('axios');
 
-require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV || 'development'}`
-})
-
-const getHomeAPI = () => axios.get(process.env.MC3_HOME,);
+const getHomeAPI = () => axios.get(process.env.MC3_HOME);
 
 const getHomepageData = async () => {
       const { data: homepage } = await getHomeAPI();
