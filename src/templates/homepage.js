@@ -73,9 +73,6 @@ export default ({ pageContext: { homepage } }) => {
                 </section>
             </Paper>
 
-            <ul>
-              <li><Link to="/categories">Categories</Link></li>
-            </ul>
           </Container>
         </section>
       </Layout>

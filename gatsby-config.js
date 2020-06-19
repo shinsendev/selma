@@ -15,7 +15,13 @@ module.exports = {
         typeName: `Mc3`,
         fieldName: `mc3`,
         url: process.env.MC3_API_URL,
-        refetchInterval: 600,
+        refetchInterval: 3600,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: "mc3-website",
       },
     },
   ],

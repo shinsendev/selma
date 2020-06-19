@@ -1,6 +1,10 @@
 const axios = require('axios');
 
-const getHomeAPI = () => axios.get(`http://127.0.0.1:8000/`);
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV || 'development'}`
+})
+
+const getHomeAPI = () => axios.get(process.env.MC3_HOME,);
 
 const getHomepageData = async () => {
       const { data: homepage } = await getHomeAPI();
@@ -202,7 +206,6 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   );
 
   // manage persons
-
   attributesGraphQL.data.mc3.attributes.edges.forEach(({ node }) => {
     createPage({
       path: '/attribute/' + node.uuid,
