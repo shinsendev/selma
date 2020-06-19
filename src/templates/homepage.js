@@ -74,8 +74,6 @@ export default ({ pageContext: { homepage } }) => {
             </Paper>
 
             <ul>
-              <li><Link to="/film">Film</Link></li>
-              <li><Link to="/number">Number</Link></li>
               <li><Link to="/song">Song</Link></li>
               <li><Link to="/categories">Categories</Link></li>
               <li><Link to="/attribute">Attribute</Link></li>

@@ -10,10 +10,6 @@ const getHomepageData = async () => {
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const homepage = await getHomepageData();
-  // const id = '/api/films/d4d74180-70a2-442c-87c3-9de71266506d';
-  let first = 1287;
-  let total = 0;
-  let cursor = null;
 
   createPage({
     path: `/`,
@@ -21,18 +17,24 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     context: { homepage }
   });
 
-  function getCursor() {
-    if (cursor) {
-      return 'after:"'+cursor+'"';
-    }
+  const filmsCount = homepage.filmsCount;
+  const numbersCount = homepage.numbersCount;
+  const songsCount = homepage.songsCount;
+  const attributesCount = homepage.attributesCount;
+  const personsCount = homepage.personsCount;
 
-    return '';
-  }
+  // for debug
+  // const filmsCount = 5;
+  // const numbersCount = 5;
+  // const songsCount = 5;
+  // const attributesCount = 5;
+  // const personsCount = 5;
 
+  // manage films
   const filmsGraphQL = await graphql(`
     query {
       mc3 {
-        films(first:`+first+`) {
+        films(first:`+filmsCount+`) {
         totalCount
         edges {
           node {
@@ -73,23 +75,125 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   }`
   );
 
-  // console.log(JSON.stringify(result, null, 4));
-
-  // todo= create a loop for all movies
-
-  const totalLoops = Math.ceil(filmsGraphQL.data.mc3.films.totalCount / first);
-
-  for(i = 0; i < totalLoops; i++) {
-    filmsGraphQL.data.mc3.films.edges.forEach(({ node }, index) => {
+  filmsGraphQL.data.mc3.films.edges.forEach(({ node }, index) => {
       createPage({
-        path: '/film/'+node.uuid,
+        path: '/film/' + node.uuid,
         component: require.resolve(`./src/templates/film.tsx`),
         context: {
           film: node
         },
       })
+    });
+
+  // manage numbers
+  const numbersGraphQL = await graphql(`
+    query {
+      mc3 {
+        numbers(first:`+numbersCount+`) {
+          edges {
+            node {
+              id
+              uuid
+              title
+              film
+              startingTc
+              endingTc
+              beginning
+              ending
+              completeness
+              completenessOption
+              structure
+              shots
+              averageShotLength
+              performance
+              performers
+              cast
+              noParticipationStars
+              spectators
+              diegeticPerformance
+              visibleMusicians
+              topic
+              diegeticPlace
+              imaginaryPlace
+              ethnicStereotypes
+              exoticism
+              songs
+              musicalEnsemble
+              dubbing
+              tempo
+              musicalStyles
+              arrangers
+              danceDirector
+              danceEnsemble
+              dancingType
+              danceSubgenre
+              danceContent
+              source
+              quotation
+            }
+          }
+        }
+      }
+    }`
+  );
+
+  numbersGraphQL.data.mc3.numbers.edges.forEach(({ node }, index) => {
+    createPage({
+      path: '/number/' + node.uuid,
+      component: require.resolve(`./src/templates/number.tsx`),
+      context: {
+        number: node
+      },
     })
-    total += first;
-    cursor = filmsGraphQL.data.mc3.films.pageInfo.endCursor;
-  }
+  });
+
+  // manage songs
+  const songsGraphQL = await graphql(`
+    query {
+      mc3 {
+        songs(first:`+songsCount+`) {
+          edges {
+            node {
+              uuid
+              title
+              year
+              numbers
+              films
+              songTypes
+              composers
+              lyricists
+            }
+          }
+        }
+      }
+    }`
+  );
+
+  songsGraphQL.data.mc3.songs.edges.forEach(({ node }) => {
+    createPage({
+      path: '/song/' + node.uuid,
+      component: require.resolve(`./src/templates/song.tsx`),
+      context: {
+        song: node
+      },
+    })
+  });
+
+  // manage attributes
+  // const attributesGraphQL = await graphql(`
+  //   query {
+  //     mc3 {
+  //       attributes(first:`+attributesCount+`) {
+  //         edges {
+  //           node {
+  //
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }`
+  // );
+
+  // manage persons
+
 };

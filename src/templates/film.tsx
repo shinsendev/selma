@@ -17,6 +17,7 @@ import {
 } from "@material-ui/core"
 import { graphql } from "gatsby";
 import "../styles/filmPage.css";
+import { Link } from "gatsby";
 
 // const FilmPage = ({ pageContext: { film } }) => {
 //   return <div>Hello! {film.uuid}</div>
@@ -127,7 +128,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
                 {film.numbers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((number) => (
                   <TableRow key={number.uuid} hover role="checkbox" tabIndex={-1}>
                     <TableCell component="th" scope="row">{number.order+1}</TableCell>
-                    <TableCell align="right">{number.title}</TableCell>
+                    <TableCell align="right"><Link to={/number/+number.uuid}>{number.title}</Link></TableCell>
                     <TableCell align="right">{displayTimeCode(number.beginTc)}</TableCell>
                     <TableCell align="right">{displayTimeCode(number.endTc)}</TableCell>
                     <TableCell align="right">{displayTimeCode(number.length)}</TableCell>
