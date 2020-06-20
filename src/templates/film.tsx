@@ -1,11 +1,9 @@
 import React from "react"
 import Layout from "../components/layout";
-import Timecode from "../helpers/timecode";
 import {
   Paper,
   Grid,
   Container,
-  Typography,
   TableContainer,
   Table,
   TableHead,
@@ -15,15 +13,10 @@ import {
   TablePagination,
   Box
 } from "@material-ui/core"
-import { graphql } from "gatsby";
 import "../styles/filmPage.css";
 import { Link } from "gatsby";
-
-// const FilmPage = ({ pageContext: { film } }) => {
-//   return <div>Hello! {film.uuid}</div>
-// }
-//
-// export default FilmPage;
+import Property from "../components/molecules/Property";
+import PropertiesList from "../components/organisms/PropertiesList";
 
 const FilmPage = ({ pageContext: { film } }) =>  {
   const [page, setPage] = React.useState(0);
@@ -38,26 +31,36 @@ const FilmPage = ({ pageContext: { film } }) =>  {
     setPage(0);
   };
 
-  function displayTimeCode(timecode:number):number {
-    return Timecode.convert(timecode);
+  function getGeneralPropertiesTitle() {
+    return [
+      {title: "Sample", content: film.sample},
+      {title: "Studio", content: film.studios, type: 'list', options: {"listPropertyTitle": "name"}},
+      {title: "IMDB link", content: <a href={'https://www.imdb.com/title/'+film.imdb} target={'_blank'}>{film.imdb}</a>},
+      {title: "VIAF", content: film.viaf},
+      {title: "Director(s)", content: film.directors, type: 'list', options: {"listPropertyTitle": "fullname"}},
+      {title: "Release date (New York)", content: film.releasedYear === 0 ? 'NA' : film.releasedYear },
+      {title: "Production date", content: film.productionYear === 0 ? 'NA' : film.productionYear},
+    ];
   }
 
-  function displayList(list:Array<any>, property:string = '') {
-    let response = 'NA';
-    if(list.length > 0) {
-      response = '';
-      list.map((item, index:number) => {
-        if (index === list.length-1) {
-          // if there is no property, we don't need to use it (for person, we need to get person.fullname but for censorship we directly use the value of the censorship)
-          (property)? response = response = response+item[property] :response = response+item;
-        }
-        else {
-          (property)? response = response+item[property]+', ' :response = response+item+', ';
-        }
+  function getRecyclingPropertiesTitle() {
+    return [
+      {title: "Adaptation", content: film.adaptation},
+      {title: "Shows", content: film.stageshows},
+      {title: "Remake", content: film.remake},
+    ];
+  }
 
-      });
-    }
-    return response;
+  function getCensorshipPropertiesTitle() {
+    return [
+      {title: "PCA Verdict on the first submitted script", content: film.pca},
+      {title: "Censored Content", content: film.censorships, type: 'list'},
+      {title: "States where the film was censored", content: film.states, type: 'list'},
+      {title: "Legion of Decency", content: film.legion},
+      {title: "Protestant Motion Picture Council", content: film.protestant},
+      {title: "Harrison's Report", content: film.harrison},
+      {title: "Film Estimate Board of National Organizations", content: film.board},
+    ];
   }
 
   return (
@@ -75,39 +78,17 @@ const FilmPage = ({ pageContext: { film } }) =>  {
           </Grid>
 
           <Grid item xs={12} sm={12} md={8} lg={3}>
-            <Paper className='category-section' elevation={0}>
-              <h2 className='properties-title'>General informations</h2>
-              <Typography variant="body1"><span className='property-title'>Sample:</span> {film.sample}</Typography>
-              <Typography variant="body1"><span className='property-title'>Studio:</span> {displayList(film.studios, 'name')}</Typography>
-              <Typography variant="body1"><span className='property-title'>IMDB link:</span> <a href={'https://www.imdb.com/title/'+film.imdb} target={'_blank'}>{film.imdb}</a></Typography>
-              <Typography variant="body1"><span className='property-title'>VIAF:</span> {film.viaf}</Typography>
-              <Typography variant="body1"><span className='property-title'>Director(s):</span> {displayList(film.directors, 'fullname')}</Typography>
-              <Typography variant="body1"><span className='property-title'>Release date (New York):</span> {film.releasedYear === 0 ? 'NA' : film.releasedYear  }</Typography>
-              <Typography variant="body1"><span className='property-title'>Production date:</span> {film.productionYear === 0 ? 'NA' : film.productionYear  }</Typography>
-            </Paper>
+            <PropertiesList title='General informations' data={getGeneralPropertiesTitle()} />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={6} lg={3}>
-            <Paper className='category-section' elevation={0}>
-              <h2 className='properties-title'>Recycling</h2>
-              <Typography variant="body1"><span className='property-title'>Adaptation:</span> {film.adaptation}</Typography>
-              <Typography variant="body1"><span className='property-title'>Shows:</span> {film.stageshows}</Typography>
-              <Typography variant="body1"><span className='property-title'>Remake:</span> {film.remake}</Typography>
-            </Paper>
+          <Grid item xs={12} sm={12} md={8} lg={3}>
+            <PropertiesList title='Recylcing' data={getRecyclingPropertiesTitle()} />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={6} lg={3}>
-            <Paper className='category-section' elevation={0}>
-              <h2 className='properties-title'>Censorship</h2>
-              <Typography variant="body1"><span className='property-title'>PCA Verdict on the first submitted script: </span>{film.pca}</Typography>
-              <Typography variant="body1"><span className='property-title'>Censored Content: </span>{displayList(film.censorships)}</Typography>
-              <Typography variant="body1"><span className='property-title'>States where the film was censored: </span>{displayList(film.states)}</Typography>
-              <Typography variant="body1"><span className='property-title'>Legion of Decency: </span>{film.legion}</Typography>
-              <Typography variant="body1"><span className='property-title'>Protestant Motion Picture Council: </span>{film.protestant}</Typography>
-              <Typography variant="body1"><span className='property-title'>Harrison's Report: </span>{film.harrison}</Typography>
-              <Typography variant="body1"><span className='property-title'>Film Estimate Board of National Organizations: </span>{film.board}</Typography>
-            </Paper>
+          <Grid item xs={12} sm={12} md={8} lg={3}>
+            <PropertiesList title='Censorship' data={getCensorshipPropertiesTitle()} />
           </Grid>
+
         </Grid>
 
         <Paper className='category-section numbers-paper' elevation={0}>
@@ -129,10 +110,10 @@ const FilmPage = ({ pageContext: { film } }) =>  {
                   <TableRow key={number.uuid} hover role="checkbox" tabIndex={-1}>
                     <TableCell component="th" scope="row">{number.order+1}</TableCell>
                     <TableCell align="right"><Link to={/number/+number.uuid}>{number.title}</Link></TableCell>
-                    <TableCell align="right">{displayTimeCode(number.beginTc)}</TableCell>
-                    <TableCell align="right">{displayTimeCode(number.endTc)}</TableCell>
-                    <TableCell align="right">{displayTimeCode(number.length)}</TableCell>
-                    <TableCell align="right">{displayList(number.performers, "fullname")}</TableCell>
+                    <TableCell align="right"><Property data={{content: number.beginTc, type: 'timecode'}} /></TableCell>
+                    <TableCell align="right"><Property data={{content: number.endTc, type: 'timecode'}} /></TableCell>
+                    <TableCell align="right"><Property data={{content: number.length, type: 'timecode'}} /></TableCell>
+                    <TableCell align="right"><Property data={{content: number.performers, type: 'list', options: {"listPropertyTitle": "fullname"}}} /></TableCell>
                   </TableRow>
                 ))}
               </TableBody>
