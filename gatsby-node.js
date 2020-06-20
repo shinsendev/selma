@@ -13,7 +13,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
   createPage({
     path: `/`,
-    component: require.resolve('./src/templates/homepage.js'),
+    component: require.resolve('./src/templates/homepage.tsx'),
     context: { homepage }
   });
 
