@@ -53,8 +53,8 @@ const FilmPage = ({ pageContext: { film } }) =>  {
 
   function getCensorshipPropertiesTitle() {
     return [
-      {title: "PCA Verdict on the first submitted script", content: film.pca},
-      {title: "Censored Content", content: film.censorships, type: 'list'},
+      {title: "PCA Verdict on the first submitted script", content: film.pca, type: 'attribute'},
+      {title: "Censored Content", content: film.censorships, type: 'attribute-list'},
       {title: "States where the film was censored", content: film.states, type: 'list'},
       {title: "Legion of Decency", content: film.legion},
       {title: "Protestant Motion Picture Council", content: film.protestant},

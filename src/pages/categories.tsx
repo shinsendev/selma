@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { Paper, Container, Typography, Grid, Box } from "@material-ui/core";
-import { Link } from "gatsby"
 import Layout from "../components/layout";
 import "../styles/categoryPage.css";
 
@@ -63,7 +62,7 @@ const CategoriesPage = ({data}) =>  {
 
     return (
       attributes.map(attribute => (
-        <li>{attribute.title} ({attribute.elementsCount})</li>
+        <Typography variant='body1'><Link to={/attribute/+attribute.uuid}>{attribute.title} ({attribute.elementsCount})</Link></Typography>
       ))
     );
   }
@@ -123,13 +122,13 @@ const CategoriesPage = ({data}) =>  {
     categoriesState.map(({node}) => {
       if (node.model === model) {
         return (
-          response.push(<p className='menu-list'>
+          response.push(<Typography  variant='body1' className='menu-list'>
             <Link
               to={`/categories#${node.uuid}`}
             >
               {displayCategoryName(node.title)}
             </Link>
-          </p>)
+          </Typography>)
         )
       }
     });

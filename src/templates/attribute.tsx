@@ -2,6 +2,8 @@ import React from "react";
 import Layout from "../components/layout";
 import { Paper, Container, Typography, Grid } from '@material-ui/core';
 import "../styles/attribute.css";
+import { Link } from "gatsby";
+import PropertiesList from "../components/organisms/PropertiesList"
 
 const AttributePage = ({ pageContext: { attribute } }) =>  {
   function displayElements(elements) {
