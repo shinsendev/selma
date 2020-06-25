@@ -1,9 +1,8 @@
-import { Typography } from "@material-ui/core";
 import React from "react";
 import Timecode from "../../helpers/timecode";
 import PropertyWithTitleContent from "../atoms/PropertyWithTitleContent";
 import SimplePropertyContent from "../atoms/SimplePropertyContent";
-import { Link } from "gatsby"
+import { Link } from "gatsby";
 
 const Property = ({data}) => {
 
@@ -26,6 +25,7 @@ const Property = ({data}) => {
     }
 
     else if (type === 'attribute-list') {
+      //todo : to finish attributes refacto
       return displayAttributeList(content, data.options);
     }
 
@@ -47,7 +47,7 @@ const Property = ({data}) => {
         }
       });
     }
-    console.log(options);
+
     return response;
   }
 
