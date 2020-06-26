@@ -41,8 +41,6 @@ const PersonPage = ( { pageContext: { person } }) => {
   }
 
   function displayNumber(numbers) {
-    console.log(numbers);
-
     if (numbers.length == 0) {
       return;
     }
@@ -54,7 +52,6 @@ const PersonPage = ( { pageContext: { person } }) => {
           <Table size="small" aria-label="Numbers list">
             <TableHead>
               <TableRow>
-                <TableCell>Position</TableCell>
                 <TableCell align="right">Title</TableCell>
                 <TableCell align="right">Film</TableCell>
                 <TableCell align="right">Released Year</TableCell>
@@ -64,12 +61,10 @@ const PersonPage = ( { pageContext: { person } }) => {
             <TableBody>
               {numbers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((number) => (
                 <TableRow key={number.uuid} hover role="checkbox" tabIndex={-1}>
-              {/*    <TableCell component="th" scope="row">{number.order+1}</TableCell>*/}
-              {/*    <TableCell align="right"><Link to={/number/+number.uuid}>{number.title}</Link></TableCell>*/}
-              {/*    <TableCell align="right"><Property data={{content: number.beginTc, type: 'timecode'}} /></TableCell>*/}
-              {/*    <TableCell align="right"><Property data={{content: number.endTc, type: 'timecode'}} /></TableCell>*/}
+                  <TableCell align="right"><Link to={/number/+number.uuid}>{number.title}</Link></TableCell>
+                  <TableCell align="right"><Link to={/film/+number.filmUuid}>{number.filmTitle}</Link></TableCell>
+                  <TableCell align="right">{number.filmReleasedYear}</TableCell>
               {/*    <TableCell align="right"><Property data={{content: number.length, type: 'timecode'}} /></TableCell>*/}
-              {/*    <TableCell align="right"><Property data={{content: number.performers, type: 'list', options: {"listPropertyTitle": "fullname"}}} /></TableCell>*/}
                 </TableRow>
               ))}
             </TableBody>
@@ -102,6 +97,7 @@ const PersonPage = ( { pageContext: { person } }) => {
         {displayNumber(person.relatedNumbersByProfession)}
 
         {/* associated people list */}
+        
 
       </Container>
     </Layout>
