@@ -11,12 +11,19 @@ import {
   TablePagination,
   TableRow,
   Typography,
+  Grid,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Tooltip
 } from "@material-ui/core";
 import PropertiesList from "../components/organisms/PropertiesList";
 import Property from "../components/molecules/Property";
 import FilmsList from "../components/organisms/FilmsList";
 import CircularProgressWithLabel from "../components/molecules/CircularProgressWithLabel";
 import { Link } from "gatsby";
+import "../styles/personPage.css";
 
 const PersonPage = ( { pageContext: { person } }) => {
 
@@ -114,16 +121,41 @@ const PersonPage = ( { pageContext: { person } }) => {
     if (films.length > 0) {
       return (
         <Paper className='category-section numbers-paper' elevation={0}>
-          <h2 className='properties-title'>{films.length} Films with {name}</h2>
+          <h2 className='properties-title'>{films.length} Films with {name} as performer</h2>
           <Typography variant="body1">Average shot length for {name}: {average/100} %</Typography>
-          {films.map((film) => {
-            return (
-              <div>
-                {film.title+"("+film.releasedYear+")"}
-                <CircularProgressWithLabel variant="static" value={(100/film.totalNumbersLength)*film.totalPersonNumbersLength} />
-              </div>
-            )}
-          )}
+
+          <div>
+            <List dense={true} className="performerdFilmsList">
+              <Grid container spacing={0}>
+              {films.map((film) => {
+                return (
+                    <Grid item xs={12} md={4} lg={3} key={film.uuid}>
+                      <Link to={/film/+film.uuid}>
+                        <Tooltip title={
+                          <React.Fragment>
+                            <Typography color="inherit">All numbers length =  <b>{film.totalNumbersLength}</b> sec</Typography>
+                            <Typography color="inherit">All numbers with {name} as performer = <b>{film.totalPersonNumbersLength}</b> sec</Typography>
+                          </React.Fragment>
+                        } arrow>
+                        <ListItem button className="performedFilm">
+                          <ListItemIcon>
+                            <CircularProgressWithLabel value={(100/film.totalNumbersLength)*film.totalPersonNumbersLength} />
+                          </ListItemIcon>
+
+                            <ListItemText className="performedFilmText">
+                              <Typography variant="body1">{film.title+" ("+film.releasedYear+")"}</Typography>
+                            </ListItemText>
+                        </ListItem>
+                        </Tooltip>
+                      </Link>
+                    </Grid>
+                )
+              })}
+
+              </Grid>
+            </List>
+          </div>
+
         </Paper>
       )
     }
