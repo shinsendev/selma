@@ -31,7 +31,7 @@ const FilmsList = ({title, films}) => {
   return (
     <div className='films-list-component'>
       <Paper elevation={0} className='section'>
-        <Typography variant="h2">{title}</Typography>
+        <Typography variant="h2">{films.length} {title}</Typography>
           <section className="films-container">
             <Grid container spacing={0}>
               {displayFilms()}
