@@ -61,7 +61,7 @@ export default ({ pageContext: { homepage } }) => {
               <Typography variant="h2">Performers</Typography>
                 <section className="performers-container">
                   {homepage.performers.map(performer => (
-                    <Link to="/person">
+                    <Link to={/person/ + performer.uuid}>
                     <Chip
                       icon={<FaceIcon />}
                       label={performer.fullname}

@@ -17,18 +17,18 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     context: { homepage }
   });
 
-  const filmsCount = homepage.filmsCount;
-  const numbersCount = homepage.numbersCount;
-  const songsCount = homepage.songsCount;
-  const attributesCount = homepage.attributesCount;
-  const personsCount = homepage.personsCount;
+  // const filmsCount = homepage.filmsCount;
+  // const numbersCount = homepage.numbersCount;
+  // const songsCount = homepage.songsCount;
+  // const attributesCount = homepage.attributesCount;
+  const peopleCount = homepage.personsCount;
 
-  // for debug
-  // const filmsCount = 5;
-  // const numbersCount = 5;
-  // const songsCount = 5;
-  // const attributesCount = 5;
-  // const personsCount = 5;
+  // // for debug
+  const filmsCount = 5;
+  const numbersCount = 5;
+  const songsCount = 5;
+  const attributesCount = 5;
+  // const peopleCount = 5;
 
   // manage films
   const filmsGraphQL = await graphql(`
@@ -201,7 +201,6 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }`
   );
 
-  // manage persons
   attributesGraphQL.data.mc3.attributes.edges.forEach(({ node }) => {
     createPage({
       path: '/attribute/' + node.uuid,
@@ -211,4 +210,42 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       },
     })
   });
+
+  // manage persons
+  const peopleGraphQL = await graphql(`
+    query {
+      mc3 {
+        people(first:`+peopleCount+`) {
+          edges {
+            node {
+              uuid
+              fullname
+              gender
+              type
+              viaf
+              relatedFilms
+              relatedNumbers
+              choregraphers
+              composers
+              lyricists
+              averageShotLength
+              presenceInFilms
+            }
+          }
+        }
+      }
+    }`
+  );
+
+
+  peopleGraphQL.data.mc3.people.edges.forEach(({ node }) => {
+    createPage({
+      path: '/person/' + node.uuid,
+      component: require.resolve(`./src/templates/person.tsx`),
+      context: {
+        person: node
+      },
+    })
+  });
+
 };

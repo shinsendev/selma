@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import Layout from "../components/layout";
 import { Paper, Container, Typography, Box, Grid } from "@material-ui/core"
 import { graphql } from "gatsby"

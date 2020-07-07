@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "selma",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "The front website for MC3 API",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -11,8 +11,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "deploy": "gatsby-plugin-s3 deploy"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
     "@material-ui/core": "^4.10.0",
