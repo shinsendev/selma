@@ -224,8 +224,10 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               type
               viaf
               relatedFilms
-              relatedNumbersByProfession
-              relatedPersonsByProfession
+              relatedNumbers
+              choregraphers
+              composers
+              lyricists
               averageShotLength
               presenceInFilms
             }

@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/layout";
+import CoworkersList from "../components/organisms/CoworkersList";
 import {
   Container,
   Paper,
@@ -122,7 +123,7 @@ const PersonPage = ( { pageContext: { person } }) => {
       return (
         <Paper className='category-section numbers-paper' elevation={0}>
           <h2 className='properties-title'>{films.length} Films with {name} as performer</h2>
-          <Typography variant="body1">Average shot length for {name}: {average/100} %</Typography>
+          <Typography variant="body1">Average shot length for {name}: {average/100} seconds</Typography>
 
           <div>
             <List dense={true} className="performerdFilmsList">
@@ -173,10 +174,13 @@ const PersonPage = ( { pageContext: { person } }) => {
         <FilmsList title='Films' films={person.relatedFilms}></FilmsList>
 
         {/* numbers list  // if relatedNumbersByProfession // Fred Astaire uuid  = c6395587-ee36-4610-b87e-fd0e6fd40086 */}
-        {displayNumbers(person.relatedNumbersByProfession)}
+        {displayNumbers(person.relatedNumbers)}
 
         {/* associated people list */}
-        {displayPersons(person.relatedPersonsByProfession)}
+        <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
+        <CoworkersList title='Composers' data={person.composers}></CoworkersList>
+        <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
+        {/*{displayPersons(person.relatedPersonsByProfession)}*/}
 
         {/*presence into numbers as performers */}
         {displayPresence(person.averageShotLength, person.presenceInFilms, person.fullname)}
