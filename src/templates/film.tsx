@@ -65,7 +65,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
 
   return (
     <Layout>
-      <Container className='container' maxWidth="md">
+      <Container className='container' maxWidth="lg">
         <h2 className="main-item-title">{film.title}</h2>
 
         <Grid container spacing={3}>

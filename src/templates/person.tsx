@@ -164,7 +164,7 @@ const PersonPage = ( { pageContext: { person } }) => {
 
   return (
     <Layout>
-      <Container className='container' maxWidth="md">
+      <Container className='container' maxWidth="lg">
         <h2 className="main-item-title">{person.fullname}</h2>
 
           {/*general informations properties*/}

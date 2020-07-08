@@ -152,12 +152,12 @@ const CategoriesPage = ({data}) =>  {
 
   return (
         <Layout>
-            <Container className='container' maxWidth="md">
+            <Container className='container' maxWidth="lg">
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={12} md={9}>
+                <Grid item xs={12} sm={12} md={9} lg={8}>
                   {displayCategories()}
                 </Grid>
-                <Grid item xs={12} sm={12} md={3}>
+                <Grid item xs={12} sm={12} md={3} lg={4}>
                   {displayMenu()}
                 </Grid>
               </Grid>

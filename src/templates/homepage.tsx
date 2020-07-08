@@ -10,7 +10,7 @@ export default ({ pageContext: { homepage } }) => {
     <div className="homepage">
       <Layout>
         <section className="main">
-          <Container className='container' maxWidth="md">
+          <Container className='container' maxWidth="lg">
 
             <Typography variant="h1">Musical MC²</Typography>
 
@@ -42,7 +42,7 @@ export default ({ pageContext: { homepage } }) => {
               <section className="films-container">
                 <Grid container spacing={0}>
                     {homepage.films.map(film => (
-                      <Grid item xs={12} md={4} lg={3} className='section film'>
+                      <Grid item xs={12} md={3} lg={2} className='section film'>
                         <Link to={/film/+film.uuid}>
                           <Box>
                             <div className="film-title">
