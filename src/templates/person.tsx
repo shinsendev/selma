@@ -126,11 +126,12 @@ const PersonPage = ( { pageContext: { person } }) => {
           <Typography variant="body1">Average shot length for {name}: {average/100} seconds</Typography>
 
           <div>
-            <List dense={true} className="performerdFilmsList">
+            <List dense={true} className="performedFilmsList">
               <Grid container spacing={0}>
               {films.map((film) => {
                 return (
                     <Grid item xs={12} md={12} lg={12} key={film.uuid}>
+
                       <Link to={/film/+film.uuid}>
                         <Tooltip title={
                           <React.Fragment>
@@ -138,15 +139,15 @@ const PersonPage = ( { pageContext: { person } }) => {
                             <Typography color="inherit">All numbers with {name} as performer = <b>{film.totalPersonNumbersLength}</b> sec</Typography>
                           </React.Fragment>
                         } arrow>
-                        <ListItem button className="performedFilm">
-                          <ListItemIcon>
-                            <CircularProgressWithLabel value={(100/film.totalNumbersLength)*film.totalPersonNumbersLength} />
-                          </ListItemIcon>
+                          <ListItem button className="performedFilm">
+                              <ListItemIcon>
+                                <CircularProgressWithLabel value={(100/film.totalNumbersLength)*film.totalPersonNumbersLength} />
+                              </ListItemIcon>
 
-                            <ListItemText className="performedFilmText">
-                              <Typography variant="body1">{film.title+" ("+film.releasedYear+")"}</Typography>
-                            </ListItemText>
-                        </ListItem>
+                              <ListItemText className="performedFilmText">
+                                <Typography variant="body1">{film.title+" ("+film.releasedYear+")"}</Typography>
+                              </ListItemText>
+                          </ListItem>
                         </Tooltip>
                       </Link>
                     </Grid>
@@ -164,7 +165,7 @@ const PersonPage = ( { pageContext: { person } }) => {
 
   return (
     <Layout>
-      <Container className='container' maxWidth="md">
+      <Container className='container' maxWidth="lg">
         <h2 className="main-item-title">{person.fullname}</h2>
 
           {/*general informations properties*/}
@@ -187,7 +188,6 @@ const PersonPage = ( { pageContext: { person } }) => {
           <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
           <CoworkersList title='Composers' data={person.composers}></CoworkersList>
           <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
-          {/*{displayPersons(person.relatedPersonsByProfession)}*/}
           </Grid>
 
         </Grid>

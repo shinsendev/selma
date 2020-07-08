@@ -7,7 +7,7 @@ import "../styles/songPage.css";
 const SongPage = ({ pageContext: { song } }) =>  {
   return (
     <Layout>
-      <Container maxWidth="md" className='container'>
+      <Container maxWidth="lg" className='container'>
         <h2 className='song-title'>{song.title}</h2>
         <Grid container spacing={3}>
           {/* general infos */}

@@ -58,7 +58,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
 
   return (
     <Layout>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
 
         <h2 className="main-item-title">{number.title}</h2>
         <h3 className="film">{number.film}</h3>

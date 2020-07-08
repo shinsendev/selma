@@ -52,3 +52,9 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.films-list-component .showmore {
+    text-align: center;
+    cursor: pointer;
+    color: #db5462;
+}
