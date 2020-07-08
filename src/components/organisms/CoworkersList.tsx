@@ -1,19 +1,22 @@
 import React from "react";
-import {Paper} from "@material-ui/core";
+import {Paper, Typography} from "@material-ui/core";
+import "../../styles/components/coworkers-list.css";
 
 const CoworkersList = ({title, data}) => {
 
-  console.log(data);
   return (
-    <Paper className='coworker-section' elevation={0}>
-      <h2 className='coworker-section-tite'>{title}</h2>
-      {data.map((person) => {
-        return (
-          <span>{person.fullname} ({person.count}); </span>
-        )
-      })}
-
-    </Paper>
+    <div className="coworkers-list-component">
+      <Paper className='coworker-section' elevation={0}>
+        <h2 className='coworker-section-tite'>{title}</h2>
+        <Typography>
+        {data.map((person) => {
+          return (
+            <span className="coworker">{person.fullname} ({person.count}); </span>
+          )
+        })}
+        </Typography>
+      </Paper>
+    </div>
   )
 }
 
