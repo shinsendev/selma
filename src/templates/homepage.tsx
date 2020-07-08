@@ -4,6 +4,7 @@ import Layout from "../components/layout";
 import { Container, Paper, Grid, Chip, Typography, Box } from "@material-ui/core"
 import "../styles/homePage.css";
 import FaceIcon from '@material-ui/icons/Face';
+import FilmsList from "../components/organisms/FilmsList"
 
 export default ({ pageContext: { homepage } }) => {
   return (
@@ -37,41 +38,24 @@ export default ({ pageContext: { homepage } }) => {
 
             </Grid>
 
-            <Paper elevation='0' className='section'>
-              <Typography variant="h2">Films with data</Typography>
-              <section className="films-container">
-                <Grid container spacing={0}>
-                    {homepage.films.map(film => (
-                      <Grid item xs={12} md={3} lg={2} className='section film'>
-                        <Link to={/film/+film.uuid}>
-                          <Box>
-                            <div className="film-title">
-                              <Typography variant="h3">{film.title} ({film.releasedYear})</Typography>
-                            </div>
-                            <img className='poster' src={'http://mc2.labex-arts-h2h.univ-paris8.fr/img/films/'+film.imdb+'.jpg'} alt=""/>
-                          </Box>
-                        </Link>
-                      </Grid>
-                    ))}
-                </Grid>
-              </section>
-            </Paper>
-
             <Paper elevation='0' className = 'section'>
               <Typography variant="h2">Performers</Typography>
-                <section className="performers-container">
-                  {homepage.performers.map(performer => (
-                    <Link to={/person/ + performer.uuid}>
+              <section className="performers-container">
+                {homepage.performers.map(performer => (
+                  <Link to={/person/ + performer.uuid}>
                     <Chip
                       icon={<FaceIcon />}
                       label={performer.fullname}
                       variant="outlined"
                       className='chip'
                     />
-                    </Link>
-                  ))}
-                </section>
+                  </Link>
+                ))}
+              </section>
             </Paper>
+
+            <FilmsList title='Films with data' films={homepage.films}></FilmsList>
+
 
           </Container>
         </section>

@@ -1,17 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Grid, Paper, Typography } from "@material-ui/core";
 import { Link } from "gatsby";
 import "../../styles/components/films-list.css";
 
 const FilmsList = ({title, films}) => {
+  const [filmsDisplayed, setFilmsDisplayed] = useState(getFilmsToDisplay());
 
-  function displayFilms() {
+  function getFilmsToDisplay() {
+    return films.slice(0, 12);
+  }
 
+  function addFilmsToDisplay(limit:number=10) {
+    if (filmsDisplayed.length < films.length) {
+      setFilmsDisplayed(films);
+    }
+  }
+
+  function displayShowmore() {
+    let result = "show more";
+
+    if (filmsDisplayed.length >= films.length) {
+      result = "";
+    }
+
+    return result;
+  }
+
+  function displayFilms(limit:number=10, offset:number=0) {
     const filmsArray = [];
 
-    films.forEach((film, index) => {
+    filmsDisplayed.forEach((film) => {
       filmsArray.push(
-        <Grid item xs={12} md={4} lg={2} className='section film' key={film.uuid}>
+        <Grid item xs={12} md={3} lg={2} className='section film' key={film.uuid}>
           <Link to={/film/+film.uuid}>
             <Box>
               <div className="film-title">
@@ -33,11 +53,11 @@ const FilmsList = ({title, films}) => {
         <Typography variant="h2">{films.length} {title}</Typography>
           <section className="films-container">
             <Grid container spacing={0}>
-              {displayFilms()}
+              {displayFilms(10)}
             </Grid>
           </section>
 
-        <Typography variant="body1">show more</Typography>
+        <Typography variant="body1" className="showmore" onClick={addFilmsToDisplay}>{displayShowmore()}</Typography>
       </Paper>
     </div>
   )
