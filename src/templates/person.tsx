@@ -44,7 +44,7 @@ const PersonPage = ( { pageContext: { person } }) => {
   function getPropertiesData() {
       return [
         {title: "Gender", content: person.gender},
-        {title: "Type", content: person.type},
+        // {title: "Type", content: person.type},
         {title: "Viaf", content: person.viaf},
       ];
   }
@@ -121,7 +121,7 @@ const PersonPage = ( { pageContext: { person } }) => {
   function displayPresence(average:number, films:Array<any>, name:string) {
     if (films.length > 0) {
       return (
-        <Paper className='category-section numbers-paper' elevation={0}>
+        <Paper className='category-section' elevation={0}>
           <h2 className='properties-title'>{films.length} Films with {name} as performer</h2>
           <Typography variant="body1">Average shot length for {name}: {average/100} seconds</Typography>
 
@@ -130,7 +130,7 @@ const PersonPage = ( { pageContext: { person } }) => {
               <Grid container spacing={0}>
               {films.map((film) => {
                 return (
-                    <Grid item xs={12} md={4} lg={3} key={film.uuid}>
+                    <Grid item xs={12} md={12} lg={12} key={film.uuid}>
                       <Link to={/film/+film.uuid}>
                         <Tooltip title={
                           <React.Fragment>
@@ -167,23 +167,30 @@ const PersonPage = ( { pageContext: { person } }) => {
       <Container className='container' maxWidth="md">
         <h2 className="main-item-title">{person.fullname}</h2>
 
-        {/*general informations properties*/}
-        <PropertiesList title='General informations' data={getPropertiesData()}></PropertiesList>
+          {/*general informations properties*/}
+          <PropertiesList title='General informations' data={getPropertiesData()}></PropertiesList>
 
-        {/* films list */}
-        <FilmsList title='Films' films={person.relatedFilms}></FilmsList>
+          {/* films list */}
+          <FilmsList title='Films' films={person.relatedFilms}></FilmsList>
 
-        {/* numbers list  // if relatedNumbersByProfession // Fred Astaire uuid  = c6395587-ee36-4610-b87e-fd0e6fd40086 */}
-        {displayNumbers(person.relatedNumbers)}
+          {/* numbers list  // if relatedNumbersByProfession // Fred Astaire uuid  = c6395587-ee36-4610-b87e-fd0e6fd40086 */}
+          {displayNumbers(person.relatedNumbers)}
 
-        {/* associated people list */}
-        <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
-        <CoworkersList title='Composers' data={person.composers}></CoworkersList>
-        <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
-        {/*{displayPersons(person.relatedPersonsByProfession)}*/}
+        <Grid container spacing={1}>
 
-        {/*presence into numbers as performers */}
-        {displayPresence(person.averageShotLength, person.presenceInFilms, person.fullname)}
+          <Grid item xs={12} md={6} lg={6} key={'presence-'+person.uuid}>
+            {/*presence into numbers as performers */}
+            {displayPresence(person.averageShotLength, person.presenceInFilms, person.fullname)}
+          </Grid>
+          <Grid item xs={12} md={6} lg={6} key={'coworker-'+person.uuid}>
+          {/* associated people list */}
+          <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
+          <CoworkersList title='Composers' data={person.composers}></CoworkersList>
+          <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
+          {/*{displayPersons(person.relatedPersonsByProfession)}*/}
+          </Grid>
+
+        </Grid>
 
       </Container>
     </Layout>
