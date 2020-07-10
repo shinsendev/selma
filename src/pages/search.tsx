@@ -18,6 +18,7 @@ import FaceIcon from '@material-ui/icons/Face';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import PieChartIcon from '@material-ui/icons/PieChart';
 import 'instantsearch.css/themes/algolia.css';
+import { Link } from "gatsby";
 
 const SearchPage = () => {
 
@@ -31,53 +32,54 @@ const SearchPage = () => {
 
   function displayNumber(number) {
     return (
-      <article>
-        <header className="cartel-title">
-          <PieChartIcon/>
-          <Typography variant="h2">
-            {number.title}
-          </Typography>
-        </header>
-        <Typography>Film : {number.film}</Typography>
-        {/*<p>{number.uuid} / {number.modelType}</p>*/}
-        <Typography>begin tc :{number.startingTc} - ending tc: {number.endingTc}</Typography>
-        <Typography>Performers: {number.performers.map(performer => {
-          return (
-            <span>{performer.fullname}</span>
-          )
-        })}</Typography>
-      </article>
+      <Link to={/number/+number.uuid}>
+        <article>
+          <header className="cartel-title">
+            <PieChartIcon/>
+            <Typography variant="h2">
+              {number.title}
+            </Typography>
+          </header>
+          <Typography>Film : {number.film}</Typography>
+          {/*<p>{number.uuid} / {number.modelType}</p>*/}
+          <Typography>begin tc :{number.startingTc} - ending tc: {number.endingTc}</Typography>
+          <Typography>Performers: {number.performers.map(performer => {
+            return (
+              <span>{performer.fullname}</span>
+            )
+          })}</Typography>
+        </article>
+      </Link>
     )
   }
 
   function displayFilm(film) {
-    console.log(film);
     return (
-      <article>
-        <header className="cartel-title">
-          <MovieIcon/>
-          <Typography variant="h2">
-            <Highlight attribute="title" hit={film} tagName="mark" />
-          </Typography>
+      <Link to={/film/+film.uuid}>
+        <article>
+          <header className="cartel-title">
+            <MovieIcon/>
+            <Typography variant="h2">
+              <Highlight attribute="title" hit={film} tagName="mark" />
+            </Typography>
+          </header>
 
-        </header>
-
-        <Typography>adaptation : {film.adaptation}</Typography>
-        <Typography>average number length: {film.averageNumberLength}</Typography>
-        <Typography>board: {film.board}</Typography>
-        <Typography>censorships: {film.censorships.map(censor => (<span>{censor} ; </span>))}</Typography>
-        <Typography>numbers: {film.numbers.map(number => (
-          <span>{number.title} ; </span>
-        ))}</Typography>
-        <Typography>States: <Highlight attribute="states" hit={film} tagName="mark" /></Typography>
-
-      </article>
+          <Typography>adaptation : {film.adaptation}</Typography>
+          <Typography>average number length: {film.averageNumberLength}</Typography>
+          <Typography>board: {film.board}</Typography>
+          <Typography>censorships: {film.censorships.map(censor => (<span>{censor} ; </span>))}</Typography>
+          <Typography>numbers: {film.numbers.map(number => (
+            <span>{number.title} ; </span>
+          ))}</Typography>
+          <Typography>States: <Highlight attribute="states" hit={film} tagName="mark" /></Typography>
+        </article>
+      </Link>
     )
   }
 
   function displaySong(song) {
-    console.log(song);
     return (
+      <Link to={/song/+song.uuid}>
       <article>
         <header className="cartel-title">
           <MusicNoteIcon/>
@@ -90,29 +92,28 @@ const SearchPage = () => {
         <Typography>Film(s): {song.films.map(film => {(<span>{film} ; </span>)})}</Typography>
         <Typography>Lyricist(s): {song.lyricists.map(lyricist => {(<span>{lyricist.fullname} ; </span>)})}</Typography>
         <Typography>Year: {song.year}</Typography>
-
       </article>
+      </Link>
     )
   }
 
   function displayPerson(person) {
     return (
-      <article>
-        <header className="cartel-title">
-          <FaceIcon/>
-          <Typography variant="h2">
-            <Highlight attribute="fullname" hit={person} tagName="mark" />
-          </Typography>
-        </header>
+      <Link to={/person/+person.uuid}>
+        <article>
+          <header className="cartel-title">
+            <FaceIcon/>
+            <Typography variant="h2">
+              <Highlight attribute="fullname" hit={person} tagName="mark" />
+            </Typography>
+          </header>
 
-      </article>
+        </article>
+      </Link>
     )
   }
 
-
   function Hit(props) {
-
-    // console.log(props.hit.modelType);
     switch (props.hit.modelType) {
       case 'number':
         return displayNumber(props.hit);
@@ -141,8 +142,14 @@ const SearchPage = () => {
                 <Grid item xs={12} md={4} lg={3}>
                   <div className="left-panel">
                     <ClearRefinements />
-                    <h2>Types</h2>
-                    <RefinementList attribute="title" />
+                    <Typography variant='h5'>Item type</Typography>
+                    <RefinementList attribute="modelType" />
+
+                    <Typography variant='h5'>Film Released Year</Typography>
+                    <RefinementList attribute="releasedYear" />
+
+                    <Typography variant='h5'>Film of a number Released Year</Typography>
+                    <RefinementList attribute="films.releasedYear" />
                     <Configure hitsPerPage={25} />
                   </div>
                 </Grid>
