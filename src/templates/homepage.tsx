@@ -4,7 +4,7 @@ import Layout from "../components/layout";
 import { Container, Paper, Grid, Chip, Typography, Box } from "@material-ui/core"
 import "../styles/homePage.css";
 import FaceIcon from '@material-ui/icons/Face';
-import FilmsList from "../components/organisms/FilmsList"
+import FilmsList from "../components/organisms/FilmsList";
 
 export default ({ pageContext: { homepage } }) => {
   return (

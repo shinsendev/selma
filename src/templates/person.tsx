@@ -157,7 +157,6 @@ const PersonPage = ( { pageContext: { person } }) => {
               </Grid>
             </List>
           </div>
-
         </Paper>
       )
     }
