@@ -21,6 +21,9 @@ import 'instantsearch.css/themes/algolia.css';
 
 const SearchPage = () => {
 
+  console.log(process.env.ALGOLIA_ID);
+  console.log(process.env.ALGOLIA_PWD);
+
   const searchClient = algoliasearch(
     process.env.ALGOLIA_ID,
     process.env.ALGOLIA_PWD
@@ -110,7 +113,6 @@ const SearchPage = () => {
   function Hit(props) {
 
     // console.log(props.hit.modelType);
-
     switch (props.hit.modelType) {
       case 'number':
         return displayNumber(props.hit);
@@ -140,17 +142,18 @@ const SearchPage = () => {
                   <div className="left-panel">
                     <ClearRefinements />
                     <h2>Types</h2>
-                    <RefinementList attribute="modelType" />
+                    <RefinementList attribute="title" />
                     <Configure hitsPerPage={25} />
                   </div>
                 </Grid>
 
                 <Grid item xs={12} md={8} lg={9}>
                   <div className="right-panel">
-                    <form noValidate autoComplete="off" className="searchForm">
-                      {/*<TextField id="main-search-field" label="MC2 Search engine"></TextField>*/}
-                      <SearchBox />
-                    </form>
+                    <SearchBox />
+
+                    {/*<form noValidate autoComplete="off" className="searchForm">*/}
+                    {/*  <TextField id="main-search-field" label="MC2 Search engine"></TextField>*/}
+                    {/*</form>*/}
 
                     <Hits hitComponent={Hit} />
                     <Pagination />
