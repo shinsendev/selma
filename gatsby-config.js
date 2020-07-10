@@ -6,7 +6,9 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: `MC2`,
-    content: `MC2 - Hollywood Musicals DataViz Platform`
+    content: `MC2 - Hollywood Musicals DataViz Platform`,
+    algoliaId: process.env.ALGOLIA_ID,
+    algoliaPwd: process.env.ALGOLIA_PWD,
   },
   plugins: [
     {

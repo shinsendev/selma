@@ -18,16 +18,13 @@ import FaceIcon from '@material-ui/icons/Face';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import PieChartIcon from '@material-ui/icons/PieChart';
 import 'instantsearch.css/themes/algolia.css';
-import { Link } from "gatsby";
+import { Link,graphql } from "gatsby";
 
-const SearchPage = () => {
-
-  console.log(process.env.ALGOLIA_ID);
-  console.log(process.env.ALGOLIA_PWD);
+const SearchPage = ({data}) => {
 
   const searchClient = algoliasearch(
-    process.env.ALGOLIA_ID,
-    process.env.ALGOLIA_PWD
+    data.site.siteMetadata.algoliaId,
+    data.site.siteMetadata.algoliaPwd
   );
 
   function displayNumber(number) {
@@ -177,3 +174,14 @@ const SearchPage = () => {
 }
 
 export default SearchPage;
+
+export const query = graphql`
+{
+  site {
+      siteMetadata {
+        algoliaId
+        algoliaPwd
+      }
+    }
+}
+`;
