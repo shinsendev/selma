@@ -5,6 +5,7 @@ import React from "react";
 import {
   Highlight
 } from 'react-instantsearch-dom';
+import PropertyWithTitleContent from "../../atoms/PropertyWithTitleContent"
 
 const FilmCartel= ({data}) => {
     const film = data;
@@ -20,14 +21,10 @@ const FilmCartel= ({data}) => {
                 </Typography>
               </header>
 
-              <Typography>adaptation : {film.adaptation}</Typography>
-              <Typography>average number length: {film.averageNumberLength}</Typography>
-              <Typography>board: {film.board}</Typography>
-              <Typography>censorships: {film.censorships.map(censor => (<span>{censor} ; </span>))}</Typography>
-              <Typography>numbers: {film.numbers.map(number => (
-                <span>{number.title} ; </span>
-              ))}</Typography>
-              <Typography>States: <Highlight attribute="states" hit={film} tagName="mark" /></Typography>
+              <PropertyWithTitleContent title="Released Year " content={film.releasedYear}/>
+              <PropertyWithTitleContent title="Studios " content={film.studios.map(studio => (<span>{studio.name} ; </span>))}/>
+              <PropertyWithTitleContent title="Director(s) " content={film.directors.map(director => (<span>{director.fullname} ; </span>))}/>
+              
           </Link>
         </article>
 
