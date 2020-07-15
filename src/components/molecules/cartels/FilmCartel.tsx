@@ -2,10 +2,10 @@ import { Grid, Typography } from "@material-ui/core";
 import { Link } from "gatsby";
 import MovieIcon from "@material-ui/icons/Movie";
 import React from "react";
-import {
-  Highlight
-} from 'react-instantsearch-dom';
-import PropertyWithTitleContent from "../../atoms/PropertyWithTitleContent"
+import { Highlight } from 'react-instantsearch-dom';
+import PropertyWithTitleContent from "../../atoms/PropertyWithTitleContent";
+import PropertyCartel from "./PropertyCartel";
+
 
 const FilmCartel= ({data}) => {
     const film = data;
@@ -21,10 +21,9 @@ const FilmCartel= ({data}) => {
                 </Typography>
               </header>
 
-              <PropertyWithTitleContent title="Released Year " content={film.releasedYear}/>
-              <PropertyWithTitleContent title="Studios " content={film.studios.map(studio => (<span>{studio.name} ; </span>))}/>
-              <PropertyWithTitleContent title="Director(s) " content={film.directors.map(director => (<span>{director.fullname} ; </span>))}/>
-              
+              <PropertyCartel title="Released Year " content={film.releasedYear}/>
+              <PropertyCartel title="Studios " content={film.studios.map(studio => (<span>{studio.name} ; </span>))}/>
+              <PropertyCartel title="Director(s) " content={film.directors.map(director => (<span>{director.fullname} ; </span>))}/>
           </Link>
         </article>
 
