@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { Link } from "gatsby";
 import React from "react";
 import {
@@ -10,9 +10,8 @@ const SongCartel= ({data}) => {
   const song = data;
 
   return (
-    <Grid item xs={12} md={4} lg={3}>
+    <article className='cartel'>
       <Link to={/song/+song.uuid}>
-        <article>
           <header className="cartel-title">
             <MusicNoteIcon/>
             <Typography variant="h2">
@@ -24,9 +23,8 @@ const SongCartel= ({data}) => {
           <Typography>Film(s): {song.films.map(film => {(<span>{film} ; </span>)})}</Typography>
           <Typography>Lyricist(s): {song.lyricists.map(lyricist => {(<span>{lyricist.fullname} ; </span>)})}</Typography>
           <Typography>Year: {song.year}</Typography>
-        </article>
       </Link>
-    </Grid>
+    </article>
   )
 }
 

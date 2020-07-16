@@ -11,23 +11,20 @@ const FilmCartel= ({data}) => {
     const film = data;
 
     return (
-      <Grid item xs={12} md={4} lg={3}>
-        <article className='cartel'>
-          <Link to={/film/+film.uuid}>
-              <header className="cartel-title">
-                <MovieIcon/>
-                <Typography variant="h2">
-                  <Highlight attribute="title" hit={film} tagName="mark" />
-                </Typography>
-              </header>
+      <article className='cartel'>
+        <Link to={/film/+film.uuid}>
+            <header className="cartel-title">
+              <MovieIcon/>
+              <Typography variant="h2">
+                <Highlight attribute="title" hit={film} tagName="mark" />
+              </Typography>
+            </header>
 
-              <PropertyCartel title="Released Year " content={film.releasedYear}/>
-              <PropertyCartel title="Studios " content={film.studios.map(studio => (<span>{studio.name} ; </span>))}/>
-              <PropertyCartel title="Director(s) " content={film.directors.map(director => (<span>{director.fullname} ; </span>))}/>
-          </Link>
-        </article>
-
-      </Grid>
+            <PropertyCartel title="Released Year " content={film.releasedYear}/>
+            <PropertyCartel title="Studios " content={film.studios.map(studio => (<span>{studio.name} ; </span>))}/>
+            <PropertyCartel title="Director(s) " content={film.directors.map(director => (<span>{director.fullname} ; </span>))}/>
+        </Link>
+      </article>
     )
 }
 

@@ -48,17 +48,20 @@ const SearchPage = ({data}) => {
 
                 <Grid item xs={12} md={8} lg={9}>
                   <div className="right-panel">
-                    <SearchBox />
 
-                    {/*<form noValidate autoComplete="off" className="searchForm">*/}
-                    {/*  <TextField id="main-search-field" label="MC2 Search engine"></TextField>*/}
-                    {/*</form>*/}
+                    <section className="search-box">
+                      <SearchBox />
+                    </section>
 
-                    <Grid container spacing={0}>
-                      <Hits />
-                    </Grid>
+                    <section className="search-results">
+                      <Grid container spacing={1}>
+                        <Hits />
+                      </Grid>
+                    </section>
+
                     <Pagination />
                   </div>
+
                 </Grid>
 
               </InstantSearch>
