@@ -5,6 +5,7 @@ import React from "react";
 import {
   Highlight
 } from 'react-instantsearch-dom';
+import Property from "../Property"
 
 const PersonCartel= ({data}) => {
   const person = data;
@@ -18,6 +19,8 @@ const PersonCartel= ({data}) => {
               <Highlight attribute="fullname" hit={person} tagName="mark" />
             </Typography>
           </header>
+
+          <Property data={{"title": "Profession(s)", "content": person.professions, "type":'list' }}/>
       </Link>
     </article>
   )

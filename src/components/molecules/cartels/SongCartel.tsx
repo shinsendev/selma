@@ -5,11 +5,10 @@ import {
   Highlight
 } from 'react-instantsearch-dom';
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
-import Property from "../Property"
+import Property from "../Property";
 
 const SongCartel= ({data}) => {
   const song = data;
-console.log(song);
   return (
     <article className='cartel'>
       <Link to={/song/+song.uuid}>

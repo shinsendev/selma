@@ -9,7 +9,6 @@ import Property from "../Property"
 
 const NumberCartel = ({ data }) => {
   const number = data;
-console.log(number.performance);
   return (
     <article className="cartel">
       <Link to={/number/+number.uuid}>

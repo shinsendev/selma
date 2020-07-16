@@ -3,7 +3,6 @@ import {Paper, Typography} from "@material-ui/core";
 import "../../styles/components/coworkers-list.css";
 
 const CoworkersList = ({title, data}) => {
-
   return (
     <div className="coworkers-list-component">
       <Paper className='coworker-section' elevation={0}>
@@ -11,7 +10,7 @@ const CoworkersList = ({title, data}) => {
         <Typography>
         {data.map((person) => {
           return (
-            <span className="coworker">{person.fullname} ({person.count}); </span>
+            <span className="coworker" key={person.uuid}>{person.fullname} ({person.count}); </span>
           )
         })}
         </Typography>

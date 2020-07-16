@@ -230,6 +230,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               lyricists
               averageShotLength
               presenceInFilms
+              professions
             }
           }
         }
