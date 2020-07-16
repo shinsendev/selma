@@ -3,8 +3,8 @@ import { Link } from "gatsby";
 import MovieIcon from "@material-ui/icons/Movie";
 import React from "react";
 import { Highlight } from 'react-instantsearch-dom';
-import PropertyWithTitleContent from "../../atoms/PropertyWithTitleContent";
 import PropertyCartel from "./PropertyCartel";
+import Property from "../../molecules/Property";
 
 
 const FilmCartel= ({data}) => {
@@ -20,7 +20,9 @@ const FilmCartel= ({data}) => {
               </Typography>
             </header>
 
-            <PropertyCartel title="Released Year " content={film.releasedYear}/>
+            <Property data={{"title": "Released Year ", "content": film.releasedYear, "type":'attribute'}}/>
+            <Property data={{"title": "Studios ", "content": film.studios, "type":'attributeList'}}/>
+
             <PropertyCartel title="Studios " content={film.studios.map(studio => (<span>{studio.name} ; </span>))}/>
             <PropertyCartel title="Director(s) " content={film.directors.map(director => (<span>{director.fullname} ; </span>))}/>
         </Link>

@@ -8,6 +8,7 @@ const Property = ({data}) => {
 
   const blank = 'blank';
 
+  // Called by displayList, we select the content to display : list, timecode, attribute, attribute list
   function displayContent(content:any, type:string):string {
     if (type === 'list') {
       if ('options' in data && 'listPropertyTitle' in data.options) {
@@ -24,8 +25,7 @@ const Property = ({data}) => {
       return displayAttribute(content)
     }
 
-    else if (type === 'attribute-list') {
-      //todo : to finish attributes refacto
+    else if (type === 'attributeList') {
       return displayAttributeList(content, data.options);
     }
 
@@ -34,6 +34,8 @@ const Property = ({data}) => {
 
   function displayAttributeList(list, options) {
     let response = blank;
+
+    // if there is result we add the contents
     if(list.length > 0) {
       //todo : to complete
       console.log('display attributes = '+list);
@@ -81,11 +83,13 @@ const Property = ({data}) => {
     return response;
   }
 
+  // first function to display a Property and select if we display or not the title
   function displayProperty(content, type, title = null) {
+
     if (title) {
       return <PropertyWithTitleContent title={data.title}  content={displayContent(data.content, data.type)} />
     }
-    return <SimplePropertyContent  content={displayContent(data.content, data.type)} />
+    return <SimplePropertyContent content={displayContent(data.content, data.type)} />
 
   }
 
