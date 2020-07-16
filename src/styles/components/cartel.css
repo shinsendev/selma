@@ -1,0 +1,8 @@
+.cartel-wrapper {
+    border: 1px solid lightgray;
+    height: 100%;
+}
+
+.cartel {
+    padding: 0.3rem;
+}
