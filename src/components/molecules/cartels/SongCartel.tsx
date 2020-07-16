@@ -5,10 +5,11 @@ import {
   Highlight
 } from 'react-instantsearch-dom';
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
+import Property from "../Property"
 
 const SongCartel= ({data}) => {
   const song = data;
-
+console.log(song);
   return (
     <article className='cartel'>
       <Link to={/song/+song.uuid}>
@@ -18,11 +19,10 @@ const SongCartel= ({data}) => {
               <Highlight attribute="title" hit={song} tagName="mark" />
             </Typography>
           </header>
-          <Typography>Composer(s) : {song.composers.map(composer => {(<span>{composer.fullname} ; </span>)})}</Typography>
-          <Typography>Song type(s) : {song.songTypes.map(type => {(<span>{type} ; </span>)})}</Typography>
-          <Typography>Film(s): {song.films.map(film => {(<span>{film} ; </span>)})}</Typography>
-          <Typography>Lyricist(s): {song.lyricists.map(lyricist => {(<span>{lyricist.fullname} ; </span>)})}</Typography>
-          <Typography>Year: {song.year}</Typography>
+
+          <Property data={{"title": "Composer(s)", "content": song.composers, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
+          <Property data={{"title": "Lyricist(s)", "content": song.lyricists, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
+          <Property data={{"title": "Date(s)", "content": song.year, "type": "attribute" }}/>
       </Link>
     </article>
   )

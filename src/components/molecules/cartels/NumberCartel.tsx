@@ -19,10 +19,10 @@ console.log(number.performance);
               <Highlight attribute="title" hit={number} tagName="mark" />
             </Typography>
           </header>
-        
-          <Property data={{"title": "Film title ", "content": number.film, "type":'attribute'}}/>
-          <Property data={{"title": "Performer(s) ", "content": number.performers, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
-          <Property data={{"title": "Performance type ", "content": number.performance, "type":'attribute'}}/>
+
+          <Property data={{"title": "Film title", "content": number.film, "type":'attribute'}}/>
+          <Property data={{"title": "Performer(s)", "content": number.performers, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
+          <Property data={{"title": "Performance type", "content": number.performance, "type":'attribute'}}/>
       </Link>
     </article>
   )
