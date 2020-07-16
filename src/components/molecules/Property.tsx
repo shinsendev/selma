@@ -27,7 +27,6 @@ const Property = ({data}) => {
     return content;
   }
 
-  // todo: check if usefull
   function displayLink(content, uuid:string, model:string) {
     return <Link to={model+'/'+uuid}>{content}</Link>
   }

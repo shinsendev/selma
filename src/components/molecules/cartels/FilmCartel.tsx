@@ -3,9 +3,7 @@ import { Link } from "gatsby";
 import MovieIcon from "@material-ui/icons/Movie";
 import React from "react";
 import { Highlight } from 'react-instantsearch-dom';
-import PropertyCartel from "./PropertyCartel";
 import Property from "../../molecules/Property";
-import PropertiesList from "../../organisms/PropertiesList"
 
 
 const FilmCartel= ({data}) => {

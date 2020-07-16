@@ -5,27 +5,24 @@ import { Typography } from "@material-ui/core";
 import {
   Highlight
 } from 'react-instantsearch-dom';
+import Property from "../Property"
 
 const NumberCartel = ({ data }) => {
   const number = data;
-
+console.log(number.performance);
   return (
     <article className="cartel">
       <Link to={/number/+number.uuid}>
           <header className="cartel-title">
             <MusicVideoIcon/>
             <Typography variant="h2">
-              {number.title}
+              <Highlight attribute="title" hit={number} tagName="mark" />
             </Typography>
           </header>
-          <Typography>Film : {number.film}</Typography>
-          {/*<p>{number.uuid} / {number.modelType}</p>*/}
-          <Typography>begin tc :{number.startingTc} - ending tc: {number.endingTc}</Typography>
-          <Typography>Performers: {number.performers.map(performer => {
-            return (
-              <span key={performer.uuid}>{performer.fullname}</span>
-            )
-          })}</Typography>
+        
+          <Property data={{"title": "Film title ", "content": number.film, "type":'attribute'}}/>
+          <Property data={{"title": "Performer(s) ", "content": number.performers, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
+          <Property data={{"title": "Performance type ", "content": number.performance, "type":'attribute'}}/>
       </Link>
     </article>
   )
