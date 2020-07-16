@@ -5,6 +5,7 @@ import React from "react";
 import { Highlight } from 'react-instantsearch-dom';
 import PropertyCartel from "./PropertyCartel";
 import Property from "../../molecules/Property";
+import PropertiesList from "../../organisms/PropertiesList"
 
 
 const FilmCartel= ({data}) => {
@@ -21,10 +22,8 @@ const FilmCartel= ({data}) => {
             </header>
 
             <Property data={{"title": "Released Year ", "content": film.releasedYear, "type":'attribute'}}/>
-            <Property data={{"title": "Studios ", "content": film.studios, "type":'attributeList'}}/>
-
-            <PropertyCartel title="Studios " content={film.studios.map(studio => (<span>{studio.name} ; </span>))}/>
-            <PropertyCartel title="Director(s) " content={film.directors.map(director => (<span>{director.fullname} ; </span>))}/>
+            <Property data={{"title": "Studio(s) ", "content": film.studios, "type":'list', "options": { "listPropertyTitle": "name"}}}/>
+            <Property data={{"title": "Director(s) ", "content": film.directors, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
         </Link>
       </article>
     )
