@@ -73,8 +73,8 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Typography variant="body1"><span className='property-title'>Ending time code: </span>{displayTimeCode(number.endingTc)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Beginning: </span>{number.beginning}</Typography>
                 <Typography variant="body1"><span className='property-title'>Ending: </span>{number.ending}</Typography>
+                <Typography variant="body1"><span className='property-title'>Outlines: </span>{number.completenessOption}</Typography>
                 <Typography variant="body1"><span className='property-title'>Completeness: </span>{displayList(number.completeness)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Completeness options: </span>{number.completenessOption}</Typography>
                 <Typography variant="body1"><span className='property-title'>Structure: </span>{number.structure}</Typography>
                 <Typography variant="body1"><span className='property-title'>Shots: </span>{number.shots}</Typography>
                 <Typography variant="body1"><span className='property-title'>Average shot length: </span>{computeAverageShotLength()} sec</Typography>

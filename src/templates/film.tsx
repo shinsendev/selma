@@ -82,7 +82,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
           </Grid>
 
           <Grid item xs={12} sm={12} md={8} lg={3}>
-            <PropertiesList title='Recylcing' data={getRecyclingPropertiesTitle()} />
+            <PropertiesList title='Recycling' data={getRecyclingPropertiesTitle()} />
           </Grid>
 
           <Grid item xs={12} sm={12} md={8} lg={3}>
