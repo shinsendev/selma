@@ -123,40 +123,40 @@ const PersonPage = ( { pageContext: { person } }) => {
       return (
         <Paper className='category-section' elevation={0}>
           <h2 className='properties-title'>{films.length} Films with {name} as performer</h2>
-          <Typography variant="body1">Average shot length for {name}: {average/100} seconds</Typography>
+          <h3>Average shot length for {name}</h3>
+          <Typography variant="h7"><strong>{average/100}</strong> seconds</Typography>
 
-          <div>
-            <List dense={true} className="performedFilmsList">
-              <Grid container spacing={0}>
-              {films.map((film) => {
-                return (
-                    <Grid item xs={12} md={12} lg={12} key={film.uuid}>
+          <List dense={true} className="performedFilmsList">
+            <h3>Presence of {name} in the film numbers</h3>
+            <Grid container spacing={0}>
+            {films.map((film) => {
+              return (
+                  <Grid item xs={12} md={12} lg={12} key={film.uuid}>
 
-                      <Link to={/film/+film.uuid}>
-                        <Tooltip title={
-                          <React.Fragment>
-                            <Typography color="inherit">All numbers length =  <b>{film.totalNumbersLength}</b> sec</Typography>
-                            <Typography color="inherit">All numbers with {name} as performer = <b>{film.totalPersonNumbersLength}</b> sec</Typography>
-                          </React.Fragment>
-                        } arrow>
-                          <ListItem button className="performedFilm">
-                              <ListItemIcon>
-                                <CircularProgressWithLabel value={(100/film.totalNumbersLength)*film.totalPersonNumbersLength} />
-                              </ListItemIcon>
+                    <Link to={/film/+film.uuid}>
+                      <Tooltip title={
+                        <React.Fragment>
+                          <Typography color="inherit">All numbers length =  <b>{film.totalNumbersLength}</b> sec</Typography>
+                          <Typography color="inherit">All numbers with {name} as performer = <b>{film.totalPersonNumbersLength}</b> sec</Typography>
+                        </React.Fragment>
+                      } arrow>
+                        <ListItem button className="performedFilm">
+                            <ListItemIcon>
+                              <CircularProgressWithLabel value={(100/film.totalNumbersLength)*film.totalPersonNumbersLength} />
+                            </ListItemIcon>
 
-                              <ListItemText className="performedFilmText">
-                                <Typography variant="body1">{film.title+" ("+film.releasedYear+")"}</Typography>
-                              </ListItemText>
-                          </ListItem>
-                        </Tooltip>
-                      </Link>
-                    </Grid>
-                )
-              })}
+                            <ListItemText className="performedFilmText">
+                              <Typography variant="body1">{film.title+" ("+film.releasedYear+")"}</Typography>
+                            </ListItemText>
+                        </ListItem>
+                      </Tooltip>
+                    </Link>
+                  </Grid>
+              )
+            })}
 
-              </Grid>
-            </List>
-          </div>
+            </Grid>
+          </List>
         </Paper>
       )
     }
@@ -166,7 +166,6 @@ const PersonPage = ( { pageContext: { person } }) => {
     <Layout>
       <Container className='container' maxWidth="lg">
         <h2 className="main-item-title">{person.fullname}</h2>
-
           {/*general informations properties*/}
           <PropertiesList title='General informations' data={getPropertiesData()}></PropertiesList>
 
