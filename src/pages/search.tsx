@@ -15,6 +15,7 @@ import 'instantsearch.css/themes/algolia.css';
 import { graphql } from "gatsby";
 import Hits from "../components/organisms/Hits";
 import { RangeInput, RangeSlider } from 'react-instantsearch-dom';
+import Facets from "../components/organisms/Facets";
 
 const SearchPage = ({data}) => {
 
@@ -34,25 +35,7 @@ const SearchPage = ({data}) => {
               <InstantSearch indexName="mc2" searchClient={searchClient}>
                 <Grid item xs={12} md={4} lg={3}>
                   <div className="left-panel">
-                    <ClearRefinements />
-                    <Typography variant='h5'>Item type</Typography>
-                    <RefinementList attribute="modelType" />
-
-                    <Typography variant='h5'>Film Date</Typography>
-                    <RefinementList attribute="releasedYear" />
-
-                    <Typography variant='h5'>Sample</Typography>
-                    <RefinementList attribute="sample" />
-
-                    <Typography variant='h5'>Film Length</Typography>
-                    <RefinementList attribute="length" />
-
-                    <Typography variant='h5'>Number Length</Typography>
-                    <RefinementList attribute="numbersLength" />
-
-                    {/*<Typography variant='h5'>Film of a number Released Year</Typography>*/}
-                    {/*<RefinementList attribute="films.releasedYear" />*/}
-                    <Configure hitsPerPage={24} />
+                    <Facets/>
                   </div>
                 </Grid>
 
