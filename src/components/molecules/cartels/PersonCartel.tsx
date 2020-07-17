@@ -7,7 +7,7 @@ import {
 } from 'react-instantsearch-dom';
 import Property from "../Property"
 
-const PersonCartel= ({data}) => {
+const PersonCartel = ({data}) => {
   const person = data;
 
   return (
