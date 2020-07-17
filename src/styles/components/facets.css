@@ -1,0 +1,14 @@
+.facet-wrapper {
+    margin-bottom: 1.2rem;
+}
+
+.clear-refinements{
+    margin-bottom: 1rem;
+}
+.ais-ClearRefinements button, .ais-RangeInput-submit{
+    background: #db5462;
+}
+
+.ais-ClearRefinements button:hover, .ais-RangeInput-submit:hover{
+    background: #db5462;
+}
