@@ -269,8 +269,11 @@ const FilmPage = ({ pageContext: { film } }) =>  {
 
         <section className="film-timeline">
 
-          <LineChart width={300} height={100} data={rechartsData}>
-            <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={2} />
+          <LineChart width={600} height={300} data={rechartsData}>
+              <Line type="monotone" dataKey="uv" stroke="#8884d8" />
+              <CartesianGrid stroke="#ccc" />
+              <XAxis dataKey="name" />
+              <YAxis />
           </LineChart>
 
 
@@ -290,10 +293,10 @@ const FilmPage = ({ pageContext: { film } }) =>  {
           {/*/>*/}
 
 
-          <HighchartsReact
-            highcharts={Highcharts}
-            options={options}
-          />
+          {/*<HighchartsReact*/}
+          {/*  highcharts={Highcharts}*/}
+          {/*  options={options}*/}
+          {/*/>*/}
         </section>
       </Container>
     </Layout>
