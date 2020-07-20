@@ -40,7 +40,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
           <section>
             <p><span className="properties-title">Category:</span> {attribute.categoryTitle}</p>
             <p className="properties-title">Definition:</p>
-            <p>{attribute.definition}</p>
+            <p>{attribute.description}</p>
             <p className="properties-title">Example:</p>
             <p>{attribute.example}</p>
           </section>
