@@ -26,7 +26,7 @@ import {
 
 const FilmPage = ({ pageContext: { film } }) =>  {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -186,7 +186,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
               <TableHead>
                 <TableRow>
                   <TableCell>Position</TableCell>
-                  <TableCell align="right">Title</TableCell>
+                  <TableCell align="left">Title</TableCell>
                   <TableCell align="right">Starting time code</TableCell>
                   <TableCell align="right">Ending time code</TableCell>
                   <TableCell align="right">Length</TableCell>
@@ -197,7 +197,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
                 {film.numbers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((number) => (
                   <TableRow key={number.uuid} hover role="checkbox" tabIndex={-1}>
                     <TableCell component="th" scope="row">{number.order+1}</TableCell>
-                    <TableCell align="right"><Link to={/number/+number.uuid}>{number.title}</Link></TableCell>
+                    <TableCell align="left"><Link to={/number/+number.uuid}>{number.title}</Link></TableCell>
                     <TableCell align="right"><Property data={{content: number.beginTc, type: 'timecode'}} /></TableCell>
                     <TableCell align="right"><Property data={{content: number.endTc, type: 'timecode'}} /></TableCell>
                     <TableCell align="right"><Property data={{content: number.length, type: 'timecode'}} /></TableCell>
@@ -254,7 +254,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
             <Grid item xs={12} md={6}>
               <Box className='stat-box average-box'>
                 <div className="stat-value">{film.averageNumberLength} sec</div>
-                <div className="stat-label stat-average">Average running time for the numbers in Kiss Me, Kate</div>
+                <div className="stat-label stat-average">Average running time for the numbers in {film.title}</div>
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>

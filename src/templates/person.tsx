@@ -30,7 +30,7 @@ const PersonPage = ( { pageContext: { person } }) => {
 
   // table configuration
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -52,7 +52,7 @@ const PersonPage = ( { pageContext: { person } }) => {
   function displayNumbers(numbers) {
     return (
       <Paper className='category-section numbers-paper' elevation={0}>
-        <h2 className='properties-title'>Numbers</h2>
+        <h2 className='properties-title'>{numbers.length} Numbers</h2>
         <TableContainer component={Paper}>
           <Table size="small" aria-label="Numbers list">
             <TableHead>

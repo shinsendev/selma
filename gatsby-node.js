@@ -123,13 +123,14 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               tempo
               musicalStyles
               arrangers
-              danceDirector
               danceEnsemble
               dancingType
-              danceSubgenre
               danceContent
-              source
+              sources
               quotation
+              danceDirectors
+              directors
+              danceSubgenre
             }
           }
         }

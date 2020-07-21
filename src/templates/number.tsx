@@ -79,7 +79,8 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Typography variant="body1"><span className='property-title'>Shots: </span>{number.shots}</Typography>
                 <Typography variant="body1"><span className='property-title'>Average shot length: </span>{computeAverageShotLength()} sec</Typography>
                 <Typography variant="body1"><span className='property-title'>Performance: </span>{number.performance}</Typography>
-                <Typography variant="body1"><span className='property-title'>Performers: </span>{displayList(number.performers, 'fullname')}</Typography>
+                <Typography variant="body1"><span className='property-title'>Director(s): </span>{displayList(number.directors, 'fullname')}</Typography>
+                <Typography variant="body1"><span className='property-title'>Performer(s): </span>{displayList(number.performers, 'fullname')}</Typography>
                 <Typography variant="body1"><span className='property-title'>Cast: </span>{number.cast}</Typography>
                 <Typography variant="body1"><span className='property-title'>Stars who don't participate: </span>{displayList(number.noParticipationStars, 'fullname')}</Typography>
               </Paper>
@@ -96,7 +97,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Typography variant="body1"><span className='property-title'>Topic: </span>{number.topic}</Typography>
                 <Typography variant="body1"><span className='property-title'>Diegetic place: </span>{number.diegeticPlace}</Typography>
                 <Typography variant="body1"><span className='property-title'>Imaginary place: </span>{number.imaginaryPlace}</Typography>
-                <Typography variant="body1"><span className='property-title'>Ethnic stereotypes: </span>{number.ethnicStereotypes}</Typography>
+                <Typography variant="body1"><span className='property-title'>Ethnic stereotypes: </span>{displayList(number.ethnicStereotypes)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Exoticism: </span>{number.exoticism}</Typography>
               </Paper>
             </Grid>
@@ -110,15 +111,14 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Typography variant="body1"><span className='property-title'>Tempo: </span>{displayList(number.tempo)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Musical styles: </span>{displayList(number.musicalStyles)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Arrangers: </span>{displayList(number.arrangers, 'fullname')}</Typography>
-                {/*todo: add dance directors*/}
-                <Typography variant="body1"><span className='property-title'>Dance director: </span></Typography>
+                <Typography variant="body1"><span className='property-title'>Dance director: </span>{displayList(number.danceDirectors, 'fullname')}</Typography>
                 <Typography variant="body1"><span className='property-title'>Dance ensemble: </span>{displayList(number.danceEnsemble)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Dancing type: </span>{displayList(number.dancingType)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Dance subgenre: </span>{displayList(number.danceSubgenre)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Dance content: </span>{displayList(number.danceContent)}</Typography>
 
                 <h2 className='properties-title'>Intertextuality</h2>
-                <Typography variant="body1"><span className='property-title'>Source: </span>{number.source}</Typography>
+                <Typography variant="body1"><span className='property-title'>Source: </span>{displayList(number.sources)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Quotation: </span>{displayList(number.quotation)}</Typography>
               </Paper>
             </Grid>
