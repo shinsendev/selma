@@ -12,7 +12,6 @@ import 'instantsearch.css/themes/algolia.css';
 import { graphql } from "gatsby";
 import Hits from "../components/organisms/Hits";
 import Facets from "../components/organisms/Facets";
-import HelpIcon from '@material-ui/icons/Help';
 
 const SearchPage = ({data}) => {
 

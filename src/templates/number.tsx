@@ -110,8 +110,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Typography variant="body1"><span className='property-title'>Tempo: </span>{displayList(number.tempo)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Musical styles: </span>{displayList(number.musicalStyles)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Arrangers: </span>{displayList(number.arrangers, 'fullname')}</Typography>
-                {/*todo: add dance directors*/}
-                <Typography variant="body1"><span className='property-title'>Dance director: </span></Typography>
+                <Typography variant="body1"><span className='property-title'>Dance director: </span>{displayList(number.choregraphers, 'fullname')}</Typography>
                 <Typography variant="body1"><span className='property-title'>Dance ensemble: </span>{displayList(number.danceEnsemble)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Dancing type: </span>{displayList(number.dancingType)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Dance subgenre: </span>{displayList(number.danceSubgenre)}</Typography>

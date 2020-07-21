@@ -9,6 +9,6 @@
     background: #db5462;
 }
 
-.ais-ClearRefinements button:hover, .ais-RangeInput-submit:hover{
+.ais-ClearRefinements button:hover, .ais-RangeInput-submit:hover, .ais-ClearRefinements button:focus, .ais-RangeInput-submit:focus{
     background: #db5462;
 }
