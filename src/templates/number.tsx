@@ -79,7 +79,8 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Typography variant="body1"><span className='property-title'>Shots: </span>{number.shots}</Typography>
                 <Typography variant="body1"><span className='property-title'>Average shot length: </span>{computeAverageShotLength()} sec</Typography>
                 <Typography variant="body1"><span className='property-title'>Performance: </span>{number.performance}</Typography>
-                <Typography variant="body1"><span className='property-title'>Performers: </span>{displayList(number.performers, 'fullname')}</Typography>
+                <Typography variant="body1"><span className='property-title'>Director(s): </span>{displayList(number.directors, 'fullname')}</Typography>
+                <Typography variant="body1"><span className='property-title'>Performer(s): </span>{displayList(number.performers, 'fullname')}</Typography>
                 <Typography variant="body1"><span className='property-title'>Cast: </span>{number.cast}</Typography>
                 <Typography variant="body1"><span className='property-title'>Stars who don't participate: </span>{displayList(number.noParticipationStars, 'fullname')}</Typography>
               </Paper>
@@ -110,7 +111,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Typography variant="body1"><span className='property-title'>Tempo: </span>{displayList(number.tempo)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Musical styles: </span>{displayList(number.musicalStyles)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Arrangers: </span>{displayList(number.arrangers, 'fullname')}</Typography>
-                <Typography variant="body1"><span className='property-title'>Dance director: </span>{displayList(number.choregraphers, 'fullname')}</Typography>
+                <Typography variant="body1"><span className='property-title'>Dance director: </span>{displayList(number.danceDirectors, 'fullname')}</Typography>
                 <Typography variant="body1"><span className='property-title'>Dance ensemble: </span>{displayList(number.danceEnsemble)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Dancing type: </span>{displayList(number.dancingType)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Dance subgenre: </span>{displayList(number.danceSubgenre)}</Typography>

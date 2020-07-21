@@ -107,6 +107,8 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               averageShotLength
               performance
               performers
+              danceDirectors
+              directors
               cast
               noParticipationStars
               spectators
@@ -123,7 +125,6 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               tempo
               musicalStyles
               arrangers
-              danceDirector
               danceEnsemble
               dancingType
               danceSubgenre
