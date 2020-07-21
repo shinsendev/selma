@@ -97,7 +97,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Typography variant="body1"><span className='property-title'>Topic: </span>{number.topic}</Typography>
                 <Typography variant="body1"><span className='property-title'>Diegetic place: </span>{number.diegeticPlace}</Typography>
                 <Typography variant="body1"><span className='property-title'>Imaginary place: </span>{number.imaginaryPlace}</Typography>
-                <Typography variant="body1"><span className='property-title'>Ethnic stereotypes: </span>{number.ethnicStereotypes}</Typography>
+                <Typography variant="body1"><span className='property-title'>Ethnic stereotypes: </span>{displayList(number.ethnicStereotypes)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Exoticism: </span>{number.exoticism}</Typography>
               </Paper>
             </Grid>
@@ -118,7 +118,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Typography variant="body1"><span className='property-title'>Dance content: </span>{displayList(number.danceContent)}</Typography>
 
                 <h2 className='properties-title'>Intertextuality</h2>
-                <Typography variant="body1"><span className='property-title'>Source: </span>{number.source}</Typography>
+                <Typography variant="body1"><span className='property-title'>Source: </span>{displayList(number.sources)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Quotation: </span>{displayList(number.quotation)}</Typography>
               </Paper>
             </Grid>

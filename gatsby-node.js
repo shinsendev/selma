@@ -107,8 +107,6 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               averageShotLength
               performance
               performers
-              danceDirectors
-              directors
               cast
               noParticipationStars
               spectators
@@ -127,10 +125,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               arrangers
               danceEnsemble
               dancingType
-              danceSubgenre
               danceContent
-              source
+              sources
               quotation
+              danceDirectors
+              directors
+              danceSubgenre
             }
           }
         }
