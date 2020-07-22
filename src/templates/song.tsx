@@ -1,24 +1,24 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby"
 import { Paper, Container, Typography, Grid } from '@material-ui/core';
 import Layout from "../components/layout";
 import "../styles/songPage.css";
+import Property from "../components/molecules/Property";
 
 const SongPage = ({ pageContext: { song } }) =>  {
   return (
     <Layout>
       <Container maxWidth="lg" className='container'>
-        <h2 className='song-title'>{song.title}</h2>
+        <Typography variant="h2" className='song-title'>{song.title}</Typography>
         <Grid container spacing={3}>
           {/* general infos */}
           <Grid item xs={12} md={6}>
             <Paper elevation={0}>
               <section className='song-section'>
-                <p><span className="properties-title">Date:</span> {song.year}</p>
-                <p><span className="properties-title">Song type:</span> {song.songTypes.map(
-                  (songType) => (songType.title + ' ')
-                )}</p>
+                <Property data={{"title": "Date", "content": song.year}}/>
+                <Property data={{"title": "Song type", "content": song.songTypes, "type":'list', "options": { "listPropertyTitle": "title"}}}/>
               </section>
+
             </Paper>
           </Grid>
 
@@ -26,22 +26,9 @@ const SongPage = ({ pageContext: { song } }) =>  {
           <Grid item xs={12} sm={6}>
             <Paper elevation={0} className='category-section'>
               <section>
-                <p><span className="properties-title">Composer(s): </span>
-                  {song.composers.map(
-                    performer => {
-                      return performer.fullname + ' ';
-                    })
-                  }
-                </p>
-
+                <Property data={{"title": "Composer(s)", "content": song.composers, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
                 {/* lyricists (person) linked to the song */}
-                <p><span className="properties-title">Lyricist(s): </span>
-                  {song.lyricists.map(
-                    lyricist => {
-                      return lyricist.fullname + ' ';
-                    })
-                  }
-                </p>
+                <Property data={{"title": "Lyricist(s)", "content": song.lyricists, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
               </section>
             </Paper>
           </Grid>
@@ -54,10 +41,12 @@ const SongPage = ({ pageContext: { song } }) =>  {
               <section className='category-section'>
                 <p className='section-title'>Number(s)</p>
                 {song.numbers.map((number) => (
-                  <div className = 'song-element'>
-                    <p>{number.title}</p>
-                    <p>Film : {number.film}</p>
-                  </div>
+                  <Link to={'/number/'+number.uuid}>
+                    <div className = 'song-element'>
+                      <p>{number.title}</p>
+                      <p>Film : {number.film}</p>
+                    </div>
+                  </Link>
                 ))}
               </section>
             </Paper>
@@ -69,9 +58,11 @@ const SongPage = ({ pageContext: { song } }) =>  {
               <section className='category-section'>
                 <p className='section-title'>Film(s)</p>
                 { song.films.map((film) => (
-                  <div className = 'song-element'>
-                    <p>{film.title} ({film.releasedYear})</p>
-                  </div>
+                  <Link to={'/film/'+film.uuid}>
+                    <div className = 'song-element'>
+                      <p>{film.title} ({film.releasedYear})</p>
+                    </div>
+                  </Link>
                 ))}
               </section>
             </Paper>

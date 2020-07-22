@@ -3,31 +3,26 @@ import Timecode from "../../helpers/timecode";
 import PropertyWithTitleContent from "../atoms/PropertyWithTitleContent";
 import SimplePropertyContent from "../atoms/SimplePropertyContent";
 import { Link } from "gatsby";
+import { PropertyData } from "../../interfaces/PropertyData"
 
 const Property = ({data}) => {
 
-  const blank = 'blank';
+  const blank:string = 'blank';
 
-  // Called by displayList, we select the content to display : list, timecode, attribute, attribute list
-  function displayContent(data):string {
-    const type = data.type;
-    const content = data.content;
+  /**
+   *
+   * @param data
+   */
+  function  getType(data:PropertyData):string {
+    let type:string = 'default';
 
-    if (type === 'list') {
-      if ('options' in data && 'listPropertyTitle' in data.options) {
-        return displayList(content, data.options.listPropertyTitle);
-      }
-      return displayList(content);
+    if (typeof data.type !== 'undefined') {
+      type = data.type;
     }
-
-    else if (type === 'timecode') {
-      return displayTimeCode(content);
-    }
-
-    return content;
+    return type;
   }
 
-  function displayLink(content, uuid:string, model:string) {
+  function displayAttribute(content, uuid:string, model:string) {
     return <Link to={model+'/'+uuid}>{content}</Link>
   }
 
@@ -35,8 +30,36 @@ const Property = ({data}) => {
     return Timecode.convert(timecode);
   }
 
-  function displayList(list:Array<any>, property:string = '') {
+  // Called by displayList, we select the content to display : list, timecode, attribute
+  function displayContent(data:PropertyData):string {
+    // get type
+    const type = getType(data);
+    const content = data.content;
+//content, data.options.listPropertyTitle
+
+    if (type === 'list') {
+      if ('options' in data && 'listPropertyTitle' in data.options) {
+        return displayList(data);
+      }
+      return displayList(data);
+    }
+
+    else if (type === 'timecode') {
+      return displayTimeCode(content);
+    }
+
+    // else if (type === 'attribute') {
+    //   return displayAttribute(content, uuid, model);
+    // }
+
+    return content;
+  }
+
+  function displayList(data:PropertyData) {
     let response = blank;
+    let list = data.content;
+    let property = data.property;
+
     if(list.length > 0) {
       response = '';
       list.map((item, index:number) => {
@@ -53,10 +76,10 @@ const Property = ({data}) => {
   }
 
   // first function to display a Property and select if we display or not the title
-  function displayProperty(data) {
+  function displayProperty(data:PropertyData) {
 
-    if (data.title) {
-      return <PropertyWithTitleContent title={data.title}  content={displayContent(data)} />
+    if (typeof data.title !== 'undefined') {
+      return <PropertyWithTitleContent title={data.title} content={displayContent(data)} />
     }
     return <SimplePropertyContent content={displayContent(data)} />
   }
