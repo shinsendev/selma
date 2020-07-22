@@ -18,7 +18,6 @@ const SongPage = ({ pageContext: { song } }) =>  {
                 <Property data={{"title": "Date", "content": song.year}}/>
                 <Property data={{"title": "Song type", "content": song.songTypes, "type":'list', "options": { "listPropertyTitle": "title"}}}/>
               </section>
-
             </Paper>
           </Grid>
 

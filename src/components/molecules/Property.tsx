@@ -22,8 +22,8 @@ const Property = ({data}) => {
     return type;
   }
 
-  function displayAttribute(content, uuid:string, model:string) {
-    return <Link to={model+'/'+uuid}>{content}</Link>
+  function displayAttribute(data:PropertyData) {
+    return <Link to={data.model+'/'+data.uuid}>{data.content}</Link>
   }
 
   function displayTimeCode(timecode:number):string {
@@ -31,28 +31,27 @@ const Property = ({data}) => {
   }
 
   // Called by displayList, we select the content to display : list, timecode, attribute
-  function displayContent(data:PropertyData):string {
+  function displayContent(data:PropertyData):any {
     // get type
     const type = getType(data);
     const content = data.content;
-//content, data.options.listPropertyTitle
 
-    if (type === 'list') {
-      if ('options' in data && 'listPropertyTitle' in data.options) {
+    switch(type) {
+      case 'list':
+        if ('options' in data && 'listPropertyTitle' in data.options) {
+          return displayList(data);
+        }
         return displayList(data);
-      }
-      return displayList(data);
+
+      case 'timecode':
+        return displayTimeCode(content);
+
+      case 'attribute':
+        return displayAttribute(data);
+
+      default:
+        return content;
     }
-
-    else if (type === 'timecode') {
-      return displayTimeCode(content);
-    }
-
-    // else if (type === 'attribute') {
-    //   return displayAttribute(content, uuid, model);
-    // }
-
-    return content;
   }
 
   function displayList(data:PropertyData) {
