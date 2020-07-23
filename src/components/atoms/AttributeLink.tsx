@@ -1,8 +1,10 @@
+import React from "react";
 import { Link } from "gatsby";
 
-const AttributeLink = (uuid, content) => {
+const AttributeLink = ({uuid, content, model}) => {
+  const url = '/' + model + '/' + uuid;
   return (
-    <Link to={/attribute/+uuid}>{content}</Link>
+    <Link to={url}>{content}</Link>
   )
 }
 

@@ -44,9 +44,6 @@ const Property = ({data}) => {
     let list = data.content;
     let property = data.options.listPropertyTitle;
 
-    console.log('ici???');
-    console.log(data);
-
     if(list.length > 0) {
       response = '';
       list.map((item, index:number) => {
@@ -65,24 +62,25 @@ const Property = ({data}) => {
   function displayAttributeList(data:PropertyData) {
     let response = [];
     let list = data.content;
-    let property = data.property;
-    let uuid = data.uuid;
+    let property = data.options.listPropertyTitle;
+    let model = data.model;
 
-    if (list > 0) {
+    if (list.length > 0) {
       list.map((item, index:number) => {
         if (index === list.length-1) {
-          // if there is no property, we don't need to use it (example: for person, we need to get person.fullname but for censorship we directly use the value of the censorship)
-          (property)? response.push(<AttributeLink uuid={uuid} content={item[property]}/>) :response.push(<AttributeLink uuid={data.uuid} content={item}/>);
+          // if there is no property, we don't need to use it (example: for person, we need to get person.fullname but for censorship we directly use the value of the censorship )
+          (property)? response.push(<AttributeLink key={item.uuid} uuid={item.uuid} content={item[property]} model={model} />) :response.push(<AttributeLink uuid={data.uuid} content={item} model={model} />);
         }
         else {
-          (property)? response.push(<AttributeLink uuid={uuid} content={item[property]}/>) :response.push(<AttributeLink uuid={data.uuid} content={item}/>);
+          (property)? response.push(<AttributeLink key={item.uuid} uuid={item.uuid} content={item[property]} model={model} />) :response.push(<AttributeLink uuid={data.uuid} content={item} model={model} />);
 
-          (property)? response.push(<AttributeLink uuid={uuid} content={item[property]}/> , ) :response.push(<AttributeLink uuid={data.uuid} content={item}/> , );
+          (property)? response.push(<AttributeLink key={item.uuid} uuid={item.uuid} content={item[property]} model={model} /> , ) :response.push(<AttributeLink uuid={data.uuid} content={item} model={model} /> , );
         }
       });
 
       return response;
     }
+
   }
 
   // Called by displayList, we select the content to display : list, timecode, attribute

@@ -25,9 +25,9 @@ const SongPage = ({ pageContext: { song } }) =>  {
           <Grid item xs={12} sm={6}>
             <Paper elevation={0} className='category-section'>
               <section>
-                <Property data={{"title": "Composer(s)", "content": song.composers, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
+                <Property data={{"title": "Composer(s)", "content": song.composers, type:'attributeList', model:"person" , options: { "listPropertyTitle": "fullname"}}}/>
                 {/* lyricists (person) linked to the song */}
-                <Property data={{"title": "Lyricist(s)", "content": song.lyricists, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
+                <Property data={{"title": "Lyricist(s)", "content": song.lyricists, type:'attributeList', model:"person", options: { "listPropertyTitle": "fullname"}}}/>
               </section>
             </Paper>
           </Grid>
