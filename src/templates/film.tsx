@@ -109,7 +109,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
 
   function getGeneralProperties() {
     return [
-      {"title": "Sample", "content": film.sample, "type":'attribute', "model":"attribute"},
+      {"title": "Sample", "content": film.sample },
       {"title": "Studio", "content": film.studios, "type":'list', "options": { "listPropertyTitle": "name"}},
       {"title": "IMDB link", "content": <a href={'https://www.imdb.com/title/'+film.imdb} target={'_blank'}>{film.imdb}</a>},
       {"title": "VIAF", "content": film.viaf, "type":'viaf', "model":"attribute"},
@@ -121,21 +121,21 @@ const FilmPage = ({ pageContext: { film } }) =>  {
 
   function getRecyclingProperties() {
     return [
-      {"title": "Adaptation", "content": film.adaptation, "type":'attribute', "model":"attribute"},
+      {"title": "Adaptation", "content": film.adaptation, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}},
       {"title": "Shows", "content": film.stageshows },
-      {"title": "Remake", "content": film.remake, "type":'attribute', "model":"attribute"},
+      {"title": "Remake", "content": film.remake },
     ];
   }
 
   function getCensorshipProperties() {
     return [
-      {"title": "PCA Verdict on the first submitted script", "content": film.pca, "type":'attribute', "model":"attribute"},
-      {"title": "Censored Content", "content": film.censorships, "type":'attributeList', "model":"attribute" },
-      {"title": "States where the film was censored", "content": film.states, "type":'attributeList', "model":"attribute" },
-      {"title": "Legion of Decency", "content": film.legion, "type":'attribute', "model":"attribute" },
-      {"title": "Protestant Motion Picture Council", "content": film.protestant, "type":'attribute', "model":"attribute" },
-      {"title": "Harrison's Report", "content": film.harrison, "type":'attribute', "model":"attribute" },
-      {"title": "Film Estimate Board of National Organizations", "content": film.board, "type":'attribute', "model":"attribute" },
+      {"title": "PCA Verdict on the first submitted script", "content": film.pca, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}},
+      {"title": "Censored Content", "content": film.censorships, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
+      {"title": "States where the film was censored", "content": film.states, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
+      {"title": "Legion of Decency", "content": film.legion, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
+      {"title": "Protestant Motion Picture Council", "content": film.protestant, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
+      {"title": "Harrison's Report", "content": film.harrison, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
+      {"title": "Film Estimate Board of National Organizations", "content": film.board, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
     ];
   }
 
@@ -171,7 +171,6 @@ const FilmPage = ({ pageContext: { film } }) =>  {
 
           <Grid item xs={12} sm={12} md={8} lg={3}>
             <PropertiesList title='Recycling' data={getRecyclingProperties()} />
-            <Typography variant="h3">Recycling</Typography>
           </Grid>
 
           <Grid item xs={12} sm={12} md={8} lg={3}>

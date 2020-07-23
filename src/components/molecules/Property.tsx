@@ -8,7 +8,7 @@ import AttributeLink from "../atoms/AttributeLink"
 
 const Property = ({data}) => {
 
-  const blank:string = 'No data';
+  const blank:string = 'no data';
   const noValueBack:string = 'NA';
 
   /**
@@ -77,7 +77,6 @@ const Property = ({data}) => {
   }
 
   function displayAttributeList(data:PropertyData) {
-    let response = [];
     let list = data.content;
     let property = '';
     if (typeof data.options !== 'undefined' && typeof data.options.listPropertyTitle !== 'undefined') {
@@ -87,6 +86,8 @@ const Property = ({data}) => {
     let model = data.model;
 
     if (list.length > 0) {
+      let response = [];
+
       list.map((item, index:number) => {
         if (index === list.length-1) {
           // if there is no property, we don't need to use it (example: for person, we need to get person.fullname but for censorship we directly use the value of the censorship )
@@ -99,6 +100,8 @@ const Property = ({data}) => {
 
       return response;
     }
+
+    return blank;
   }
 
   // Called by displayList, we select the content to display : list, timecode, attribute
