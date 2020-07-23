@@ -4,7 +4,9 @@ import { Link } from "gatsby";
 const AttributeLink = ({uuid, content, model}) => {
   const url = '/' + model + '/' + uuid;
   return (
-    <Link to={url}>{content}</Link>
+    <Link to={url}>
+      {content}
+    </Link>
   )
 }
 

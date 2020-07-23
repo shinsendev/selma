@@ -42,9 +42,13 @@ const Property = ({data}) => {
   function displayList(data:PropertyData) {
     let response = blank;
     let list = data.content;
-    let property = data.options.listPropertyTitle;
 
-    if(list.length > 0) {
+    let property = '';
+    if (typeof data.options !== 'undefined' && typeof data.options.listPropertyTitle !== 'undefined') {
+      property = data.options.listPropertyTitle;
+    }
+
+    if (list.length > 0) {
       response = '';
       list.map((item, index:number) => {
         if (index === list.length-1) {
@@ -80,7 +84,6 @@ const Property = ({data}) => {
 
       return response;
     }
-
   }
 
   // Called by displayList, we select the content to display : list, timecode, attribute
