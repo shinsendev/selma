@@ -2,8 +2,7 @@ import React from "react";
 import Layout from "../components/layout";
 import { Paper, Container, Typography, Grid } from '@material-ui/core';
 import "../styles/attribute.css";
-import { Link } from "gatsby";
-import PropertiesList from "../components/organisms/PropertiesList"
+import Property from "../components/molecules/Property";
 
 const AttributePage = ({ pageContext: { attribute } }) =>  {
   function displayElements(elements) {
@@ -38,11 +37,9 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
         <h2 className='main-item-title attribute-title'>{attribute.title}</h2>
         <Paper elevation={0}>
           <section>
-            <p><span className="properties-title">Category:</span> {attribute.categoryTitle}</p>
-            <p className="properties-title">Definition:</p>
-            <p>{attribute.description}</p>
-            <p className="properties-title">Example:</p>
-            <p>{attribute.example}</p>
+            <Property data={{"title": "Category", "content": attribute.categoryTitle, "type":'attribute', "model":"category", "uuid":attribute.categoryUuid }}/>
+            <Property data={{"title": "Definition", "content": attribute.description }}/>
+            <Property data={{"title": "Example", "content": attribute.example }}/>
           </section>
         </Paper>
         {displayElements(attribute.elements)}

@@ -5,7 +5,6 @@ const getHomeAPI = () => axios.get(process.env.MC3_HOME);
 const getHomepageData = async () => {
       const { data: homepage } = await getHomeAPI();
       return { ...homepage };
-      // return await get();
 };
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {

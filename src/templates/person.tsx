@@ -44,7 +44,6 @@ const PersonPage = ( { pageContext: { person } }) => {
   function getPropertiesData() {
       return [
         {title: "Gender", content: person.gender},
-        // {title: "Type", content: person.type},
         {title: "Viaf", content: person.viaf},
       ];
   }
@@ -66,8 +65,8 @@ const PersonPage = ( { pageContext: { person } }) => {
             <TableBody>
               {numbers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((number) => (
                 <TableRow key={number.uuid} hover role="checkbox" tabIndex={-1}>
-                  <TableCell align="right"><Link to={/number/+number.uuid}>{number.title}</Link></TableCell>
-                  <TableCell align="right"><Link to={/film/+number.filmUuid}>{number.filmTitle}</Link></TableCell>
+                  <TableCell align="right"><Link to={/number/+number.uuid} >{number.title}</Link></TableCell>
+                  <TableCell align="right"><Link to={/film/+number.filmUuid} >{number.filmTitle}</Link></TableCell>
                   <TableCell align="right">{number.filmReleasedYear}</TableCell>
                   <TableCell align="right"><Property data={{'content': number.professions, 'type' : 'list'}}/></TableCell>
                 </TableRow>
@@ -88,73 +87,41 @@ const PersonPage = ( { pageContext: { person } }) => {
     )
   }
 
-  function getProfessions(persons:Array<any>):Array<string> {
-    const jobsList = [];
-    persons.map(person => {
-        if (!jobsList.includes(person.profession)) {
-          jobsList.push(person.profession);
-        }
-      }
-    );
-    return jobsList;
-  }
-
-  function displayPersons(persons) {
-    const professionsList = getProfessions(persons);
-    professionsList.map(profession => {
-      
-    })
-
-    const personsByProfessions = []; // ['choregraoher': [{'fullname': 'Fred Astaire', 'numbers': ''}]
-
-    return (
-      <Paper className='category-section numbers-paper' elevation={0}>
-        <h2 className='properties-title'>Co-workers</h2>
-
-        {personsByProfessions.map((profession:Array<any>) => ( // display by profession
-            <div>displayPersons(profession.persons)</div>
-        ))}
-      </Paper>
-    )
-  }
-
   function displayPresence(average:number, films:Array<any>, name:string) {
     if (films.length > 0) {
       return (
         <Paper className='category-section' elevation={0}>
           <h2 className='properties-title'>{films.length} Films with {name} as performer</h2>
           <h3>Average shot length for {name}</h3>
-          <Typography variant="h7"><strong>{average/100}</strong> seconds</Typography>
+          <Typography variant="h6"><strong>{average/100}</strong> seconds</Typography>
 
           <List dense={true} className="performedFilmsList">
             <h3>Presence of {name} in the film numbers</h3>
             <Grid container spacing={0}>
-            {films.map((film) => {
-              return (
-                  <Grid item xs={12} md={12} lg={12} key={film.uuid}>
+              {films.map((film) => {
+                return (
+                    <Grid item xs={12} md={12} lg={12} key={film.uuid}>
+                      <Link to={/film/+film.uuid}>
+                        <Tooltip title={
+                          <React.Fragment>
+                            <Typography color="inherit">All numbers length =  <b>{film.totalNumbersLength}</b> sec</Typography>
+                            <Typography color="inherit">All numbers with {name} as performer = <b>{film.totalPersonNumbersLength}</b> sec</Typography>
+                          </React.Fragment>
+                        } arrow>
+                          <ListItem button className="performedFilm">
+                              <ListItemIcon>
+                                <CircularProgressWithLabel value={(100/film.totalNumbersLength)*film.totalPersonNumbersLength} />
+                              </ListItemIcon>
 
-                    <Link to={/film/+film.uuid}>
-                      <Tooltip title={
-                        <React.Fragment>
-                          <Typography color="inherit">All numbers length =  <b>{film.totalNumbersLength}</b> sec</Typography>
-                          <Typography color="inherit">All numbers with {name} as performer = <b>{film.totalPersonNumbersLength}</b> sec</Typography>
-                        </React.Fragment>
-                      } arrow>
-                        <ListItem button className="performedFilm">
-                            <ListItemIcon>
-                              <CircularProgressWithLabel value={(100/film.totalNumbersLength)*film.totalPersonNumbersLength} />
-                            </ListItemIcon>
-
-                            <ListItemText className="performedFilmText">
-                              <Typography variant="body1">{film.title+" ("+film.releasedYear+")"}</Typography>
-                            </ListItemText>
-                        </ListItem>
-                      </Tooltip>
-                    </Link>
-                  </Grid>
-              )
-            })}
-
+                              <ListItemText className="performedFilmText">
+                                <Typography variant="body1">{film.title+" ("+film.releasedYear+")"}</Typography>
+                              </ListItemText>
+                          </ListItem>
+                        </Tooltip>
+                      </Link>
+                    </Grid>
+                )
+              })}
             </Grid>
           </List>
         </Paper>
@@ -182,10 +149,10 @@ const PersonPage = ( { pageContext: { person } }) => {
             {displayPresence(person.averageShotLength, person.presenceInFilms, person.fullname)}
           </Grid>
           <Grid item xs={12} md={6} lg={6} key={'coworker-'+person.uuid}>
-          {/* associated people list */}
-          <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
-          <CoworkersList title='Composers' data={person.composers}></CoworkersList>
-          <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
+            {/* associated people list */}
+            <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
+            <CoworkersList title='Composers' data={person.composers}></CoworkersList>
+            <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
           </Grid>
 
         </Grid>

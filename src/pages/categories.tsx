@@ -3,6 +3,7 @@ import { graphql, Link } from "gatsby";
 import { Paper, Container, Typography, Grid, Box } from "@material-ui/core";
 import Layout from "../components/layout";
 import "../styles/categoryPage.css";
+import Property from "../components/molecules/Property"
 
 const CategoriesPage = ({data}) =>  {
   const [categoriesState, setCategoriesState] = useState(data.mc3.categories.edges);
@@ -62,7 +63,7 @@ const CategoriesPage = ({data}) =>  {
 
     return (
       attributes.map(attribute => (
-        <Typography variant='body1'><Link to={/attribute/+attribute.uuid}>{attribute.title} ({attribute.elementsCount})</Link></Typography>
+        <Property data={{"content": attribute.title, "type":'attribute', "model":"attribute", "uuid":attribute.uuid}}/>
       ))
     );
   }
@@ -71,7 +72,7 @@ const CategoriesPage = ({data}) =>  {
     return (
       <div key = {category.uuid} id={category.uuid}>
         <h3 className='category-title'>{displayCategoryName(category.title)}</h3>
-        {/*display category description if exists*/}
+        {/*display category description only if exists*/}
         {displayDescription(category.description)}
         <Paper elevation={0}>
           <section className='category-section'>

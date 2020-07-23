@@ -1,10 +1,10 @@
 import React from "react";
 import Layout from "../components/layout";
 import { Paper, Container, Typography, Box, Grid } from "@material-ui/core"
-import { graphql } from "gatsby"
 import Timecode from "../helpers/timecode";
 import "../styles/numberPage.css";
 import { Link } from "gatsby";
+import Property from "../components/molecules/Property";
 
 const NumberPage = ({ pageContext: { number } }) =>  {
 
@@ -69,10 +69,12 @@ const NumberPage = ({ pageContext: { number } }) =>  {
             <Grid item xs={12} md={4} lg={4}>
               <Paper className='category-section' elevation={0}>
                 <h2 className='properties-title'>Description</h2>
-                <Typography variant="body1"><span className='property-title'>Starting time code: </span>{displayTimeCode(number.startingTc)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Ending time code: </span>{displayTimeCode(number.endingTc)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Beginning: </span>{number.beginning}</Typography>
-                <Typography variant="body1"><span className='property-title'>Ending: </span>{number.ending}</Typography>
+                <Property data={{"title": "Starting time code", "content": number.startingTc, "type":'timecode' }}/>
+                <Property data={{"title": "Ending time code", "content": number.endingTc, "type":'timecode' }}/>
+
+                <Property data={{"title": "Beginning", "content": number.beginning, 'model': 'attribute', "type":'attribute' }}/>
+                <Property data={{"title": "Ending", "content": number.ending, 'model': 'attribute', "type":'attribute' }}/>
+
                 <Typography variant="body1"><span className='property-title'>Outlines: </span>{number.completenessOption}</Typography>
                 <Typography variant="body1"><span className='property-title'>Completeness: </span>{displayList(number.completeness)}</Typography>
                 <Typography variant="body1"><span className='property-title'>Structure: </span>{number.structure}</Typography>
