@@ -8,7 +8,8 @@ import AttributeLink from "../atoms/AttributeLink"
 
 const Property = ({data}) => {
 
-  const blank:string = 'blank';
+  const blank:string = 'No data';
+  const noValueBack:string = 'NA';
 
   /**
    * @param data
@@ -22,10 +23,22 @@ const Property = ({data}) => {
     return type;
   }
 
+  function displayDefault(content:any):any {
+    if (content === noValueBack) {
+      return blank;
+    }
+
+    return content;
+  }
+
   /**
    * @param data
    */
-  function displayAttribute(data:PropertyData) {
+  function displayAttribute(data:PropertyData):Object|string {
+    // if there is no result
+    if (data.content === noValueBack) {
+      return blank;
+    }
     return <Link to={data.model+'/'+data.uuid}>{data.content}</Link>
   }
 
@@ -107,7 +120,7 @@ const Property = ({data}) => {
       case 'attributeList':
         return displayAttributeList(data);
       default:
-        return content;
+        return displayDefault(content);
     }
   }
 
