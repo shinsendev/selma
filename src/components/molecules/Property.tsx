@@ -66,19 +66,21 @@ const Property = ({data}) => {
   function displayAttributeList(data:PropertyData) {
     let response = [];
     let list = data.content;
-    let property = data.options.listPropertyTitle;
+    let property = '';
+    if (typeof data.options !== 'undefined' && typeof data.options.listPropertyTitle !== 'undefined') {
+      property = data.options.listPropertyTitle;
+    }
+
     let model = data.model;
 
     if (list.length > 0) {
       list.map((item, index:number) => {
         if (index === list.length-1) {
           // if there is no property, we don't need to use it (example: for person, we need to get person.fullname but for censorship we directly use the value of the censorship )
-          (property)? response.push(<AttributeLink key={item.uuid} uuid={item.uuid} content={item[property]} model={model} />) :response.push(<AttributeLink uuid={data.uuid} content={item} model={model} />);
+          (property)? response.push(<AttributeLink key={item.uuid} uuid={item.uuid} content={item[property]} model={model} />) :response.push(<span><AttributeLink uuid={data.uuid} content={item} model={model} /></span>);
         }
         else {
-          (property)? response.push(<AttributeLink key={item.uuid} uuid={item.uuid} content={item[property]} model={model} />) :response.push(<AttributeLink uuid={data.uuid} content={item} model={model} />);
-
-          (property)? response.push(<AttributeLink key={item.uuid} uuid={item.uuid} content={item[property]} model={model} /> , ) :response.push(<AttributeLink uuid={data.uuid} content={item} model={model} /> , );
+          (property)? response.push(<span><AttributeLink key={item.uuid} uuid={item.uuid} content={item[property]} model={model} /> , </span>) :response.push(<span><AttributeLink uuid={data.uuid} content={item} model={model} /> , </span>);
         }
       });
 

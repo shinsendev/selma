@@ -11,7 +11,8 @@ import {
   TableCell,
   TableBody,
   TablePagination,
-  Box
+  Box,
+  Typography
 } from "@material-ui/core"
 import "../styles/filmPage.css";
 import { Link } from "gatsby";
@@ -106,36 +107,35 @@ const FilmPage = ({ pageContext: { film } }) =>  {
     },
   ];
 
-
-  function getGeneralPropertiesTitle() {
+  function getGeneralProperties() {
     return [
-      {title: "Sample", content: film.sample},
-      {title: "Studio", content: film.studios, type: 'list', options: {"listPropertyTitle": "name"}},
-      {title: "IMDB link", content: <a href={'https://www.imdb.com/title/'+film.imdb} target={'_blank'}>{film.imdb}</a>},
-      {title: "VIAF", content: film.viaf},
-      {title: "Director(s)", content: film.directors, type: 'list', options: {"listPropertyTitle": "fullname"}},
-      {title: "Release date (New York)", content: film.releasedYear === 0 ? 'NA' : film.releasedYear },
-      {title: "Production date", content: film.productionYear === 0 ? 'NA' : film.productionYear},
+      {"title": "Sample", "content": film.sample, "type":'attribute', "model":"attribute"},
+      {"title": "Studio", "content": film.studios, "type":'list', "options": { "listPropertyTitle": "name"}},
+      {"title": "IMDB link", "content": <a href={'https://www.imdb.com/title/'+film.imdb} target={'_blank'}>{film.imdb}</a>},
+      {"title": "VIAF", "content": film.viaf, "type":'viaf', "model":"attribute"},
+      {"title": "Director(s)", "content": film.directors, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}},
+      {"title": "Release date (New York)", "content": film.releasedYear === 0 ? 'NA' : film.releasedYear },
+      {"title": "Production date",  "content": film.productionYear === 0 ? 'NA' : film.productionYear},
     ];
   }
 
-  function getRecyclingPropertiesTitle() {
+  function getRecyclingProperties() {
     return [
-      {title: "Adaptation", content: film.adaptation},
-      {title: "Shows", content: film.stageshows},
-      {title: "Remake", content: film.remake},
+      {"title": "Adaptation", "content": film.adaptation, "type":'attribute', "model":"attribute"},
+      {"title": "Shows", "content": film.stageshows },
+      {"title": "Remake", "content": film.remake, "type":'attribute', "model":"attribute"},
     ];
   }
 
-  function getCensorshipPropertiesTitle() {
+  function getCensorshipProperties() {
     return [
-      {title: "PCA Verdict on the first submitted script", content: film.pca, type: 'attribute'},
-      {title: "Censored Content", content: film.censorships, type: 'attribute-list'},
-      {title: "States where the film was censored", content: film.states, type: 'list'},
-      {title: "Legion of Decency", content: film.legion},
-      {title: "Protestant Motion Picture Council", content: film.protestant},
-      {title: "Harrison's Report", content: film.harrison},
-      {title: "Film Estimate Board of National Organizations", content: film.board},
+      {"title": "PCA Verdict on the first submitted script", "content": film.pca, "type":'attribute', "model":"attribute"},
+      {"title": "Censored Content", "content": film.censorships, "type":'attributeList', "model":"attribute" },
+      {"title": "States where the film was censored", "content": film.states, "type":'attributeList', "model":"attribute" },
+      {"title": "Legion of Decency", "content": film.legion, "type":'attribute', "model":"attribute" },
+      {"title": "Protestant Motion Picture Council", "content": film.protestant, "type":'attribute', "model":"attribute" },
+      {"title": "Harrison's Report", "content": film.harrison, "type":'attribute', "model":"attribute" },
+      {"title": "Film Estimate Board of National Organizations", "content": film.board, "type":'attribute', "model":"attribute" },
     ];
   }
 
@@ -154,7 +154,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
   return (
     <Layout>
       <Container className='container' maxWidth="lg">
-        <h2 className="main-item-title">{film.title}</h2>
+        <Typography variant="h2" className="main-item-title">{film.title}</Typography>
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12} md={4} lg={3}>
@@ -166,15 +166,16 @@ const FilmPage = ({ pageContext: { film } }) =>  {
           </Grid>
 
           <Grid item xs={12} sm={12} md={8} lg={3}>
-            <PropertiesList title='General informations' data={getGeneralPropertiesTitle()} />
+            <PropertiesList title='Censorship' data={getGeneralProperties()} />
           </Grid>
 
           <Grid item xs={12} sm={12} md={8} lg={3}>
-            <PropertiesList title='Recycling' data={getRecyclingPropertiesTitle()} />
+            <PropertiesList title='Recycling' data={getRecyclingProperties()} />
+            <Typography variant="h3">Recycling</Typography>
           </Grid>
 
           <Grid item xs={12} sm={12} md={8} lg={3}>
-            <PropertiesList title='Censorship' data={getCensorshipPropertiesTitle()} />
+            <PropertiesList title='Censorship' data={getCensorshipProperties()} />
           </Grid>
 
         </Grid>
@@ -201,7 +202,10 @@ const FilmPage = ({ pageContext: { film } }) =>  {
                     <TableCell align="right"><Property data={{content: number.beginTc, type: 'timecode'}} /></TableCell>
                     <TableCell align="right"><Property data={{content: number.endTc, type: 'timecode'}} /></TableCell>
                     <TableCell align="right"><Property data={{content: number.length, type: 'timecode'}} /></TableCell>
-                    <TableCell align="right"><Property data={{content: number.performers, type: 'list', options: {"listPropertyTitle": "fullname"}}} /></TableCell>
+                    <TableCell align="right">
+                      {/*<Property data={{content: number.performers, type: 'list', options: {"listPropertyTitle": "fullname"}}} />*/}
+                      <Property data={{"content": number.performers, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
