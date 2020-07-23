@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 import { Paper, Container, Typography, Box, Grid } from "@material-ui/core"
 import Timecode from "../helpers/timecode";
 import "../styles/numberPage.css";
-import { Link, graphql } from "gatsby";
+import { Link } from "gatsby";
 import Property from "../components/molecules/Property";
 
 const NumberPage = ({ pageContext: { number } }) =>  {

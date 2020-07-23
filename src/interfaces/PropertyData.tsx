@@ -7,5 +7,5 @@ export interface PropertyData {
   uuid: string
   model: string
   content: any
-  options: PropertyOption[]
+  options: PropertyOption
 }
