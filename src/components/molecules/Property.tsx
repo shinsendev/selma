@@ -39,7 +39,7 @@ const Property = ({data}) => {
     if (data.content === noValueBack) {
       return blank;
     }
-    return <Link to={data.model+'/'+data.uuid}>{data.content}</Link>
+    return <Link to={'/'+data.model+'/'+data.uuid}>{data.content}</Link>
   }
 
   /**
