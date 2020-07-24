@@ -52,7 +52,7 @@ const Property = ({data}) => {
   /**
    * @param data
    */
-  function displayList(data:PropertyData) {
+  function displayList(data:PropertyData):any {
     let response = blank;
     let list = data.content;
 
@@ -76,7 +76,7 @@ const Property = ({data}) => {
     return response;
   }
 
-  function displayAttributeList(data:PropertyData) {
+  function displayAttributeList(data:PropertyData):any {
     let list = data.content;
     let property = '';
     if (typeof data.options !== 'undefined' && typeof data.options.listPropertyTitle !== 'undefined') {
@@ -104,6 +104,10 @@ const Property = ({data}) => {
     return blank;
   }
 
+  function displayCategory(data:PropertyData):any {
+
+  }
+
   // Called by displayList, we select the content to display : list, timecode, attribute
   /**
    * @param data
@@ -122,6 +126,8 @@ const Property = ({data}) => {
         return displayAttribute(data);
       case 'attributeList':
         return displayAttributeList(data);
+      case 'category':
+        return displayCategory(data);
       default:
         return displayDefault(content);
     }
