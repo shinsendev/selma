@@ -202,7 +202,6 @@ const FilmPage = ({ pageContext: { film } }) =>  {
                     <TableCell align="right"><Property data={{content: number.endTc, type: 'timecode'}} /></TableCell>
                     <TableCell align="right"><Property data={{content: number.length, type: 'timecode'}} /></TableCell>
                     <TableCell align="right">
-                      {/*<Property data={{content: number.performers, type: 'list', options: {"listPropertyTitle": "fullname"}}} />*/}
                       <Property data={{"content": number.performers, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
                     </TableCell>
                   </TableRow>

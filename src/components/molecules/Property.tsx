@@ -104,12 +104,15 @@ const Property = ({data}) => {
     return blank;
   }
 
-  function displayCategory(data:PropertyData):any {
-
+  /**
+   * @param data
+   */
+  function displayCategory(data:PropertyData):object {
+    return <Link to={'/categories#'+data.uuid}>{data.content}</Link>;
   }
 
-  // Called by displayList, we select the content to display : list, timecode, attribute
   /**
+   * Called by displayList, we select the content to display : list, timecode, attribute
    * @param data
    */
   function displayContent(data:PropertyData):any {
