@@ -8,48 +8,9 @@ import Property from "../components/molecules/Property";
 
 const NumberPage = ({ pageContext: { number } }) =>  {
 
+  console.log(number);
   function displayTimeCode(timecode:number):number {
     return Timecode.convert(timecode);
-  }
-
-  function displayList(list:Array<any>, property:string = '') {
-    let response = 'NA';
-    if(list.length > 0) {
-      response = '';
-      list.map((item, index:number) => {
-        if (index === list.length-1) {
-          // if there is no property, we don't need to use it (for person, we need to get person.fullname but for censorship we directly use the value of the censorship)
-          (property)? response = response+item[property] :response = response+item;
-        }
-        else {
-          (property)? response = response+item[property]+', ' :response = response+item+', ';
-        }
-
-      });
-    }
-    return response;
-  }
-
-  // display Link List
-  function displaySongs(list:Array<any>) {
-    let response = 'NA';
-    let songs = [];
-    if(list.length > 0) {
-      list.map((song, index:number) => {
-        if (index === list.length-1) {
-          songs.push(<Link to ={/song/+ song.uuid}>{song['title']}</Link>);
-        }
-        else {
-          songs.push(<span><Link to ={/song/+ song.uuid}>{song['title']}</Link>, </span>);
-        }
-      });
-    }
-
-    if (songs.length > 0) {
-      return songs;
-    }
-
-    return response;
   }
 
   function computeAverageShotLength():number {
@@ -71,57 +32,62 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <h2 className='properties-title'>Description</h2>
                 <Property data={{"title": "Starting time code", "content": number.startingTc, "type":'timecode' }}/>
                 <Property data={{"title": "Ending time code", "content": number.endingTc, "type":'timecode' }}/>
-
-                <Property data={{"title": "Beginning", "content": number.beginning, 'model': 'attribute', "type":'attribute' }}/>
-                <Property data={{"title": "Ending", "content": number.ending, 'model': 'attribute', "type":'attribute' }}/>
-
-                <Typography variant="body1"><span className='property-title'>Outlines: </span>{number.completenessOption}</Typography>
-                <Typography variant="body1"><span className='property-title'>Completeness: </span>{displayList(number.completeness)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Structure: </span>{number.structure}</Typography>
-                <Typography variant="body1"><span className='property-title'>Shots: </span>{number.shots}</Typography>
-                <Typography variant="body1"><span className='property-title'>Average shot length: </span>{computeAverageShotLength()} sec</Typography>
-                <Typography variant="body1"><span className='property-title'>Performance: </span>{number.performance}</Typography>
-                <Typography variant="body1"><span className='property-title'>Director(s): </span>{displayList(number.directors, 'fullname')}</Typography>
-                <Typography variant="body1"><span className='property-title'>Performer(s): </span>{displayList(number.performers, 'fullname')}</Typography>
-                <Typography variant="body1"><span className='property-title'>Cast: </span>{number.cast}</Typography>
-                <Typography variant="body1"><span className='property-title'>Stars who don't participate: </span>{displayList(number.noParticipationStars, 'fullname')}</Typography>
+                <Property data={{"title": "Beginning", "content": number.beginning, "type":'attributeList', "options": { "listPropertyTitle": "title"} }}/>
+                <Property data={{"title": "Ending", "content": number.ending, 'model': 'attribute', "type":'attributeList', "options": { "listPropertyTitle": "title"} }}/>
+                <Property data={{"title": "Outlines", "content": number.completenessOption, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Completeness", "content": number.completeness, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Structure", "content": number.structure, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Shots", "content": number.shots, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Average shot length", "content": computeAverageShotLength()+ ' sec' }}/>
+                <Property data={{"title": "Performance", "content": number.performance, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Director(s)", "content": number.directors, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Performer(s)", "content": number.performers, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Cast", "content": number.cast, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Stars who don't participate", "content": number.noParticipationStars, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
               </Paper>
             </Grid>
 
             <Grid item xs={12} md={4} lg={4}>
               <Paper className='category-section' elevation={0}>
+
                 <h2 className='properties-title'>Backstage</h2>
-                <Typography variant="body1"><span className='property-title'>Spectators: </span> {number.spectators}</Typography>
-                <Typography variant="body1"><span className='property-title'>Diegetic performance?</span> {number.diegeticPerformance}</Typography>
-                <Typography variant="body1"><span className='property-title'>Visible musicians: </span>{number.visibleMusicians}</Typography>
+                <Property data={{"title": "Spectators", "content": number.spectators, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Diegetic performance?", "content": number.diegeticPerformance, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Visible musicians", "content": number.visibleMusicians, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
 
                 <h2 className='properties-title'>Themes</h2>
-                <Typography variant="body1"><span className='property-title'>Topic: </span>{number.topic}</Typography>
-                <Typography variant="body1"><span className='property-title'>Diegetic place: </span>{number.diegeticPlace}</Typography>
-                <Typography variant="body1"><span className='property-title'>Imaginary place: </span>{number.imaginaryPlace}</Typography>
-                <Typography variant="body1"><span className='property-title'>Ethnic stereotypes: </span>{displayList(number.ethnicStereotypes)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Exoticism: </span>{number.exoticism}</Typography>
+                <Property data={{"title": "Topic", "content": number.topic, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Diegetic place", "content": number.diegeticPlace, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Imaginary place", "content": number.imaginaryPlace, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Ethnic stereotypes", "content": number.ethnicStereotypes, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Exoticism", "content": number.exoticism, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
               </Paper>
             </Grid>
 
             <Grid item xs={12} md={4} lg={4}>
               <Paper className='category-section' elevation={0}>
+
                 <h2 className='properties-title'>Music & dance</h2>
-                <Typography variant="body1"><span className='property-title'>Song: </span>{displaySongs(number.songs)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Musical ensemble: </span>{displayList(number.musicalEnsemble)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Dubbing: </span>{number.dubbing}</Typography>
-                <Typography variant="body1"><span className='property-title'>Tempo: </span>{displayList(number.tempo)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Musical styles: </span>{displayList(number.musicalStyles)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Arrangers: </span>{displayList(number.arrangers, 'fullname')}</Typography>
-                <Typography variant="body1"><span className='property-title'>Dance director: </span>{displayList(number.danceDirectors, 'fullname')}</Typography>
-                <Typography variant="body1"><span className='property-title'>Dance ensemble: </span>{displayList(number.danceEnsemble)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Dancing type: </span>{displayList(number.dancingType)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Dance subgenre: </span>{displayList(number.danceSubgenre)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Dance content: </span>{displayList(number.danceContent)}</Typography>
+                <Property data={{"title": "Song", "content": number.songs, "type":'attributeList', "model":"song", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Musical ensemble", "content": number.musicalEnsemble, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+
+                <Property data={{"title": "Dubbing", "content": number.dubbing }}/>
+                <Property data={{"title": "Tempo", "content": number.tempo, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+
+                <Property data={{"title": "Musical styles", "content": number.musicalStyles, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Arrangers", "content": number.arrangers, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
+
+                <Property data={{"title": "Dance director", "content": number.danceDirectors, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "fullname"}}}/>
+
+                <Property data={{"title": "Dance ensemble", "content": number.danceEnsemble, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Dancing type", "content": number.tempo, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Dance subgenre", "content": number.dancingType, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Dance content", "content": number.danceSubgenre, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
 
                 <h2 className='properties-title'>Intertextuality</h2>
-                <Typography variant="body1"><span className='property-title'>Source: </span>{displayList(number.sources)}</Typography>
-                <Typography variant="body1"><span className='property-title'>Quotation: </span>{displayList(number.quotation)}</Typography>
+
+                <Property data={{"title": "Source", "content": number.sources, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Quotation", "content": number.quotation, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
               </Paper>
             </Grid>
 

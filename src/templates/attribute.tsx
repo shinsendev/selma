@@ -37,7 +37,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
         <h2 className='main-item-title attribute-title'>{attribute.title}</h2>
         <Paper elevation={0}>
           <section>
-            <Property data={{"title": "Category", "content": attribute.categoryTitle, "type":'attribute', "model":"category", "uuid":attribute.categoryUuid }}/>
+            <Property data={{"title": "Category", "content": attribute.categoryTitle, "type":'category', "model":"category", "uuid":attribute.categoryUuid }}/>
             <Property data={{"title": "Definition", "content": attribute.description }}/>
             <Property data={{"title": "Example", "content": attribute.example }}/>
           </section>
