@@ -18,6 +18,7 @@ import "../styles/filmPage.css";
 import { Link } from "gatsby";
 import Property from "../components/molecules/Property";
 import PropertiesList from "../components/organisms/PropertiesList";
+import MovieIcon from "@material-ui/icons/Movie";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { ResponsiveBullet } from '@nivo/bullet';
@@ -112,7 +113,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
       {"title": "Sample", "content": film.sample },
       {"title": "Studio", "content": film.studios, "type":'list', "options": { "listPropertyTitle": "name"}},
       {"title": "IMDB link", "content": <a href={'https://www.imdb.com/title/'+film.imdb} target={'_blank'}>{film.imdb}</a>},
-      {"title": "VIAF", "content": film.viaf, "type":'viaf', "model":"attribute"},
+      {"title": "VIAF", "content": film.viaf, "type":'viaf'},
       {"title": "Director(s)", "content": film.directors, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}},
       {"title": "Release date (New York)", "content": film.releasedYear === 0 ? 'NA' : film.releasedYear },
       {"title": "Production date",  "content": film.productionYear === 0 ? 'NA' : film.productionYear},
@@ -154,7 +155,12 @@ const FilmPage = ({ pageContext: { film } }) =>  {
   return (
     <Layout>
       <Container className='container' maxWidth="lg">
-        <Typography variant="h2" className="main-item-title">{film.title}</Typography>
+        <div className="main-item-title-wrapper">
+          <Typography variant="h2" className="main-item-title">
+            <MovieIcon className="icon-main-item"/>
+            {film.title}
+          </Typography>
+        </div>
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12} md={4} lg={3}>

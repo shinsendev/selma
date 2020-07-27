@@ -52,7 +52,7 @@ const Property = ({data}) => {
   /**
    * @param data
    */
-  function getContentList(data:PropertyData)
+  function getContentList(data:PropertyData):any[]
   {
     let content = [];
     if (data.content !== 'undefined') {
@@ -127,6 +127,16 @@ const Property = ({data}) => {
     return <Link to={'/categories#'+data.uuid}>{data.content}</Link>;
   }
 
+  function displayViaf(data:PropertyData): object|string {
+    let viaf = blank;
+
+    if(data.content !== 'undefined' && data.content !== noValueBack && data.content !== 'blank') {
+      return (<Link to={'https://www.wikidata.org/wiki/'+data.content}>{'wikidata.org/wiki/'+data.content}</Link>);
+    }
+
+    return viaf;
+  }
+
   /**
    * Called by displayList, we select the content to display : list, timecode, attribute
    * @param data
@@ -147,6 +157,8 @@ const Property = ({data}) => {
         return displayAttributeList(data);
       case 'category':
         return displayCategory(data);
+      case 'viaf':
+        return displayViaf(data);
       default:
         return displayDefault(content);
     }

@@ -29,7 +29,7 @@ const SearchPage = ({data}) => {
 
               <InstantSearch indexName="mc2" searchClient={searchClient}>
                 <Grid item xs={12} md={4} lg={3}>
-                  <div className="left-panel">
+                  <div className="left-panel" >
                     <Facets/>
                   </div>
                 </Grid>
