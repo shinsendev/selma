@@ -1,4 +1,4 @@
-import { Container, Tooltip, Typography } from "@material-ui/core"
+import { Box, Container, Tooltip, Typography } from "@material-ui/core"
 import React from "react";
 import "../../styles/searchPage.css";
 import {
@@ -14,7 +14,7 @@ import HelpIcon from "@material-ui/icons/Help";
 
 const Facets = () => {
   return (
-    <article>
+    <Box display={{ xs: "none", md: "block" }}>
       <div className="clear-refinements">
         <ClearRefinements />
       </div>
@@ -65,7 +65,7 @@ const Facets = () => {
       </div>
 
       <Configure hitsPerPage={24} />
-    </article>
+    </Box>
   );
 }
 
