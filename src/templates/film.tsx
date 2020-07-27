@@ -112,7 +112,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
       {"title": "Sample", "content": film.sample },
       {"title": "Studio", "content": film.studios, "type":'list', "options": { "listPropertyTitle": "name"}},
       {"title": "IMDB link", "content": <a href={'https://www.imdb.com/title/'+film.imdb} target={'_blank'}>{film.imdb}</a>},
-      {"title": "VIAF", "content": film.viaf, "type":'viaf', "model":"attribute"},
+      {"title": "VIAF", "content": film.viaf, "type":'viaf'},
       {"title": "Director(s)", "content": film.directors, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}},
       {"title": "Release date (New York)", "content": film.releasedYear === 0 ? 'NA' : film.releasedYear },
       {"title": "Production date",  "content": film.productionYear === 0 ? 'NA' : film.productionYear},

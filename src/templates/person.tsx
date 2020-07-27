@@ -44,7 +44,7 @@ const PersonPage = ( { pageContext: { person } }) => {
   function getPropertiesData() {
       return [
         {title: "Gender", content: person.gender},
-        {title: "Viaf", content: person.viaf},
+        {title: "VIAF", type:"viaf", content: person.viaf},
       ];
   }
 
