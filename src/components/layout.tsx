@@ -3,7 +3,6 @@ import Header from "./header";
 import Footer from "./footer";
 import { createMuiTheme, ThemeProvider, Theme, makeStyles, createStyles } from '@material-ui/core/styles';
 
-
 const theme = createMuiTheme({
   typography: {
     body1: {
@@ -19,8 +18,6 @@ const theme = createMuiTheme({
     },
   },
 });
-
-
 
 export default function BaseLayout({ children }) {
     return (
