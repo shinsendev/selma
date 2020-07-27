@@ -9,7 +9,7 @@ import Property from "../Property"
 
 const PersonCartel = ({data}) => {
   const person = data;
-  
+
   return (
     <article className='cartel'>
       <Link to={/person/+person.uuid}>

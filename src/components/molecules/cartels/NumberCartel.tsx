@@ -21,7 +21,7 @@ const NumberCartel = ({ data }) => {
 
           <Property data={{"title": "Film title", "content": number.film, "type":'attribute'}}/>
           <Property data={{"title": "Performer(s)", "content": number.performers, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
-          <Property data={{"title": "Performance type", "content": number.performance, "type":'attribute'}}/>
+          <Property data={{"title": "Performance type", "content": number.performance, "type":'list', "options": { "listPropertyTitle": "title"}}}/>
       </Link>
     </article>
   )

@@ -13,15 +13,15 @@ const Hits = ({ hits }) => {
         hits.map(hit => {
             switch (hit.modelType) {
                 case 'number':
-                //   return <Cartel key={hit.uuid}><NumberCartel data={hit} /></Cartel>
-                // case 'film':
-                //   return <Cartel key={hit.uuid}><FilmCartel data={hit} /></Cartel>
+                  return <Cartel key={hit.uuid}><NumberCartel data={hit} /></Cartel>
+                case 'film':
+                  return <Cartel key={hit.uuid}><FilmCartel data={hit} /></Cartel>
                 case 'person':
                   return <Cartel key={hit.uuid}><PersonCartel data={hit} /></Cartel>
                 case 'song':
                   return <Cartel key={hit.uuid}><SongCartel data={hit} /></Cartel>
-                // default:
-                //   console.log('Error, unrecognized modelType .');
+                default:
+                  console.log('Error, unrecognized modelType .');
             }
         })
     );
