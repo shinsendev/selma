@@ -9,7 +9,7 @@ import Property from "../Property"
 
 const PersonCartel = ({data}) => {
   const person = data;
-
+  
   return (
     <article className='cartel'>
       <Link to={/person/+person.uuid}>
@@ -20,7 +20,7 @@ const PersonCartel = ({data}) => {
             </Typography>
           </header>
 
-          <Property data={{"title": "Profession(s)", "content": person.professions, "type":'list' }}/>
+          <Property data={{"title": "Profession(s)", "content": person.professions }}/>
       </Link>
     </article>
   )
