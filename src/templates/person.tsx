@@ -25,6 +25,7 @@ import FilmsList from "../components/organisms/FilmsList";
 import CircularProgressWithLabel from "../components/molecules/CircularProgressWithLabel";
 import { Link } from "gatsby";
 import "../styles/personPage.css";
+import FaceIcon from "@material-ui/icons/Face";
 
 const PersonPage = ( { pageContext: { person } }) => {
 
@@ -132,30 +133,36 @@ const PersonPage = ( { pageContext: { person } }) => {
   return (
     <Layout>
       <Container className='container' maxWidth="lg">
-        <h2 className="main-item-title">{person.fullname}</h2>
-          {/*general informations properties*/}
-          <PropertiesList title='General informations' data={getPropertiesData()}></PropertiesList>
+        <div className="main-item-title-wrapper">
+          <Typography variant="h2" className="main-item-title">
+            <FaceIcon className="icon-main-item"/>
+            {person.fullname}
+          </Typography>
+        </div>
 
-          {/* films list */}
-          <FilmsList title='Films' films={person.relatedFilms}></FilmsList>
+        {/*general informations properties*/}
+        <PropertiesList title='General informations' data={getPropertiesData()}></PropertiesList>
 
-          {/* numbers list  // if relatedNumbersByProfession // Fred Astaire uuid  = c6395587-ee36-4610-b87e-fd0e6fd40086 */}
-          {displayNumbers(person.relatedNumbers)}
+        {/* films list */}
+        <FilmsList title='Films' films={person.relatedFilms}></FilmsList>
 
-        <Grid container spacing={1}>
+        {/* numbers list  // if relatedNumbersByProfession // Fred Astaire uuid  = c6395587-ee36-4610-b87e-fd0e6fd40086 */}
+        {displayNumbers(person.relatedNumbers)}
 
-          <Grid item xs={12} md={6} lg={6} key={'presence-'+person.uuid}>
-            {/*presence into numbers as performers */}
-            {displayPresence(person.averageShotLength, person.presenceInFilms, person.fullname)}
-          </Grid>
-          <Grid item xs={12} md={6} lg={6} key={'coworker-'+person.uuid}>
-            {/* associated people list */}
-            <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
-            <CoworkersList title='Composers' data={person.composers}></CoworkersList>
-            <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
-          </Grid>
+      <Grid container spacing={1}>
 
+        <Grid item xs={12} md={6} lg={6} key={'presence-'+person.uuid}>
+          {/*presence into numbers as performers */}
+          {displayPresence(person.averageShotLength, person.presenceInFilms, person.fullname)}
         </Grid>
+        <Grid item xs={12} md={6} lg={6} key={'coworker-'+person.uuid}>
+          {/* associated people list */}
+          <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
+          <CoworkersList title='Composers' data={person.composers}></CoworkersList>
+          <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
+        </Grid>
+
+      </Grid>
 
       </Container>
     </Layout>

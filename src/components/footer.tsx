@@ -10,10 +10,11 @@ const Footer = () => {
       root: {
         color: 'white',
         background: '#4d5d5d',
+        marginTop: theme.spacing(9),
         paddingTop: theme.spacing(3),
         paddingBottom: theme.spacing(9),
-        paddingLeft: theme.spacing(1),
-        paddingRight: theme.spacing(1),
+        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(3),
         margin: 'auto',
         position:'relative',
       },

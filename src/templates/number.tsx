@@ -3,8 +3,8 @@ import Layout from "../components/layout";
 import { Paper, Container, Typography, Box, Grid } from "@material-ui/core"
 import Timecode from "../helpers/timecode";
 import "../styles/numberPage.css";
-import { Link } from "gatsby";
 import Property from "../components/molecules/Property";
+import MusicVideoIcon from "@material-ui/icons/MusicVideo";
 
 const NumberPage = ({ pageContext: { number } }) =>  {
 
@@ -21,8 +21,13 @@ const NumberPage = ({ pageContext: { number } }) =>  {
     <Layout>
       <Container maxWidth="lg">
 
-        <h2 className="main-item-title">{number.title}</h2>
-        <h3 className="film">{number.film}</h3>
+        <div className="main-item-title-wrapper">
+          <Typography variant="h2" className="main-item-title">
+          <MusicVideoIcon className="icon-main-item"/>
+            {number.title}
+          </Typography>
+          <h3 className="film">{number.film}</h3>
+        </div>
 
         <section className="main-content">
           <Grid container spacing={1}>

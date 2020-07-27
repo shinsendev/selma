@@ -25,6 +25,18 @@ a {
     color: #db5462;
     text-align: center;
     font-size: 1.9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-item-title-wrapper {
+    padding-bottom: 1rem;
+}
+
+.icon-main-item {
+    color:black;
+    padding-right: 0.3rem;
 }
 
 .category-section {

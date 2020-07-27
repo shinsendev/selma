@@ -4,12 +4,20 @@ import { Paper, Container, Typography, Grid } from '@material-ui/core';
 import Layout from "../components/layout";
 import "../styles/songPage.css";
 import Property from "../components/molecules/Property";
+import MusicNoteIcon from "@material-ui/icons/MusicNote";
 
 const SongPage = ({ pageContext: { song } }) =>  {
   return (
     <Layout>
       <Container maxWidth="lg" className='container'>
-        <Typography variant="h2" className='song-title'>{song.title}</Typography>
+
+        <div className="main-item-title-wrapper">
+          <Typography variant="h2" className='main-item-title'>
+            <MusicNoteIcon className="icon-main-item"/>
+            {song.title}
+          </Typography>
+        </div>
+
         <Grid container spacing={3}>
           {/* general infos */}
           <Grid item xs={12} md={6}>
