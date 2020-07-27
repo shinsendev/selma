@@ -52,9 +52,25 @@ const Property = ({data}) => {
   /**
    * @param data
    */
+  function getContentList(data:PropertyData)
+  {
+    let content = [];
+    if (data.content !== 'undefined') {
+      content = data.content;
+    }
+    else {
+      content = [];
+    }
+
+    return content;
+  }
+
+  /**
+   * @param data
+   */
   function displayList(data:PropertyData):any {
     let response = blank;
-    let list = data.content;
+    const list = getContentList(data);
 
     let property = '';
     if (typeof data.options !== 'undefined' && typeof data.options.listPropertyTitle !== 'undefined') {

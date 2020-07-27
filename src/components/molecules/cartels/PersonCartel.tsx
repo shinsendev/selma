@@ -20,7 +20,7 @@ const PersonCartel = ({data}) => {
             </Typography>
           </header>
 
-          <Property data={{"title": "Profession(s)", "content": person.professions, "type":'list' }}/>
+          <Property data={{"title": "Profession(s)", "content": person.professions }}/>
       </Link>
     </article>
   )
