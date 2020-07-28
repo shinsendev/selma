@@ -46,15 +46,39 @@
 }
 
 .films-list-component .poster {
-    width: 200px;
-    height: 300px;
+    height: 280px;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+@media screen and (max-width: 640px) {
+    .films-list-component .poster {
+        height: 240px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .films-list-component .poster {
+        height: 200px;
+    }
+}
+
+
+@media screen and (max-width: 380px) {
+    .films-list-component .poster {
+        height: 150px;
+    }
+}
+
+
 .films-list-component .showmore {
     text-align: center;
     cursor: pointer;
     color: #db5462;
+}
+
+.films-list-component {
+    max-height: 1200px;
+    overflow: auto;
 }

@@ -74,6 +74,8 @@
 
 .homepage .performers-container {
     margin-top: 1.6rem;
+    max-height: 600px;
+    overflow: auto;
 }
 
 .homepage .chip:hover {
