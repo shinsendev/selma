@@ -64,13 +64,11 @@
     }
 }
 
-
 @media screen and (max-width: 380px) {
     .films-list-component .poster {
         height: 150px;
     }
 }
-
 
 .films-list-component .showmore {
     text-align: center;
@@ -79,6 +77,6 @@
 }
 
 .films-list-component {
-    max-height: 1200px;
+    max-height: 900px;
     overflow: auto;
 }
