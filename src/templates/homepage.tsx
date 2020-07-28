@@ -5,6 +5,7 @@ import { Container, Paper, Grid, Chip, Typography, Box } from "@material-ui/core
 import "../styles/homePage.css";
 import FaceIcon from '@material-ui/icons/Face';
 import FilmsList from "../components/organisms/FilmsList";
+import Stat from "../components/molecules/Stat";
 
 export default ({ pageContext: { homepage } }) => {
   return (
@@ -21,7 +22,6 @@ export default ({ pageContext: { homepage } }) => {
               <Typography>This archive-based project approaches the film musical genre at the scale of the musical number, rather than the film narrative. Our shared goal is to investigate the cultural and ideological stakes of the musical by focusing in a systematic fashion on the genre’s essential elements: music, dance, and spectacle as combined in the musical number as a vehicle of cinematic meaning.</Typography>
             </Paper>
 
-
             <Paper elevation={0}>
               <Typography variant="h2">A database for numbers in musicals made between 1927 and 1972</Typography>
 
@@ -30,24 +30,12 @@ export default ({ pageContext: { homepage } }) => {
 
             <Typography variant="h2">The data</Typography>
             <Grid container spacing={3} className='stats-container'>
-              <Grid item xs={12} md={4}>
-                <Paper elevation={0} className='stats-box'>
-                  <div className="stats">{homepage.filmsCount}</div>
-                  <Typography variant='body1'>Films</Typography>
-                </Paper>
-              </Grid>
-
-              <Grid item xs={12} md={4}>
-                <Paper elevation={0} className='stats-box'>
-                  <div className="stats">{homepage.filmsWithNumberCount}</div>
-                  <Typography variant='body1'>Films with numbers</Typography></Paper>
-              </Grid>
-
-              <Grid item xs={12} md={4}>
-                <Paper elevation={0} className='stats-box'>
-                  <div className="stats">{homepage.numbersCount}</div>
-                  <Typography variant='body1'>Production numbers</Typography></Paper>
-              </Grid>
+              <Stat value={homepage.filmsCount} label="Films" />
+              <Stat value={homepage.filmsWithNumberCount} label="Films with numbers" />
+              <Stat value={homepage.numbersCount} label="Production numbers" />
+              <Stat value={homepage.songsCount} label="Songs" />
+              <Stat value={homepage.personsCount} label="People" />
+              <Stat value={homepage.attributesCount} label="Thesaurus attributes" />
             </Grid>
 
             <Paper elevation={0} className = 'section'>
