@@ -31,7 +31,7 @@ const FilmsList = ({title, films}) => {
 
     filmsDisplayed.forEach((film) => {
       filmsArray.push(
-        <Grid item xs={12} md={3} lg={2} className='section film' key={film.uuid}>
+        <Grid item xs={6} sm={6} md={3} lg={2} className='section film' key={film.uuid}>
           <Link to={/film/+film.uuid}>
             <Box>
               <div className="film-title">

@@ -1,0 +1,21 @@
+.info-wrapper {
+    padding: 2rem;
+    margin-bottom: 1rem;
+}
+
+.info-wrapper .text-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.info-wrapper .text-content .MuiTypography-h2 {
+    margin-bottom: 1rem;
+    font-size:1.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.info-wrapper .text-content p {
+    font-size:1.2rem;
+    padding: 2rem;
+}
