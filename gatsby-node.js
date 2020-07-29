@@ -12,7 +12,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
   createPage({
     path: `/`,
-    component: require.resolve('./src/templates/homepage.tsx'),
+    component: require.resolve('./src/templates/pages/homepage.tsx'),
     context: { homepage }
   });
 
@@ -77,7 +77,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   filmsGraphQL.data.mc3.films.edges.forEach(({ node }, index) => {
       createPage({
         path: '/film/' + node.uuid,
-        component: require.resolve(`./src/templates/film.tsx`),
+        component: require.resolve(`./src/templates/pages/film.tsx`),
         context: {
           film: node
         },
@@ -140,7 +140,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   numbersGraphQL.data.mc3.numbers.edges.forEach(({ node }, index) => {
     createPage({
       path: '/number/' + node.uuid,
-      component: require.resolve(`./src/templates/number.tsx`),
+      component: require.resolve(`./src/templates/pages/number.tsx`),
       context: {
         number: node
       },
@@ -172,7 +172,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   songsGraphQL.data.mc3.songs.edges.forEach(({ node }) => {
     createPage({
       path: '/song/' + node.uuid,
-      component: require.resolve(`./src/templates/song.tsx`),
+      component: require.resolve(`./src/templates/pages/song.tsx`),
       context: {
         song: node
       },
@@ -204,7 +204,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   attributesGraphQL.data.mc3.attributes.edges.forEach(({ node }) => {
     createPage({
       path: '/attribute/' + node.uuid,
-      component: require.resolve(`./src/templates/attribute.tsx`),
+      component: require.resolve(`./src/templates/pages/attribute.tsx`),
       context: {
         attribute: node
       },
@@ -242,7 +242,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   peopleGraphQL.data.mc3.people.edges.forEach(({ node }) => {
     createPage({
       path: '/person/' + node.uuid,
-      component: require.resolve(`./src/templates/person.tsx`),
+      component: require.resolve(`./src/templates/pages/person.tsx`),
       context: {
         person: node
       },

@@ -1,9 +1,9 @@
 import React from "react";
-import Layout from "../components/layout";
-import { Paper, Container, Typography, Box, Grid } from "@material-ui/core"
-import Timecode from "../helpers/timecode";
-import "../styles/numberPage.css";
-import Property from "../components/molecules/Property";
+import Layout from "../layout/layout";
+import { Paper, Container, Typography, Grid } from "@material-ui/core"
+import Timecode from "../../helpers/timecode";
+import "../../styles/numberPage.css";
+import Property from "../../components/molecules/Property";
 import MusicVideoIcon from "@material-ui/icons/MusicVideo";
 
 const NumberPage = ({ pageContext: { number } }) =>  {

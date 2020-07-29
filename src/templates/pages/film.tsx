@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/layout";
+import Layout from "../layout/layout";
 import {
   Paper,
   Grid,
@@ -14,10 +14,10 @@ import {
   Box,
   Typography
 } from "@material-ui/core"
-import "../styles/filmPage.css";
+import "../../styles/filmPage.css";
 import { Link } from "gatsby";
-import Property from "../components/molecules/Property";
-import PropertiesList from "../components/organisms/PropertiesList";
+import Property from "../../components/molecules/Property";
+import PropertiesList from "../../components/organisms/PropertiesList";
 import MovieIcon from "@material-ui/icons/Movie";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';

@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/layout";
+import Layout from "../templates/layout/layout";
 import { Container, Paper, Grid, Typography, Tooltip, Fab } from "@material-ui/core";
 import "../styles/searchPage.css";
 import algoliasearch from 'algoliasearch/lite';

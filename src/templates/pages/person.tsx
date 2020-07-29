@@ -1,6 +1,6 @@
 import React from "react";
-import Layout from "../components/layout";
-import CoworkersList from "../components/organisms/CoworkersList";
+import Layout from "../layout/layout";
+import CoworkersList from "../../components/organisms/CoworkersList";
 import {
   Container,
   Paper,
@@ -19,12 +19,12 @@ import {
   ListItemText,
   Tooltip
 } from "@material-ui/core";
-import PropertiesList from "../components/organisms/PropertiesList";
-import Property from "../components/molecules/Property";
-import FilmsList from "../components/organisms/FilmsList";
-import CircularProgressWithLabel from "../components/molecules/CircularProgressWithLabel";
+import PropertiesList from "../../components/organisms/PropertiesList";
+import Property from "../../components/molecules/Property";
+import FilmsList from "../../components/organisms/FilmsList";
+import CircularProgressWithLabel from "../../components/molecules/CircularProgressWithLabel";
 import { Link } from "gatsby";
-import "../styles/personPage.css";
+import "../../styles/personPage.css";
 import FaceIcon from "@material-ui/icons/Face";
 
 const PersonPage = ( { pageContext: { person } }) => {

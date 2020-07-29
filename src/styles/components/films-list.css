@@ -38,6 +38,8 @@
 
 .films-list-component .films-container {
     padding-top: 2rem;
+    max-height: 900px;
+    overflow: auto;
 }
 
 .films-list-component .film a {
@@ -70,13 +72,14 @@
     }
 }
 
+.films-list-component .showmore-wrapper {
+    display: flex;
+    justify-content: center;
+    width:auto;
+}
+
 .films-list-component .showmore {
-    text-align: center;
     cursor: pointer;
     color: #db5462;
 }
 
-.films-list-component {
-    max-height: 900px;
-    overflow: auto;
-}

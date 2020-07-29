@@ -35,5 +35,14 @@ module.exports = {
         showSpinner: false,
       },
     },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        custom: {
+          families: ["TisaSansWeb"],
+          urls: ["/fonts/fonts.css"],
+        },
+      },
+    },
   ],
 }

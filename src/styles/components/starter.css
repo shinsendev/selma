@@ -1,0 +1,18 @@
+.starter-wrapper {
+    background-image: url('https://mc3-website.s3.eu-west-3.amazonaws.com/website/starter.resized.jpg');
+    background-size: cover;
+    background-position: 50%;  /* prettier to display the picture with x and y at 50% */
+    margin-top: -9px;
+}
+
+.starter-wrapper .container {
+    display: flex;
+    align-items: center;
+    min-height: auto;
+    margin-bottom: 1rem;
+}
+
+.starter-wrapper .info-wrapper {
+    opacity: 0.95;
+    margin: 2rem auto;
+}
