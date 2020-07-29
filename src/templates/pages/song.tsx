@@ -1,9 +1,9 @@
 import React from "react";
 import { graphql, Link } from "gatsby"
 import { Paper, Container, Typography, Grid } from '@material-ui/core';
-import Layout from "./layout";
-import "../styles/songPage.css";
-import Property from "../components/molecules/Property";
+import Layout from "../layout/layout";
+import "../../styles/songPage.css";
+import Property from "../../components/molecules/Property";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
 
 const SongPage = ({ pageContext: { song } }) =>  {

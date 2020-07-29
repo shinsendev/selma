@@ -1,8 +1,8 @@
 import React from "react";
-import Layout from "./layout";
+import Layout from "../layout/layout";
 import { Paper, Container, Typography, Grid } from '@material-ui/core';
-import "../styles/attribute.css";
-import Property from "../components/molecules/Property";
+import "../../styles/attribute.css";
+import Property from "../../components/molecules/Property";
 
 const AttributePage = ({ pageContext: { attribute } }) =>  {
   function displayElements(elements) {

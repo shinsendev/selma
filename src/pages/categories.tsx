@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { graphql, Link } from "gatsby";
 import { Paper, Container, Typography, Grid, Box } from "@material-ui/core";
-import Layout from "../templates/layout";
+import Layout from "../templates/layout/layout";
 import "../styles/categoryPage.css";
 import Property from "../components/molecules/Property"
 

@@ -21,6 +21,7 @@ const SelmaTheme = () => {
         fontSize: '1.8rem',
         textAlign: 'center',
         fontWeight: 'bold',
+        color: '#db5462'
       },
       h3: {
         fontFamily: 'TisaSansWeb',
@@ -29,6 +30,7 @@ const SelmaTheme = () => {
       h4: {
         fontFamily: 'TisaSansWeb',
         fontSize: '1.4rem',
+        textAlign: 'center',
       },
       h5: {
         fontFamily: 'TisaSansWeb',

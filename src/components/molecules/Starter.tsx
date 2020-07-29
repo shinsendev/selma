@@ -1,8 +1,7 @@
 import React from "react";
 import "../../styles/components/starter.css";
-import Info from "./Info";
+import Info from "../organisms/Info";
 import { Container } from "@material-ui/core";
-
 
 const Starter = (props) => {
   return (

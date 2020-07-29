@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "../components/organisms/Header";
-import Footer from "../components/organisms/Footer";
-import Starter from "../components/molecules/Starter";
+import Header from "../../components/organisms/Header";
+import Footer from "../../components/organisms/Footer";
+import Starter from "../../components/molecules/Starter";
 import {
   ThemeProvider,
 } from "@material-ui/core/styles";
-import SelmaTheme from "../components/logic/SelmaTheme"
+import SelmaTheme from "../../components/logic/SelmaTheme"
 
 const theme = SelmaTheme();
 
