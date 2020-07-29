@@ -11,7 +11,7 @@ import DownloadBox from "../../components/organisms/DownloadBox";
 
 export default ({ pageContext: { homepage } }) => {
   const infoTitle = "A database for numbers in musicals made between 1927 and 1972";
-  const infoContent = ["The project includes this digital humanities research tool: a database defining and categorizing the numbers in film musicals made between 1927 and 1972 along general categories (outlines, music, dance, themes, intertextuality, etc.) and multiple subcategories (number of shots, performance types, topics, musical styles, dancing styles, etc.), all defined in our thesaurus.", " Our long term goal is to include as many films as possible in the database, creating a resource for project members, and eventually other scholars and students, to study the film musical from a variety of corpus studies approaches."];
+  const infoContent = [<span>The project includes this digital humanities research tool: a database defining and categorizing the numbers in film musicals made between 1927 and 1972 along general categories (outlines, music, dance, themes, intertextuality, etc.) and multiple subcategories (number of shots, <Link to="/categories">performance types</Link>, <Link to="/categories">topics</Link>, <Link to="/categories">musical styles</Link>, <Link to="/categories">dancing styles</Link>, etc.), all defined in our <Link to="/categories">thesaurus</Link>.</span>, " Our long term goal is to include as many films as possible in the database, creating a resource for project members, and eventually other scholars and students, to study the film musical from a variety of corpus studies approaches."];
 
   return (
     <div className="homepage">
@@ -27,7 +27,7 @@ export default ({ pageContext: { homepage } }) => {
             <Stat value={homepage.attributesCount} label="Thesaurus attributes" />
           </Grid>
 
-          <DownloadBox></DownloadBox>
+          <DownloadBox/>
 
           <Info title={infoTitle} content={infoContent}/>
 
