@@ -45,8 +45,6 @@ const Footer = () => {
               <img src="https://mc3-website.s3.eu-west-3.amazonaws.com/logo/labex.png" alt="Logo Labex Arts-H2H" />
               <img src="https://mc3-website.s3.eu-west-3.amazonaws.com/logo/artec.png" alt="Logo Artec"/>
             </Grid>
-          {/*<img src="https://mc3-website.s3.eu-west-3.amazonaws.com/logo/labex.png" alt="Logo Labex Arts-H2H"/>*/}
-          {/*<img src="https://mc3-website.s3.eu-west-3.amazonaws.com/logo/artec.png" alt="Logo Artec"/>*/}
         </Grid>
 
         <Grid item xs={12} md={6}>
