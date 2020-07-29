@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/layout";
+import Layout from "./layout";
 import { Paper, Container, Typography, Grid } from '@material-ui/core';
 import "../styles/attribute.css";
 import Property from "../components/molecules/Property";

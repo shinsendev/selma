@@ -4,18 +4,12 @@
 }
 
 .info-wrapper .text-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: auto;
 }
 
-.info-wrapper .text-content .MuiTypography-h2 {
-    margin-bottom: 1rem;
-    font-size:1.8rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.info-wrapper .text-content p {
-    font-size:1.2rem;
-    padding: 2rem;
-}
+/*.info-wrapper .text-content .MuiTypography-h2 {*/
+/*    margin-bottom: 1rem;*/
+/*    font-weight: bold;*/
+/*    text-transform: uppercase;*/
+/*}*/

@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/layout";
+import Layout from "./layout";
 import { Paper, Container, Typography, Box, Grid } from "@material-ui/core"
 import Timecode from "../helpers/timecode";
 import "../styles/numberPage.css";

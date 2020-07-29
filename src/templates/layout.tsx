@@ -1,23 +1,10 @@
 import React from "react";
-import Header from "./header";
-import Footer from "./footer";
+import Header from "../components/organisms/Header";
+import Footer from "../components/organisms/Footer";
 import { createMuiTheme, ThemeProvider, Theme, makeStyles, createStyles } from '@material-ui/core/styles';
+import SelmaTheme from "../components/logic/SelmaTheme"
 
-const theme = createMuiTheme({
-  typography: {
-    body1: {
-      fontSize: 13,
-    },
-  },
-  palette: {
-    primary: {
-      main: '#db5462', // mC2 pink
-    },
-    secondary: {
-      main: '#4d5d5d', // footer gray
-    },
-  },
-});
+const theme = SelmaTheme();
 
 export default function BaseLayout({ children }) {
     return (

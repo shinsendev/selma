@@ -2,7 +2,7 @@ import React from "react";
 import { createStyles, makeStyles, Theme, fade } from '@material-ui/core/styles';
 import { AppBar, Typography, Button, Toolbar, InputBase } from '@material-ui/core';
 import { Link } from "gatsby";
-import "../styles/header.css";
+import "../../styles/header.css";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -50,11 +50,11 @@ const Header = (props) => {
           <Toolbar>
 
             <div className="header-title">
-              <Typography className={classes.title}>
+              <Typography className={classes.title} variant="h1">
                   <Link to="/">Musical MC²</Link>
               </Typography>
 
-              <Typography className={classes.mobileTitle}>
+              <Typography className={classes.mobileTitle} variant="h1">
                 <Link to="/">MC²</Link>
               </Typography>
             </div>

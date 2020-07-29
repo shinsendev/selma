@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/layout";
+import Layout from "./layout";
 import CoworkersList from "../components/organisms/CoworkersList";
 import {
   Container,
