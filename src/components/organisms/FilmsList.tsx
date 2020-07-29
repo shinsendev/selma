@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid, Paper, Typography } from "@material-ui/core";
+import { Box, Grid, Paper, Typography, Button } from "@material-ui/core";
 import { Link } from "gatsby";
 import "../../styles/components/films-list.css";
 
@@ -10,20 +10,18 @@ const FilmsList = ({title, films}) => {
     return films.slice(0, 12);
   }
 
-  function addFilmsToDisplay(limit:number=10) {
+  function addFilmsToDisplay():void {
     if (filmsDisplayed.length < films.length) {
       setFilmsDisplayed(films);
     }
   }
 
   function displayShowmore() {
-    let result = "show more";
-
     if (filmsDisplayed.length >= films.length) {
-      result = "";
+      return null;
     }
 
-    return result;
+    return (<Button className="showmore" color="primary" variant="outlined" >Show more</Button>);
   }
 
   function displayFilms(limit:number=10, offset:number=0) {
@@ -57,7 +55,10 @@ const FilmsList = ({title, films}) => {
             </Grid>
           </section>
 
-        <Typography variant="body1" className="showmore" onClick={addFilmsToDisplay}>{displayShowmore()}</Typography>
+        <div onClick={addFilmsToDisplay} className="showmore-wrapper">
+          {displayShowmore()}
+        </div>
+
       </Paper>
     </div>
   )

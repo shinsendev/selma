@@ -17,8 +17,8 @@ export default ({ pageContext: { homepage } }) => {
       <HomeLayout>
         <section className="main">
           <Container className='container' maxWidth="lg">
-
-            <Grid container spacing={3} className='stats-container'>
+            <Typography variant="h2" gutterBottom>Database content</Typography>
+            <Grid container spacing={1} className='stats-container'>
               <Stat value={homepage.filmsCount} label="Films" />
               <Stat value={homepage.filmsWithNumberCount} label="Films with numbers" />
               <Stat value={homepage.numbersCount} label="Production numbers" />
@@ -28,6 +28,8 @@ export default ({ pageContext: { homepage } }) => {
             </Grid>
 
             <Info title={infoTitle} content={infoContent}/>
+
+            <FilmsList title='Films with data' films={homepage.films}></FilmsList>
 
             <Paper elevation={0} className = 'section'>
               <Typography variant="h2">Performers</Typography>
@@ -45,7 +47,6 @@ export default ({ pageContext: { homepage } }) => {
               </section>
             </Paper>
 
-            <FilmsList title='Films with data' films={homepage.films}></FilmsList>
 
           </Container>
         </section>
