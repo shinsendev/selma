@@ -1,31 +1,38 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import 'fontsource-roboto';
 
 const SelmaTheme = () => {
   const theme = createMuiTheme({
     typography: {
       fontFamily: [
-        'ff-tisa-sans-web-pro',
         'Roboto',
+        'TisaSansWeb',
         '"Helvetica Neue"',
         'Arial',
         'sans-serif',
       ].join(','),
       h1:{
-        fontFamily: 'ff-tisa-sans-web-pro, roboto',
+        fontFamily: 'TisaSansWeb',
         fontSize: '1rem',
         fontWeight: 'bold'
       },
       h2: {
+        fontFamily: 'TisaSansWeb',
         fontSize: '1.8rem',
+        textAlign: 'center',
+        fontWeight: 'bold',
       },
       h3: {
-
+        fontFamily: 'TisaSansWeb',
+        fontSize: '1.6rem',
       },
       h4: {
-
+        fontFamily: 'TisaSansWeb',
+        fontSize: '1.4rem',
       },
       h5: {
-
+        fontFamily: 'TisaSansWeb',
+        fontSize: '1.2rem',
       },
       body1: {
         fontSize: 13,
