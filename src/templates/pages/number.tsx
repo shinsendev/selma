@@ -7,12 +7,6 @@ import Property from "../../components/molecules/Property";
 import MusicVideoIcon from "@material-ui/icons/MusicVideo";
 
 const NumberPage = ({ pageContext: { number } }) =>  {
-
-  console.log(number);
-  function displayTimeCode(timecode:number):number {
-    return Timecode.convert(timecode);
-  }
-
   function computeAverageShotLength():number {
     return Math.round((number.endingTc - number.startingTc)/number.shots);
   }
