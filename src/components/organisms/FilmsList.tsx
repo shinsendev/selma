@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { Box, Grid, Paper, Typography, Button } from "@material-ui/core";
 import { Link } from "gatsby";
 import "../../styles/components/films-list.css";
+import Image from '../molecules/Image';
 
 const FilmsList = ({title, films}) => {
   const [filmsDisplayed, setFilmsDisplayed] = useState(getFilmsToDisplay());
+  const filmUrl = 'https://mc3-website.s3.eu-west-3.amazonaws.com/poster/';
+  const filmUrlLabex = 'http://mc2.labex-arts-h2h.univ-paris8.fr/img/films/';
+  const noImageUrl = 'https://mc3-website.s3.eu-west-3.amazonaws.com/website/no-image3.jpg';
 
   function getFilmsToDisplay() {
     return films.slice(0, 12);
@@ -24,6 +28,32 @@ const FilmsList = ({title, films}) => {
     return (<Button className="showmore" color="primary" variant="outlined" >Show more</Button>);
   }
 
+  function checkImage(url) {
+    console.log('hello??????????????????????');
+    const img = new Image();
+    img.src = url;
+    console.log(img.height != 0);
+    console.log(url);
+    console.log(img);
+
+    return img.height != 0;
+  }
+
+  function displayNoImage() {
+    return <img className='poster' src={noImageUrl} alt="No cover for this film"/>;
+  }
+
+
+  function displayPoster(url) {
+
+    return <img className='poster' src={url} alt="Cover of the film" onError={console.log('no')}/>;
+    if (checkImage(url) == true) {
+      return (<img className='poster' src={url} alt="Cover of the film" onError={console.log('no')}/>);
+    }
+
+    return <img className='poster' src={noImageUrl} alt="No cover for this film"/>;
+  }
+
   function displayFilms(limit:number=10, offset:number=0) {
     const filmsArray = [];
 
@@ -35,7 +65,9 @@ const FilmsList = ({title, films}) => {
               <div className="film-title">
                 <Typography variant="h3">{film.title} ({film.releasedYear})</Typography>
               </div>
-              <img className='poster' src={'http://mc2.labex-arts-h2h.univ-paris8.fr/img/films/'+film.imdb+'.jpg'} alt=""/>
+              <Image url={filmUrl+film.imdb+'.jpg'} alt='Cover of the film' noImageUrl={noImageUrl}/>
+              {/*<img className='poster' src={filmUrl+film.imdb+'.jpg'} alt="Cover of the film" onError={displayNoImage()}/>*/}
+              {/*{displayPoster(filmUrlLabex+film.imdb+'.jpg')}*/}
             </Box>
           </Link>
         </Grid>
