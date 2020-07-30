@@ -37,7 +37,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <h2 className='properties-title'>Description</h2>
                 <Property data={{"title": "Starting time code", "content": number.startingTc, "type":'timecode' }}/>
                 <Property data={{"title": "Ending time code", "content": number.endingTc, "type":'timecode' }}/>
-                <Property data={{"title": "Beginning", "content": number.beginning, "type":'attributeList', "options": { "listPropertyTitle": "title"} }}/>
+                <Property data={{"title": "Beginning", "content": number.beginning, 'model': 'attribute', "type":'attributeList', "options": { "listPropertyTitle": "title"} }}/>
                 <Property data={{"title": "Ending", "content": number.ending, 'model': 'attribute', "type":'attributeList', "options": { "listPropertyTitle": "title"} }}/>
                 <Property data={{"title": "Outlines", "content": number.completenessOption, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Completeness", "content": number.completeness, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
