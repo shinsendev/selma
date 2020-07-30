@@ -25,10 +25,13 @@ import { ResponsiveBullet } from '@nivo/bullet';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
+import Image from "../../components/molecules/Image"
 
 const FilmPage = ({ pageContext: { film } }) =>  {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const filmUrl = 'https://mc3-website.s3.eu-west-3.amazonaws.com/poster/';
+  const noImageUrl = 'https://mc3-website.s3.eu-west-3.amazonaws.com/website/no-image3.jpg';
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -166,7 +169,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
           <Grid item xs={12} sm={12} md={4} lg={3}>
             <Paper>
               <Box display={{ xs: "none", md: "block" }}>
-                <img className='poster' src={'http://mc2.labex-arts-h2h.univ-paris8.fr/img/films/'+film.imdb+'.jpg'}/>
+                <Image url={filmUrl+film.imdb+'.jpg'} alt='Cover of the film' noImageUrl={noImageUrl}/>
               </Box>
             </Paper>
           </Grid>

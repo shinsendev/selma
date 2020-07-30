@@ -19,15 +19,6 @@ const SongPage = ({ pageContext: { song } }) =>  {
         </div>
 
         <Grid container spacing={3}>
-          {/* general infos */}
-          <Grid item xs={12} md={6}>
-            <Paper elevation={0}>
-              <section className='song-section'>
-                <Property data={{"title": "Date", "content": song.year}}/>
-                <Property data={{"title": "Song type", "content": song.songTypes, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
-              </section>
-            </Paper>
-          </Grid>
 
           {/* composers (person) linked to the song */}
           <Grid item xs={12} sm={6}>
@@ -39,6 +30,17 @@ const SongPage = ({ pageContext: { song } }) =>  {
               </section>
             </Paper>
           </Grid>
+
+          {/* general infos */}
+          <Grid item xs={12} md={6}>
+            <Paper elevation={0}>
+              <section className='song-section'>
+                <Property data={{"title": "Date", "content": song.year}}/>
+                <Property data={{"title": "Song type", "content": song.songTypes, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+              </section>
+            </Paper>
+          </Grid>
+
         </Grid>
 
         <Grid container spacing={3}>
