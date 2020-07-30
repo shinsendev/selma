@@ -76,7 +76,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Property data={{"title": "Musical styles", "content": number.musicalStyles, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Arrangers", "content": number.arrangers, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
 
-                <Property data={{"title": "Dance director", "content": number.danceDirectors, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "fullname"}}}/>
+                <Property data={{"title": "Dance director", "content": number.danceDirectors, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
 
                 <Property data={{"title": "Dance ensemble", "content": number.danceEnsemble, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Dancing type", "content": number.tempo, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
