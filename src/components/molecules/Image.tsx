@@ -1,20 +1,19 @@
 import React, { useState } from "react";
 
 const Image = ({url, alt, noImageUrl}) => {
-  // const [imageState, setImageState] = React.useState(<img className='poster' src={url} alt={alt} onError={setError()}/>);
-  const [hasErrorState, setHasErrorState] = React.useState(false);
-  const [altState, setAltState] = useState(alt);
-  const [urlState, setUrlState] = useState(url);
+  const [imageState, setImageState] = useState({url: url, alt: alt, error: false});
 
   function setError() {
-    if (hasErrorState === false) {
-      setHasErrorState(true);
-      setAltState('No cover');
-      setUrlState(noImageUrl);
+    if (imageState.error === false) {
+      setImageState({
+        url: noImageUrl,
+        alt: 'No image found',
+        error: true
+      });
     }
   }
 
-  return <img className='poster' src={urlState} alt={altState} onError={setError}/>;
+  return <img className='poster' src={imageState.url} alt={imageState.alt} onError={setError}/>;
 }
 
 export default Image;

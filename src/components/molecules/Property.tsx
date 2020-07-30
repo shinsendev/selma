@@ -3,8 +3,8 @@ import Timecode from "../../helpers/timecode";
 import PropertyWithTitleContent from "../atoms/PropertyWithTitleContent";
 import SimplePropertyContent from "../atoms/SimplePropertyContent";
 import { Link } from "gatsby";
-import { PropertyData } from "../../interfaces/PropertyData"
-import AttributeLink from "../atoms/AttributeLink"
+import { PropertyDataInterface } from "../../interfaces/PropertyDataInterface";
+import AttributeLink from "../atoms/AttributeLink";
 
 const Property = ({data}) => {
 
@@ -14,7 +14,7 @@ const Property = ({data}) => {
   /**
    * @param data
    */
-  function  getType(data:PropertyData):string {
+  function  getType(data:PropertyDataInterface):string {
     let type:string = 'default';
 
     if (typeof data.type !== 'undefined') {
@@ -34,7 +34,7 @@ const Property = ({data}) => {
   /**
    * @param data
    */
-  function displayAttribute(data:PropertyData):Object|string {
+  function displayAttribute(data:PropertyDataInterface):Object|string {
     // if there is no result
     if (data.content === noValueBack) {
       return blank;
@@ -52,7 +52,7 @@ const Property = ({data}) => {
   /**
    * @param data
    */
-  function getContentList(data:PropertyData):any[]
+  function getContentList(data:PropertyDataInterface):any[]
   {
     let content = [];
     if (data.content !== 'undefined') {
@@ -68,7 +68,7 @@ const Property = ({data}) => {
   /**
    * @param data
    */
-  function displayList(data:PropertyData):any {
+  function displayList(data:PropertyDataInterface):any {
     let response = blank;
     const list = getContentList(data);
 
@@ -92,7 +92,7 @@ const Property = ({data}) => {
     return response;
   }
 
-  function displayAttributeList(data:PropertyData):any {
+  function displayAttributeList(data:PropertyDataInterface):any {
     let list = data.content;
     let property = '';
     if (typeof data.options !== 'undefined' && typeof data.options.listPropertyTitle !== 'undefined') {
@@ -123,11 +123,11 @@ const Property = ({data}) => {
   /**
    * @param data
    */
-  function displayCategory(data:PropertyData):object {
+  function displayCategory(data:PropertyDataInterface):object {
     return <Link to={'/categories#'+data.uuid}>{data.content}</Link>;
   }
 
-  function displayViaf(data:PropertyData): object|string {
+  function displayViaf(data:PropertyDataInterface): object|string {
     let viaf = blank;
 
     if(data.content !== 'undefined' && data.content !== noValueBack && data.content !== 'blank') {
@@ -141,7 +141,7 @@ const Property = ({data}) => {
    * Called by displayList, we select the content to display : list, timecode, attribute
    * @param data
    */
-  function displayContent(data:PropertyData):any {
+  function displayContent(data:PropertyDataInterface):any {
     // get type
     const type = getType(data);
     const content = data.content;
@@ -168,7 +168,7 @@ const Property = ({data}) => {
   /**
    * @param data
    */
-  function displayProperty(data:PropertyData) {
+  function displayProperty(data:PropertyDataInterface) {
     if (typeof data.title !== 'undefined') {
       return <PropertyWithTitleContent title={data.title} content={displayContent(data)} />
     }
