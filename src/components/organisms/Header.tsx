@@ -59,7 +59,6 @@ const Header = (props) => {
               </Typography>
             </div>
 
-
             <div className={classes.menu}>
               <Typography><Link to="/about" className={classes.item}>about</Link></Typography>
               <Typography><Link to="/keys" className={classes.item}>keys</Link></Typography>
