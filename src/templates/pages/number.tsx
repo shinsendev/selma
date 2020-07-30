@@ -7,12 +7,6 @@ import Property from "../../components/molecules/Property";
 import MusicVideoIcon from "@material-ui/icons/MusicVideo";
 
 const NumberPage = ({ pageContext: { number } }) =>  {
-
-  console.log(number);
-  function displayTimeCode(timecode:number):number {
-    return Timecode.convert(timecode);
-  }
-
   function computeAverageShotLength():number {
     return Math.round((number.endingTc - number.startingTc)/number.shots);
   }
@@ -82,7 +76,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Property data={{"title": "Musical styles", "content": number.musicalStyles, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Arrangers", "content": number.arrangers, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
 
-                <Property data={{"title": "Dance director", "content": number.danceDirectors, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "fullname"}}}/>
+                <Property data={{"title": "Dance director", "content": number.danceDirectors, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
 
                 <Property data={{"title": "Dance ensemble", "content": number.danceEnsemble, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Dancing type", "content": number.tempo, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>

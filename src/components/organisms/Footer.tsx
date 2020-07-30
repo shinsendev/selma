@@ -1,7 +1,7 @@
 import { Typography, Grid, GridList, GridListTile } from "@material-ui/core";
 import { Link } from "gatsby";
 import React from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const Footer = () => {
 

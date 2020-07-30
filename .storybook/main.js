@@ -1,5 +1,6 @@
 module.exports = {
-  stories: ['../stories/**/*.stories.js', "../stories/**/*.stories.tsx"],
+  // stories: ['../stories/**/*.stories.js', "../stories/**/*.stories.tsx", "../src/components/stories/**.stories.js"],
+  stories: ["../src/components/stories/**.stories.tsx"],
   addons: ['@storybook/addon-actions', '@storybook/addon-links'],
   webpackFinal: async config => {
     // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
@@ -37,6 +38,7 @@ module.exports = {
     })
 
     config.resolve.extensions.push(".ts", ".tsx")
+
     return config;
   },
 };
