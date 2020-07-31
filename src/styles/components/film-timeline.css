@@ -1,0 +1,10 @@
+.film-timeline .timeline-type-selector-wrapper {
+    margin-top: 1rem;
+    margin-top: 0.6rem;
+    display: flex;
+    width:100%;
+}
+
+.film-timeline .timeline-type-selector {
+    margin:auto;
+}

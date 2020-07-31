@@ -16,18 +16,18 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     context: { homepage }
   });
 
-  // const filmsCount = homepage.filmsCount;
-  // const numbersCount = homepage.numbersCount;
-  // const songsCount = homepage.songsCount;
-  // const attributesCount = homepage.attributesCount;
-  // const peopleCount = homepage.personsCount;
+  const filmsCount = homepage.filmsCount;
+  const numbersCount = homepage.numbersCount;
+  const songsCount = homepage.songsCount;
+  const attributesCount = homepage.attributesCount;
+  const peopleCount = homepage.personsCount;
 
   // // for debug
-  const filmsCount = 5;
-  const numbersCount = 5;
-  const songsCount = 5;
-  const attributesCount = 5;
-  const peopleCount = 5;
+  // const filmsCount = 5;
+  // const numbersCount = 5;
+  // const songsCount = 5;
+  // const attributesCount = 5;
+  // const peopleCount = 5;
 
   // manage films
   const filmsGraphQL = await graphql(`
