@@ -6,55 +6,56 @@ import {
   CommonSeriesSettings,
   SeriesTemplate,
   Tick,
-  Title
+  Title,
 } from "devextreme-react/chart";
+import {
+  Typography
+} from "@material-ui/core";
+import Timecode from "../../helpers/timecode";
 
 // for devexpress
-const dataSource = [
-  {
-    attribute: 'All black cast',
-    start: 1714,
-    category: 'Cast',
-    end: 1727,
-  },
-  {
-    attribute: 'All black cast',
-    start: 1744,
-    category: 'Cast',
-    end: 1777,
-  },
-  {
-    attribute: 'No data',
-    start: 1794,
-    category: 'Cast',
-    end: 1827,
-  },
-  {
-    attribute: 'All white cast',
-    start: 1894,
-    category: 'Cast',
-    end: 1927,
-  },
-  {
-    attribute: 'All black cast',
-    start: 1934,
-    category: 'Cast',
-    end: 1967,
-  },
-];
+function getData(numbers:any[], type:string) {
+  const data = [];
+  numbers.map(number => {
+    data.push(
+      {
+        attribute: 'No data',
+        start: number.beginTc/60,
+        end: number.endTc/60,
+        category: type,
+      }
+    )
+  })
+  return data;
+}
 
-const FilmTimeline = () => {
+function displayTimeline(numbers:any[]): null|object  {
+  if (numbers.length === 0) {
+    return null;
+  }
+
+  let hasTc = false;
+  numbers.map( number => {
+    if (number.endTc > 0) {
+      hasTc = true;
+    }
+  });
+
+  if (!hasTc) {
+    return null;
+  }
+
+  const type = 'structure';
+
   return (
     <section className="film-timeline">
-      <Chart id="chart" dataSource={dataSource} barGroupPadding={0.2} rotated={true}>
-        <ArgumentAxis categories={['Cast']}>
+      <Typography variant="h2">Timeline for {type}</Typography>
+      <Chart id="chart" dataSource={getData(numbers, type)} barGroupPadding={0.2} rotated={true}>
+        <ArgumentAxis>
           {/*'Structure', 'Diegetic status of the number', 'Performance type'*/}
           {/*'Source of the number' => multiple choice */}
           <Tick visible={false} />
         </ArgumentAxis>
-        <Title text="Film timeline"
-               subtitle="An Abbreviated Timeline"
-        />
         <CommonSeriesSettings
           type="rangeBar"
           argumentField="category"
@@ -71,6 +72,10 @@ const FilmTimeline = () => {
       </Chart>
     </section>
   )
+}
+
+const FilmTimeline = ({numbers}) => {
+  return displayTimeline(numbers);
 }
 
 export default FilmTimeline;

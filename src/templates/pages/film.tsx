@@ -13,7 +13,7 @@ import {
   TablePagination,
   Box,
   Typography
-} from "@material-ui/core"
+} from "@material-ui/core";
 import "../../styles/filmPage.css";
 import { Link } from "gatsby";
 import Property from "../../components/molecules/Property";
@@ -195,7 +195,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
         {/*end of stats*/}
 
         {/*Visualisation*/}
-        <FilmTimeline/>
+        <FilmTimeline numbers={film.numbers}/>
 
       </Container>
     </Layout>
