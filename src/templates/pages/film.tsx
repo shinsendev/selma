@@ -13,19 +13,14 @@ import {
   TablePagination,
   Box,
   Typography
-} from "@material-ui/core"
+} from "@material-ui/core";
 import "../../styles/filmPage.css";
 import { Link } from "gatsby";
 import Property from "../../components/molecules/Property";
 import PropertiesList from "../../components/organisms/PropertiesList";
 import MovieIcon from "@material-ui/icons/Movie";
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import { ResponsiveBullet } from '@nivo/bullet';
-import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-} from 'recharts';
-import Image from "../../components/molecules/Image"
+import Image from "../../components/molecules/Image";
+import FilmTimeline from "../../components/organisms/FilmTimeline"
 
 const FilmPage = ({ pageContext: { film } }) =>  {
   const [page, setPage] = React.useState(0);
@@ -41,75 +36,6 @@ const FilmPage = ({ pageContext: { film } }) =>  {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
-  // for highcharts
-  const options = {
-    title: {
-      text: 'My chart'
-    },
-    series: [{
-      data: [1, 2, 3]
-    }]
-  }
-
-  // for nivo
-  const data = [
-    {
-      "id": "number",
-      "ranges": [
-        171,
-        6000,
-        10000,
-        14000
-      ],
-      "measures": [
-        film.length
-      ],
-      "markers": []
-    },
-    {
-      "id": "power",
-      "ranges": [
-        0.27507857592556445,
-        0.06810591194577384,
-        0.9972460527280638,
-        0,
-        2
-      ],
-      "measures": [
-        0.3013347865559584,
-        1.8190607705848003
-      ],
-      "markers": [
-        1.704352129940991
-      ]
-    },
-  ];
-
-  // for recharts
-  const rechartsData = [
-    {
-      name: 'Page A', uv: 4000, pv: 2400, amt: 2400,
-    },
-    {
-      name: 'Page B', uv: 3000, pv: 1398, amt: 2210,
-    },
-    {
-      name: 'Page C', uv: 2000, pv: 9800, amt: 2290,
-    },
-    {
-      name: 'Page D', uv: 2780, pv: 3908, amt: 2000,
-    },
-    {
-      name: 'Page E', uv: 1890, pv: 4800, amt: 2181,
-    },
-    {
-      name: 'Page F', uv: 2390, pv: 3800, amt: 2500,
-    },
-    {
-      name: 'Page G', uv: 3490, pv: 4300, amt: 2100,
-    },
-  ];
 
   function getGeneralProperties() {
     return [
@@ -143,18 +69,6 @@ const FilmPage = ({ pageContext: { film } }) =>  {
     ];
   }
 
-  const CustomRange = () => (
-    <rect
-      x={2}
-      y={50}
-      rx={5}
-      ry={5}
-      width="30%"
-      height="20%"
-      fill="red"
-    />
-  )
-
   return (
     <Layout>
       <Container className='container' maxWidth="lg">
@@ -178,11 +92,11 @@ const FilmPage = ({ pageContext: { film } }) =>  {
             <PropertiesList title='Censorship' data={getGeneralProperties()} />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={8} lg={3}>
+          <Grid item xs={12} sm={12} md={6} lg={3}>
             <PropertiesList title='Recycling' data={getRecyclingProperties()} />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={8} lg={3}>
+          <Grid item xs={12} sm={12} md={6} lg={3}>
             <PropertiesList title='Censorship' data={getCensorshipProperties()} />
           </Grid>
 
@@ -278,37 +192,9 @@ const FilmPage = ({ pageContext: { film } }) =>  {
         </section>
         {/*end of stats*/}
 
-        <section className="film-timeline">
+        {/*Visualisation*/}
+        <FilmTimeline numbers={film.numbers}/>
 
-          <LineChart width={600} height={300} data={rechartsData}>
-              <Line type="monotone" dataKey="uv" stroke="#8884d8" />
-              <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey="name" />
-              <YAxis />
-          </LineChart>
-
-
-          {/*<ResponsiveBullet*/}
-          {/*  data={data}*/}
-          {/*  margin={{ top: 50, right: 90, bottom: 50, left: 90 }}*/}
-          {/*  spacing={60}*/}
-          {/*  titleAlign="start"*/}
-          {/*  titleOffsetX={-70}*/}
-          {/*  measureSize={0.25}*/}
-          {/*  markerSize={1.45}*/}
-          {/*  axisPosition="before"*/}
-          {/*  animate={true}*/}
-          {/*  motionStiffness={130}*/}
-          {/*  motionDamping={20}*/}
-          {/*  rangeComponent={CustomRange}*/}
-          {/*/>*/}
-
-
-          {/*<HighchartsReact*/}
-          {/*  highcharts={Highcharts}*/}
-          {/*  options={options}*/}
-          {/*/>*/}
-        </section>
       </Container>
     </Layout>
   );

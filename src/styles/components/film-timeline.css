@@ -1,0 +1,11 @@
+.film-timeline .timeline-type-selector-wrapper {
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    width:100%;
+    justify-content: center;
+}
+
+.film-timeline .rotate-button {
+    margin-left:3rem;
+}
