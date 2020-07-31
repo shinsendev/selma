@@ -11,13 +11,15 @@ import {
 import {
   Typography,
   Select,
-  MenuItem
+  MenuItem,
+  Button
 } from "@material-ui/core";
 import '../../styles/components/film-timeline.css';
 import Timecode from "../../helpers/timecode";
 
 const FilmTimeline = ({numbers}) => {
   const [typeState, setTypeState] = useState('structure');
+  const [isRotatedState, setRotated] = useState(true);
 
   // for devexpress
   function getData(numbers:any[], type:string) {
@@ -53,7 +55,7 @@ const FilmTimeline = ({numbers}) => {
     ]
   }
 
-  function displaySelectButton():object {
+  function displayActions():object {
     const types = getAllTypes();
 
     let items = [];
@@ -70,8 +72,19 @@ const FilmTimeline = ({numbers}) => {
         >
           {items}
         </Select>
+
+        <Button onClick={rotate} variant="outlined" className="rotate-button">Rotate</Button>
       </div>
     )
+  }
+
+  function rotate() {
+    if (isRotatedState === true) {
+      setRotated(false);
+    }
+    else {
+      setRotated(true);
+    }
   }
 
   function selectType(e) {
@@ -99,12 +112,10 @@ const FilmTimeline = ({numbers}) => {
       <section className="film-timeline">
         <Typography variant="h2">Timeline for {typeState}</Typography>
 
-        {displaySelectButton()}
+        {displayActions()}
 
-        <Chart id="chart" dataSource={getData(numbers, typeState)} barGroupPadding={0.2} rotated={true}>
+        <Chart id="chart" dataSource={getData(numbers, typeState)} barGroupPadding={0.4} rotated={isRotatedState}>
           <ArgumentAxis>
-            {/*'Structure', 'Diegetic status of the number', 'Performance type'*/}
-            {/*'Source of the number' => multiple choice */}
             <Tick visible={false} />
           </ArgumentAxis>
           <CommonSeriesSettings
