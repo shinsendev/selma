@@ -16,7 +16,6 @@ import {
   Button
 } from "@material-ui/core";
 import '../../styles/components/film-timeline.css';
-import Timecode from "../../helpers/timecode";
 import Property from "../molecules/Property"
 
 const FilmTimeline = ({numbers}) => {
