@@ -7,6 +7,7 @@ import {
   SeriesTemplate,
   Tick,
   Title,
+  Tooltip
 } from "devextreme-react/chart";
 import {
   Typography,
@@ -16,6 +17,7 @@ import {
 } from "@material-ui/core";
 import '../../styles/components/film-timeline.css';
 import Timecode from "../../helpers/timecode";
+import Property from "../molecules/Property"
 
 const FilmTimeline = ({numbers}) => {
   const [typeState, setTypeState] = useState('structure');
@@ -37,6 +39,7 @@ const FilmTimeline = ({numbers}) => {
           start: number.beginTc/60,
           end: number.endTc/60,
           category: type,
+          title: number.title
         }
       )
     })
@@ -108,6 +111,18 @@ const FilmTimeline = ({numbers}) => {
       return null;
     }
 
+    function getTooltip(info) {
+      return (
+        <div>
+          <Property data={{"title": "number title", "content": info.point.data.title}} />
+          <Property data={{"title": "category", "content": info.point.data.category}} />
+          <Property data={{"title": "attribute", "content": info.point.data.attribute}} />
+          <Property data={{"title": "begin", "content": info.point.data.start, "type": "timecode"}} />
+          <Property data={{"title": "end", "content": info.point.data.end, "type": "timecode"}} />
+        </div>
+      )
+    }
+
     return (
       <section className="film-timeline">
         <Typography variant="h2">Timeline for {typeState}</Typography>
@@ -129,6 +144,10 @@ const FilmTimeline = ({numbers}) => {
 
           <SeriesTemplate nameField="attribute" />
           <Animation enabled={false} />
+          <Tooltip
+            enabled={true}
+            contentRender={getTooltip}
+          />
         </Chart>
       </section>
     )
