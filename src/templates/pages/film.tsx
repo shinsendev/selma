@@ -37,8 +37,6 @@ const FilmPage = ({ pageContext: { film } }) =>  {
     setPage(0);
   };
 
-
-
   function getGeneralProperties() {
     return [
       {"title": "Sample", "content": film.sample },
@@ -94,11 +92,11 @@ const FilmPage = ({ pageContext: { film } }) =>  {
             <PropertiesList title='Censorship' data={getGeneralProperties()} />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={8} lg={3}>
+          <Grid item xs={12} sm={12} md={6} lg={3}>
             <PropertiesList title='Recycling' data={getRecyclingProperties()} />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={8} lg={3}>
+          <Grid item xs={12} sm={12} md={6} lg={3}>
             <PropertiesList title='Censorship' data={getCensorshipProperties()} />
           </Grid>
 

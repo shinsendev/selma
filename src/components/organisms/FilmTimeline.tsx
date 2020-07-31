@@ -41,6 +41,38 @@ const FilmTimeline = ({numbers}) => {
     return data;
   }
 
+  // for selecting select types
+  function getAllTypes() {
+    return [
+      {'code': 'structure', 'label': 'Structure'},
+      {'code': 'performance', 'label': 'Performance type'},
+      {'code': 'completeness', 'label': 'Completeness'},
+      {'code': 'diegetic', 'label': 'Diegetic status of the number'},
+      {'code': 'source', 'label': 'Source of the number'},
+      {'code': 'cast', 'label': 'Cast'},
+    ]
+  }
+
+  function displaySelectButton():object {
+    const types = getAllTypes();
+
+    let items = [];
+    types.map((item:{code:string, label:string})=>{
+      items.push(<MenuItem value={item.code}>{item.label}</MenuItem>)
+    })
+
+    return (
+      <div className="timeline-type-selector-wrapper">
+        <Select
+          className="timeline-type-selector"
+          value={typeState}
+          onChange={selectType}
+        >
+          {items}
+        </Select>
+      </div>
+    )
+  }
 
   function selectType(e) {
     setTypeState(e.target.value)
@@ -67,17 +99,7 @@ const FilmTimeline = ({numbers}) => {
       <section className="film-timeline">
         <Typography variant="h2">Timeline for {typeState}</Typography>
 
-        <div className="timeline-type-selector-wrapper">
-          <Select
-            className="timeline-type-selector"
-            value={typeState}
-            onChange={selectType}
-          >
-            <MenuItem value="structure">Structure</MenuItem>
-            <MenuItem value="performance">Performance type</MenuItem>
-            <MenuItem value="completeness">Completeness</MenuItem>
-          </Select>
-        </div>
+        {displaySelectButton()}
 
         <Chart id="chart" dataSource={getData(numbers, typeState)} barGroupPadding={0.2} rotated={true}>
           <ArgumentAxis>
