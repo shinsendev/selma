@@ -26,6 +26,7 @@ import CircularProgressWithLabel from "../../components/molecules/CircularProgre
 import { Link } from "gatsby";
 import "../../styles/personPage.css";
 import FaceIcon from "@material-ui/icons/Face";
+import Melviz from "../../components/organisms/Melviz";
 
 const PersonPage = ( { pageContext: { person } }) => {
 
@@ -163,6 +164,8 @@ const PersonPage = ( { pageContext: { person } }) => {
         </Grid>
 
       </Grid>
+
+      <Melviz/>
 
       </Container>
     </Layout>
