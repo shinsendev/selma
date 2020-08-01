@@ -19,7 +19,7 @@ const FilmCartel= ({data}) => {
               </Typography>
             </header>
 
-            <Property data={{"title": "Released Year", "content": film.releasedYear, "type":'attribute'}}/>
+            <Property data={{"title": "Released Year", "content": film.releasedYear}}/>
             <Property data={{"title": "Studio(s)", "content": film.studios, "type":'list', "options": { "listPropertyTitle": "name"}}}/>
             <Property data={{"title": "Director(s)", "content": film.directors, "type":'list', "options": { "listPropertyTitle": "fullname"}}}/>
         </Link>
