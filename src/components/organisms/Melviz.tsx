@@ -1,108 +1,78 @@
 import React from 'react';
-
+import Property from "../../components/molecules/Property";
 import Bullet, { Tooltip } from 'devextreme-react/bullet';
+import color_box from "devextreme/ui/color_box"
 
 const Melviz = () => {
   function getCustomizeTooltip(arg) {
     return {
-      text: `Current t&#176: ${arg.value} &#176C<br>Average t&#176:${arg.target}&#176C`
+      text: `Title ${arg.title} Current: ${arg.value} %<br>Average: ${arg.target}%`
     };
   }
 
-  const weeksData = [{
-    weekCount: 'First',
-    bulletsData: [{
-      value: 23,
-      target: 20,
-      color: '#ebdd8f'
-    }, {
-      value: 27,
-      target: 24,
-      color: '#e8c267'
-    }, {
-      value: 20,
-      target: 26,
-      color: '#e55253'
-    }]
-  }, {
-    weekCount: 'Second',
-    bulletsData: [{
-      value: 24,
+  function getTargetColor(value, target) {
+    let color;
+    (value > target) ? color = '#ff5959' : color = '#0df40d';
+    return color;
+  }
+
+  const dataMelviz = [{
+      title: 'instrumental',
+      value: 10.3,
+      target: 1.9,
+      targetColor: getTargetColor(10.3, 1.9),
+      color: '#1db2f5'
+    },
+    {
+      title: 'instrumental+dance',
+      value: 11,
       target: 22,
-      color: '#ebdd8f'
-    }, {
-      value: 28,
+      targetColor: getTargetColor(11, 22),
+      color: '#1db2f5'
+    },
+    {
+      title: 'song',
+      value: 3.2,
       target: 24,
-      color: '#e8c267'
-    }, {
-      value: 30,
-      target: 24,
-      color: '#e55253'
-    }]
-  }, {
-    weekCount: 'Third',
-    bulletsData: [{
-      value: 35,
-      target: 24,
-      color: '#ebdd8f'
-    }, {
-      value: 24,
-      target: 26,
-      color: '#e8c267'
-    }, {
-      value: 28,
-      target: 22,
-      color: '#e55253'
-    }]
-  }, {
-    weekCount: 'Fourth',
-    bulletsData: [{
-      value: 29,
+      targetColor: getTargetColor(3.2, 24),
+      color: '#1db2f5'
+    },
+    {
+      title: 'other',
+      value: 45.4,
       target: 25,
-      color: '#ebdd8f'
-    }, {
-      value: 24,
-      target: 27,
-      color: '#e8c267'
-    }, {
-      value: 21,
-      target: 21,
-      color: '#e55253'
-    }]
-  }];
+      targetColor: getTargetColor(45.4, 25),
+      color: '#1db2f5'
+    }];
+
+  const type = 'Performance';
 
   return (
-    <div id="chart-demo">
-      <div className="long-title"><h3>Daily temperature</h3></div>
-      <table className="demo-table">
-        <tbody>
-        <tr>
-          <th></th>
-          <th>June</th>
-          <th>July</th>
-          <th>August</th>
-        </tr>
-        {weeksData.map((week, i) =>
-          <tr key={i}>
-            <th>{`${week.weekCount} week`}</th>
-            {week.bulletsData.map((data, i) => {
-              return <td key={i}>
+    <div id="melviz">
+      <div className="long-title"><h3>{type}</h3></div>
+
+          {dataMelviz.map((data, i) => {
+            console.log(data);
+            return (
+              <div>
+                <Property data={{ title: data.title}}/>
                 <Bullet
                   className="bullet"
                   startScaleValue={0}
                   endScaleValue={35}
                   value={data.value}
                   target={data.target}
+                  targetColor={data.targetColor}
                   color={data.color}
+                  title={data.title}
+                  key={i}
                 >
                   <Tooltip customizeTooltip={getCustomizeTooltip} />
                 </Bullet>
-              </td>;
-            })}
-          </tr>
-        )}
-        </tbody>
-      </table>
+              </div>
+            )
+          })}
+
     </div>
   )
 }
