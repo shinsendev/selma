@@ -231,6 +231,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               averageShotLength
               presenceInFilms
               professions
+              comparisons
             }
           }
         }

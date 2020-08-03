@@ -1,9 +1,9 @@
 import React from 'react';
 import Property from "../../components/molecules/Property";
 import Bullet, { Tooltip } from 'devextreme-react/bullet';
-import color_box from "devextreme/ui/color_box"
+import color_box from "devextreme/ui/color_box";
 
-const Melviz = () => {
+const Melviz = (comparisons) => {
   function getCustomizeTooltip(arg) {
     return {
       text: `Title ${arg.title} Current: ${arg.value} %<br>Average: ${arg.target}%`
@@ -16,43 +16,45 @@ const Melviz = () => {
     return color;
   }
 
-  const dataMelviz = [{
-      title: 'instrumental',
-      value: 10.3,
-      target: 1.9,
-      targetColor: getTargetColor(10.3, 1.9),
-      color: '#1db2f5'
-    },
-    {
-      title: 'instrumental+dance',
-      value: 11,
-      target: 22,
-      targetColor: getTargetColor(11, 22),
-      color: '#1db2f5'
-    },
-    {
-      title: 'song',
-      value: 3.2,
-      target: 24,
-      targetColor: getTargetColor(3.2, 24),
-      color: '#1db2f5'
-    },
-    {
-      title: 'other',
-      value: 45.4,
-      target: 25,
-      targetColor: getTargetColor(45.4, 25),
-      color: '#1db2f5'
-    }];
+  // const dataMelviz = [{
+  //     title: 'instrumental',
+  //     value: 10.3,
+  //     target: 1.9,
+  //     targetColor: getTargetColor(10.3, 1.9),
+  //     color: '#1db2f5'
+  //   },
+  //   {
+  //     title: 'instrumental+dance',
+  //     value: 11,
+  //     target: 22,
+  //     targetColor: getTargetColor(11, 22),
+  //     color: '#1db2f5'
+  //   },
+  //   {
+  //     title: 'song',
+  //     value: 3.2,
+  //     target: 24,
+  //     targetColor: getTargetColor(3.2, 24),
+  //     color: '#1db2f5'
+  //   },
+  //   {
+  //     title: 'other',
+  //     value: 45.4,
+  //     target: 25,
+  //     targetColor: getTargetColor(45.4, 25),
+  //     color: '#1db2f5'
+  //   }];
 
   const type = 'Performance';
-
+  console.log(comparisons.data);
   return (
     <div id="melviz">
       <div className="long-title"><h3>{type}</h3></div>
 
-          {dataMelviz.map((data, i) => {
+          {comparisons.data[0].map((data, i) => {
+            console.log('-----data-------------');
             console.log(data);
+
             return (
               <div>
                 <Property data={{ title: data.title}}/>
@@ -60,11 +62,11 @@ const Melviz = () => {
                   className="bullet"
                   startScaleValue={0}
                   endScaleValue={35}
-                  value={data.value}
-                  target={data.target}
-                  targetColor={data.targetColor}
-                  color={data.color}
-                  title={data.title}
+                  value={100/(data.current)}
+                  target={100/(data.average)}
+                  targetColor={getTargetColor(data.average, data.current)}
+                  color='#1db2f5'
+                  title={data.attributeTitle}
                   key={i}
                 >
                   <Tooltip customizeTooltip={getCustomizeTooltip} />

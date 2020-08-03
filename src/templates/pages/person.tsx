@@ -165,7 +165,7 @@ const PersonPage = ( { pageContext: { person } }) => {
 
       </Grid>
 
-      <Melviz/>
+      <Melviz data={person.comparisons}/>
 
       </Container>
     </Layout>
