@@ -116,8 +116,8 @@ const FilmTimeline = ({numbers}) => {
           <Property data={{"title": "number title", "content": info.point.data.title}} />
           <Property data={{"title": "category", "content": info.point.data.category}} />
           <Property data={{"title": "attribute", "content": info.point.data.attribute}} />
-          <Property data={{"title": "begin", "content": info.point.data.start, "type": "timecode"}} />
-          <Property data={{"title": "end", "content": info.point.data.end, "type": "timecode"}} />
+          <Property data={{"title": "begin", "content": (info.point.data.start)*60, "type": "timecode"}} />
+          <Property data={{"title": "end", "content": (info.point.data.end)*60, "type": "timecode"}} />
         </div>
       )
     }
