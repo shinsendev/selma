@@ -22,7 +22,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const attributesCount = homepage.attributesCount;
   const peopleCount = homepage.personsCount;
 
-  // // for debug
+  // for debug
   // const filmsCount = 5;
   // const numbersCount = 5;
   // const songsCount = 5;
@@ -88,7 +88,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const numbersGraphQL = await graphql(`
     query {
       mc3 {
-        numbers(first:`+numbersCount+`) {
+        numbers(
+          first:`+numbersCount+`
+        ) {
           edges {
             node {
               id

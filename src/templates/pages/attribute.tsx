@@ -3,8 +3,19 @@ import Layout from "../layout/layout";
 import { Paper, Container, Typography, Grid } from '@material-ui/core';
 import "../../styles/attribute.css";
 import Property from "../../components/molecules/Property";
+import Chronology from "../../components/organisms/Chronology"
 
 const AttributePage = ({ pageContext: { attribute } }) =>  {
+  function displayYears(years:any[]):string {
+    let response = ' ';
+
+    years.map(year =>  {
+      response += year+' ';
+    })
+
+    return response
+  }
+
   function displayElements(elements) {
     if (elements.length > 0) {
       let title = '';
@@ -21,7 +32,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
             <Grid container spacing={1}>
               {attribute.elements.map(element => (
                 <Grid item xs={12} sm={6} lg={6} className='element'>
-                  <Typography variant="body1" component="p">{element.title}</Typography>
+                  <Typography variant="body1" component="p">{element.title}{displayYears(element.years)}</Typography>
                 </Grid>
               ))}
             </Grid>
@@ -42,6 +53,9 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
             <Property data={{"title": "Example", "content": attribute.example }}/>
           </section>
         </Paper>
+
+        <Chronology data={attribute.elements}/>
+
         {displayElements(attribute.elements)}
       </Container>
     </Layout>

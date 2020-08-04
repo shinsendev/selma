@@ -16,7 +16,7 @@ import {
   Button
 } from "@material-ui/core";
 import '../../styles/components/film-timeline.css';
-import Property from "../molecules/Property"
+import Property from "../molecules/Property";
 
 const FilmTimeline = ({numbers}) => {
   const [typeState, setTypeState] = useState('structure');
