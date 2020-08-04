@@ -7,6 +7,10 @@ import { Button, MenuItem, Select, Typography } from "@material-ui/core"
 const Melviz = (comparisons) => {
   const [typeState, setTypeState] = useState('performance');
 
+  function selectType(e) {
+    setTypeState(e.target.value)
+  }
+
   // for selecting select types
   function getAllTypes() {
     return [
@@ -31,7 +35,7 @@ const Melviz = (comparisons) => {
         <Select
           className="timeline-type-selector"
           value={typeState}
-          // onChange={selectType}
+          onChange={selectType}
         >
           {items}
         </Select>
