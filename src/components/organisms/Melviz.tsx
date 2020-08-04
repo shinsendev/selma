@@ -13,13 +13,36 @@ const Melviz = (comparisons) => {
 
   // for selecting select types
   function getAllTypes() {
-    return [
+    const configuration = [
       {'code': 'performance', 'label': 'Performance type'},
       {'code': 'structure', 'label': 'Structure'},
       {'code': 'completeness', 'label': 'Completeness'},
       {'code': 'source', 'label': 'Source of the number'},
       {'code': 'diegetic', 'label': 'Diegetic status of the number'},
-    ]
+    ];
+
+    // check if all types have data
+    const configurationTypes = [];
+    configuration.map(item => {
+      configurationTypes.push(item['code'])
+    })
+
+    const currentTypes = [];
+    comparisons.data.map(set => {
+      if (set.length > 0 && typeof(set[0].categoryCode) !== 'undefined') {
+        currentTypes.push(set[0].categoryCode);
+      }
+    })
+
+    // only use types where we have data
+    const result = [];
+    configuration.map(type => {
+      if (currentTypes.includes(type.code)) {
+        result.push(type);
+      }
+    })
+
+    return result;
   }
 
   function displayActions():object {
@@ -78,12 +101,28 @@ const Melviz = (comparisons) => {
     )
   }
 
-  function getDataForType(type:string, data):any[]
-  {
+  function displayMelviz() {
+    // hide if there is no data
+    if (dataByType.length === 0) return null;
+    
+    return (
+      <Paper elevation={0} className="melviz">
+        <Typography variant="h2">Comparison for {typeState}</Typography>
+        {displayActions()}
+        {dataByType.map((data, i) => {
+          return (
+            displayBullets(data, i)
+          );
+        })}
+      </Paper>
+    )
+  }
+
+  function getDataForType(type:string, data):any[] {
     let result = [];
 
     data.map(set => {
-      if (typeof(set[0]) != 'undefined') {
+      if (set.length > 0) {
         if (set[0].categoryCode === type) {
           result = set;
         }
@@ -94,18 +133,7 @@ const Melviz = (comparisons) => {
   }
 
   const dataByType = getDataForType(typeState, comparisons.data);
-
-  return (
-    <Paper elevation={0} className="melviz">
-      <Typography variant="h2">Comparison for {typeState}</Typography>
-      {displayActions()}
-      {dataByType.map((data, i) => {
-          return (
-            displayBullets(data, i)
-          );
-        })}
-    </Paper>
-  )
+  return displayMelviz();
 }
 
 export default Melviz;
