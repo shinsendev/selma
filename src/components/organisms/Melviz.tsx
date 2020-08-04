@@ -1,12 +1,49 @@
-import React from 'react';
+import React, { useState } from "react"
 import Property from "../../components/molecules/Property";
 import Bullet, { Tooltip } from 'devextreme-react/bullet';
 import color_box from "devextreme/ui/color_box";
+import { Button, MenuItem, Select, Typography } from "@material-ui/core"
 
 const Melviz = (comparisons) => {
-  function getCustomizeTooltip(arg) {
+  const [typeState, setTypeState] = useState('performance');
+
+  // for selecting select types
+  function getAllTypes() {
+    return [
+      {'code': 'performance', 'label': 'Performance type'},
+      {'code': 'structure', 'label': 'Structure'},
+      {'code': 'completeness', 'label': 'Completeness'},
+      {'code': 'source', 'label': 'Source of the number'},
+      {'code': 'diegetic', 'label': 'Diegetic status of the number'},
+    ]
+  }
+
+  function displayActions():object {
+    const types = getAllTypes();
+
+    let items = [];
+    types.map((item:{code:string, label:string})=>{
+      items.push(<MenuItem value={item.code}>{item.label}</MenuItem>)
+    })
+
+    return (
+      <div className="timeline-type-selector-wrapper">
+        <Select
+          className="timeline-type-selector"
+          value={typeState}
+          // onChange={selectType}
+        >
+          {items}
+        </Select>
+      </div>
+    )
+  }
+
+  function getCustomizeTooltip(data) {
     return {
-      text: `Title ${arg.title} Current: ${arg.value} %<br>Average: ${arg.target}%`
+      text: `Attribute: <strong>${data.attributeTitle}</strong>
+        <br>Current: <strong>${data.current/100}%</strong>
+        <br>Average: <strong>${data.average/100}%</strong>`
     };
   }
 
@@ -14,6 +51,42 @@ const Melviz = (comparisons) => {
     let color;
     (value > target) ? color = '#ff5959' : color = '#0df40d';
     return color;
+  }
+
+  function displayBullets(data, i:number) {
+    return (
+      <div>
+        <Property data={{ title: data.attributeTitle}}/>
+        <Bullet
+          className="bullet"
+          startScaleValue={0}
+          endScaleValue={100}
+          value={data.average/100}
+          target={data.current/100}
+          targetColor={getTargetColor(data.average, data.current)}
+          color='#1db2f5'
+          title={data.attributeTitle}
+          key={i}
+        >
+          <Tooltip customizeTooltip={()=>getCustomizeTooltip(data)} />
+        </Bullet>
+      </div>
+    )
+  }
+
+  function getDataForType(type:string, data):any[]
+  {
+    let result = [];
+
+    data.map(set => {
+      if (typeof(set[0]) != 'undefined') {
+        if (set[0].categoryCode === type) {
+          result = set;
+        }
+      }
+    })
+
+    return result;
   }
 
   // const dataMelviz = [{
@@ -45,36 +118,18 @@ const Melviz = (comparisons) => {
   //     color: '#1db2f5'
   //   }];
 
-  const type = 'Performance';
-  console.log(comparisons.data);
+  const dataByType = getDataForType(typeState, comparisons.data);
+
   return (
     <div id="melviz">
-      <div className="long-title"><h3>{type}</h3></div>
+      {displayActions()}
 
-          {comparisons.data[0].map((data, i) => {
-            console.log('-----data-------------');
-            console.log(data);
-
-            return (
-              <div>
-                <Property data={{ title: data.title}}/>
-                <Bullet
-                  className="bullet"
-                  startScaleValue={0}
-                  endScaleValue={35}
-                  value={100/(data.current)}
-                  target={100/(data.average)}
-                  targetColor={getTargetColor(data.average, data.current)}
-                  color='#1db2f5'
-                  title={data.attributeTitle}
-                  key={i}
-                >
-                  <Tooltip customizeTooltip={getCustomizeTooltip} />
-                </Bullet>
-              </div>
-            )
-          })}
-
+      <Typography variant="h2">Comparison for {typeState}</Typography>
+        {dataByType.map((data, i) => {
+          return (
+            displayBullets(data, i)
+          );
+        })}
     </div>
   )
 }
