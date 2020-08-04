@@ -168,7 +168,6 @@ const PersonPage = ( { pageContext: { person } }) => {
 
       </Grid>
 
-
       </Container>
     </Layout>
   )
