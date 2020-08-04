@@ -47,6 +47,7 @@ const PersonPage = ( { pageContext: { person } }) => {
       return [
         {title: "Gender", content: person.gender},
         {title: "VIAF", type:"viaf", content: person.viaf},
+        {title: "Profession", type:"list", content: person.professions},
       ];
   }
 
