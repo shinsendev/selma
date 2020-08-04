@@ -26,6 +26,7 @@ import CircularProgressWithLabel from "../../components/molecules/CircularProgre
 import { Link } from "gatsby";
 import "../../styles/personPage.css";
 import FaceIcon from "@material-ui/icons/Face";
+import Melviz from "../../components/organisms/Melviz";
 
 const PersonPage = ( { pageContext: { person } }) => {
 
@@ -46,6 +47,7 @@ const PersonPage = ( { pageContext: { person } }) => {
       return [
         {title: "Gender", content: person.gender},
         {title: "VIAF", type:"viaf", content: person.viaf},
+        {title: "Profession", type:"list", content: person.professions},
       ];
   }
 
@@ -160,9 +162,12 @@ const PersonPage = ( { pageContext: { person } }) => {
           <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
           <CoworkersList title='Composers' data={person.composers}></CoworkersList>
           <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
+
+          <Melviz data={person.comparisons}/>
         </Grid>
 
       </Grid>
+
 
       </Container>
     </Layout>

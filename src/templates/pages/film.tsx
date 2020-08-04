@@ -117,11 +117,11 @@ const FilmPage = ({ pageContext: { film } }) =>  {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {film.numbers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((number) => (
-                  <TableRow key={number.uuid} hover role="checkbox" tabIndex={-1}>
+                {film.numbers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((number) =>
+                  (<TableRow key={number.uuid} hover role="checkbox" tabIndex={-1}>
                     <TableCell component="th" scope="row">{number.order+1}</TableCell>
                     <TableCell align="left"><Link to={/number/+number.uuid}>{number.title}</Link></TableCell>
-                    <TableCell align="right"><Property data={{content: number.beginTc, type: 'timecode'}} /></TableCell>
+                    <TableCell align="right"><Property data={{content: number.beginTc, type: 'timecode'}} />{number.beginTc}</TableCell>
                     <TableCell align="right"><Property data={{content: number.endTc, type: 'timecode'}} /></TableCell>
                     <TableCell align="right"><Property data={{content: number.length, type: 'timecode'}} /></TableCell>
                     <TableCell align="right">
