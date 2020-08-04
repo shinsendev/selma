@@ -161,11 +161,12 @@ const PersonPage = ( { pageContext: { person } }) => {
           <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
           <CoworkersList title='Composers' data={person.composers}></CoworkersList>
           <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
+
+          <Melviz data={person.comparisons}/>
         </Grid>
 
       </Grid>
 
-      <Melviz data={person.comparisons}/>
 
       </Container>
     </Layout>

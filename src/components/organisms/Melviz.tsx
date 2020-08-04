@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import Property from "../../components/molecules/Property";
 import Bullet, { Tooltip } from 'devextreme-react/bullet';
-import color_box from "devextreme/ui/color_box";
-import { Button, MenuItem, Select, Typography } from "@material-ui/core"
+import { Button, MenuItem, Select, Typography, Paper } from "@material-ui/core";
+import '../../styles/components/melviz.css';
 
 const Melviz = (comparisons) => {
   const [typeState, setTypeState] = useState('performance');
@@ -31,7 +31,7 @@ const Melviz = (comparisons) => {
     })
 
     return (
-      <div className="timeline-type-selector-wrapper">
+      <div className="type-selector-wrapper">
         <Select
           className="timeline-type-selector"
           value={typeState}
@@ -59,7 +59,7 @@ const Melviz = (comparisons) => {
 
   function displayBullets(data, i:number) {
     return (
-      <div>
+      <div className="bullets">
         <Property data={{ title: data.attributeTitle}}/>
         <Bullet
           className="bullet"
@@ -93,48 +93,18 @@ const Melviz = (comparisons) => {
     return result;
   }
 
-  // const dataMelviz = [{
-  //     title: 'instrumental',
-  //     value: 10.3,
-  //     target: 1.9,
-  //     targetColor: getTargetColor(10.3, 1.9),
-  //     color: '#1db2f5'
-  //   },
-  //   {
-  //     title: 'instrumental+dance',
-  //     value: 11,
-  //     target: 22,
-  //     targetColor: getTargetColor(11, 22),
-  //     color: '#1db2f5'
-  //   },
-  //   {
-  //     title: 'song',
-  //     value: 3.2,
-  //     target: 24,
-  //     targetColor: getTargetColor(3.2, 24),
-  //     color: '#1db2f5'
-  //   },
-  //   {
-  //     title: 'other',
-  //     value: 45.4,
-  //     target: 25,
-  //     targetColor: getTargetColor(45.4, 25),
-  //     color: '#1db2f5'
-  //   }];
-
   const dataByType = getDataForType(typeState, comparisons.data);
 
   return (
-    <div id="melviz">
-      {displayActions()}
-
+    <Paper elevation={0} className="melviz">
       <Typography variant="h2">Comparison for {typeState}</Typography>
-        {dataByType.map((data, i) => {
+      {displayActions()}
+      {dataByType.map((data, i) => {
           return (
             displayBullets(data, i)
           );
         })}
-    </div>
+    </Paper>
   )
 }
 

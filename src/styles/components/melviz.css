@@ -1,0 +1,16 @@
+.melviz {
+    margin-top: 1rem;
+    padding: 2rem;
+}
+
+.melviz .type-selector-wrapper {
+    margin-top: 1rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    width:100%;
+    justify-content: center;
+}
+
+.bullets {
+    padding-top:1rem;
+}
