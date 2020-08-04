@@ -61,9 +61,10 @@ const CategoriesPage = ({data}) =>  {
       return 0;
     })
 
+    console.log(attributes);
     return (
       attributes.map(attribute => (
-        <Property data={{"content": attribute.title, "type":'attribute', "model":"attribute", "uuid":attribute.uuid}}/>
+        <Property data={{"content": attribute.title+" ("+attribute.elementsCount+")", "type":'attribute', "model":"attribute", "uuid":attribute.uuid}} />
       ))
     );
   }

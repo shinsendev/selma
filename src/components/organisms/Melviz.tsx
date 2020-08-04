@@ -81,9 +81,11 @@ const Melviz = (comparisons) => {
   }
 
   function displayBullets(data, i:number) {
+    console.log(data.attributeUuid);
+
     return (
       <div className="bullets">
-        <Property data={{ title: data.attributeTitle}}/>
+        <Property data={{ "content": data.attributeTitle, "uuid": data.attributeUuid, "type": 'attribute', "model":"attribute",}}/>
         <Bullet
           className="bullet"
           startScaleValue={0}
