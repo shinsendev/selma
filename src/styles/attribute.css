@@ -31,3 +31,11 @@ section {
 .elements-list {
     padding-bottom: 50px;
 }
+
+.elements-wrapper .chip {
+    margin: 0.2rem 0.1rem;
+}
+
+.elements-wrapper a{
+    text-decoration: none;
+}

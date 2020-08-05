@@ -1,7 +1,19 @@
 import React, { useState } from "react";
-import { Chart, Series } from 'devextreme-react/chart';
+import { Chart, Series, Tooltip, Legend } from "devextreme-react/chart";
+import Property from "../molecules/Property";
+import { Paper } from "@material-ui/core";
+import '../../styles/components/chronology.css';
 
 const Chronology = (data) => {
+
+  function getTooltip(info) {
+    return (
+      <div>
+        <Property data={{"title": "Date", "content": info.point.data.year}} />
+        <Property data={{"title": "Count", "content": info.point.data.count}} />
+      </div>
+    )
+  }
 
   function getData(data):any[] {
 
@@ -39,7 +51,7 @@ const Chronology = (data) => {
   }
 
   return (
-    <div>
+    <Paper elevation={0} className="chronology-wrapper">
       <Chart className="chronology" dataSource={getData(data.data)}>
         <Series
           valueField="count"
@@ -47,8 +59,17 @@ const Chronology = (data) => {
           name="Attributes by year"
           type="bar"
           color="#ffaa66" />
+        <Legend
+          position="outside"
+          horizontalAlignment="center"
+          verticalAlignment="bottom"
+        />
+        <Tooltip
+          enabled={true}
+          contentRender={getTooltip}
+        />
       </Chart>
-    </div>
+    </Paper>
   );
 }
 

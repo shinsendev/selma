@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import { graphql, Link } from "gatsby";
-import { Paper, Container, Typography, Grid, Box } from "@material-ui/core";
+import { Paper, Container, Typography, Grid, Box, Chip } from "@material-ui/core";
 import Layout from "../templates/layout/layout";
 import "../styles/categoryPage.css";
-import Property from "../components/molecules/Property"
+import BuildIcon from "@material-ui/icons/BubbleChart";
 
 const CategoriesPage = ({data}) =>  {
   const [categoriesState, setCategoriesState] = useState(data.mc3.categories.edges);
@@ -63,7 +63,15 @@ const CategoriesPage = ({data}) =>  {
 
     return (
       attributes.map(attribute => (
-        <Property data={{"content": attribute.title+" ("+attribute.elementsCount+")", "type":'attribute', "model":"attribute", "uuid":attribute.uuid}} />
+        <Link to={/attribute/ + attribute.uuid}>
+          <Chip
+            icon={<BuildIcon />}
+            label={attribute.title+" ("+attribute.elementsCount+")"}
+            variant="outlined"
+            className='chip'
+            clickable={true}
+          />
+        </Link>
       ))
     );
   }
@@ -77,12 +85,13 @@ const CategoriesPage = ({data}) =>  {
         <Paper elevation={0}>
           <section className='category-section'>
             <h4 className='properties-title'>Attributes ({category.attributesCount} types)</h4>
-            <ul>
+              <div className="attributes-wrapper">
               {displayAttributes(category.attributes)}
-            </ul>
+            </div>
           </section>
         </Paper>
         <p className="return-top-caption"><Link to={'/categories'}>return to top</Link></p>
+
       </div>
     )
   }
@@ -152,6 +161,7 @@ const CategoriesPage = ({data}) =>  {
   }
 
   return (
+    <div className="category-wrapper">
         <Layout>
             <Container className='container' maxWidth="lg">
               <Grid container spacing={3}>
@@ -164,6 +174,7 @@ const CategoriesPage = ({data}) =>  {
               </Grid>
             </Container>
         </Layout>
+  </div>
     );
 };
 

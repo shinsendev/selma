@@ -22,12 +22,25 @@
 }
 
 .return-top-caption {
+    margin-top: 0;
     text-align: center;
     font-weight: bold;
 }
 
-.return-top-caption a{
+.return-top-caption a {
     text-decoration: none;
     color:black;
     font-size: 0.9em;
+}
+
+.category-wrapper .chip {
+    margin: 0.2rem 0.1rem;
+}
+
+.category-section a {
+    text-decoration: none;
+}
+
+.category-wrapper .attributes-wrapper {
+    padding: 0.3rem 1rem;
 }
