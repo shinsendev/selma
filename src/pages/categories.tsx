@@ -91,6 +91,7 @@ const CategoriesPage = ({data}) =>  {
           </section>
         </Paper>
         <p className="return-top-caption"><Link to={'/categories'}>return to top</Link></p>
+
       </div>
     )
   }
