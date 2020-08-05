@@ -1,10 +1,10 @@
 import React from "react";
 import Layout from "../layout/layout";
 import { Paper, Container, Typography, Grid } from "@material-ui/core"
-import Timecode from "../../helpers/timecode";
 import "../../styles/numberPage.css";
 import Property from "../../components/molecules/Property";
 import MusicVideoIcon from "@material-ui/icons/MusicVideo";
+import Timecode from "../../helpers/timecode";
 
 const NumberPage = ({ pageContext: { number } }) =>  {
   function computeAverageShotLength():number {
