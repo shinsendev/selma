@@ -39,3 +39,13 @@ section {
 .elements-wrapper a{
     text-decoration: none;
 }
+
+.loader-wrapper {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.loader {
+    margin:1rem auto auto auto;
+}
