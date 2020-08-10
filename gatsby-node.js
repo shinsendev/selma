@@ -26,7 +26,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   // const filmsCount = 5;
   // const numbersCount = 5;
   // const songsCount = 5;
-  // const attributesCount = 5;
+  // const attributesCount = 100;
   // const peopleCount = 5;
 
   // manage films
@@ -72,9 +72,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       }
     }
   }`
-  );
+  )
+  if (filmsGraphQL.errors) {
+    console.log(errors);
+    // reporter.panicOnBuild(`Error while running GraphQL query.`)
+    return
+  }
+  ;
 
-  filmsGraphQL.data.mc3.films.edges.forEach(({ node }, index) => {
+  filmsGraphQL.data.mc3.films.edges.map(({ node }, index) => {
       createPage({
         path: '/film/' + node.uuid,
         component: require.resolve(`./src/templates/pages/film.tsx`),
@@ -181,7 +187,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     })
   });
 
-  // manage attributes
+  // // manage attributes
   const attributesGraphQL = await graphql(`
     query {
       mc3 {
@@ -194,14 +200,17 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               categoryUuid
               description
               example
-              elements
               model
             }
           }
         }
       }
     }`
-  );
+  )
+  if (filmsGraphQL.errors) {
+    console.log(errors);
+    return
+  };
 
   attributesGraphQL.data.mc3.attributes.edges.forEach(({ node }) => {
     createPage({
