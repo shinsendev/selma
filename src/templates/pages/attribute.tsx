@@ -39,7 +39,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
     setIsFetching(true);
 
     // because of .env used only at build time
-    if (apiLink == '') {
+    if (typeof(apiLink) == 'undefined' || apiLink == '') {
       apiLink = 'http://api.mc2.website/api';
     }
 
