@@ -15,29 +15,43 @@ const Chronology = (data) => {
     )
   }
 
+
   function getData(data):any[] {
 
     let computedData = [];
 
     data.map(element => {
-      if (computedData[element.years[0]] > 0) {
-        computedData[element.years[0]] = computedData[element.years[0]] + 1;
-
-        computedData.push({
-          "year": element.years[0],
-          "value": computedData[element.years[0]],
-        })
+      // if there are more than on year
+      if (element.years.length > 1) {
+        element.years.map(year => {
+          // if the data already exists for the year, we increment to 1
+          if (typeof(computedData[year]) !== 'undefined') {
+            computedData[year].value = computedData[year].value + 1;
+          }
+          else { // we set the value to 1
+            computedData[year] = {
+              "year": year,
+              "value": 1,
+            };
+          }
+        });
       }
+      // there is only one year
       else {
-        computedData[element.years[0]] = 1;
-        computedData.push({
-          "year": element.years[0],
-          "value": computedData[element.years[0]],
-        })
+        let year = element.years[0];
+        if (typeof(computedData[year]) !== 'undefined') {
+          computedData[year].value = computedData[year].value + 1;
+        } else { // we set the value to 1
+          computedData[year] = {
+            "year": year,
+            "value": 1,
+          }
+        }
       }
-    })
+    });
 
     let finalData = [];
+    // remove 0 date
     computedData.map((element, index) => {
       if (element.year > 0) {
         finalData.push({

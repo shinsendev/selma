@@ -140,7 +140,6 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
             </section>
           </Paper>
 
-          {/* todo: remove when elements have been added via api*/}
           {displayChronology(attributePageDataState.elements)}
           {displayElements(attributePageDataState.elements)}
         </Container>
