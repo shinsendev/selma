@@ -9,6 +9,7 @@ module.exports = {
     content: `MC2 - Hollywood Musicals DataViz Platform`,
     algoliaId: process.env.ALGOLIA_ID,
     algoliaPwd: process.env.ALGOLIA_PWD,
+    mc3RestUrl: process.env.MC3_REST_URL,
   },
   plugins: [
     {

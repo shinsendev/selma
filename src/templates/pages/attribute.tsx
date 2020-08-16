@@ -24,7 +24,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
 
   const [attributePageDataState, setAttributePageDataState] = useState(attributeData);
   const [isFetchingState, setIsFetching] = useState(false);
-  const apiLink = process.env.MC3_REST_URL; //todo replace with /elements/elementU uid.json
+  let apiLink = process.env.MC3_REST_URL;
 
   function getSongDates(item):any[] {
     let songDates = [];
@@ -37,6 +37,12 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
   // get data from MC3 api
   useEffect(() => {
     setIsFetching(true);
+
+    // because of .env used only at build time
+    if (apiLink == 'undefined') {
+      apiLink = 'http://api.mc2.website/api';
+    }
+
     fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.json')
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
