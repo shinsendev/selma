@@ -22,20 +22,36 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
     model: attribute.model,
   };
 
-  const apiLink = process.env.MC3_REST_URL+'/attributes/'; //todo replace with /elements/elementU uid.json
-
   const [attributePageDataState, setAttributePageDataState] = useState(attributeData);
   const [isFetchingState, setIsFetching] = useState(false);
+  const apiLink = process.env.MC3_REST_URL; //todo replace with /elements/elementU uid.json
+
+  function getSongDates(item):any[] {
+    let songDates = [];
+    item.films.map(film => {
+      songDates.push(film.releasedYear);
+    });
+    return songDates;
+  }
 
   // get data from MC3 api
   useEffect(() => {
     setIsFetching(true);
-    fetch(apiLink+attributePageDataState.uuid+'.json')
+    fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.json')
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
+        let items = [];
+        resultData.map(item => {
+          items.push({
+            "uuid": item.uuid,
+            "title": item.title,
+            "years": attributePageDataState.model == 'song' ? getSongDates(item): [item.releasedYear] //use a function by modeltype, for song, get the years of the films connected to the song
+          });
+        });
+
         setIsFetching(false);
         setAttributePageDataState({
-          ...attributePageDataState, elements: resultData.elements
+          ...attributePageDataState, elements: items
         });
       })
   }, [])
@@ -76,10 +92,10 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
       return (
         <Paper elevation={0}>
           <section className='elements-list'>
-            <h3 className="properties-title elements-title">{attributePageDataState.elements.length} <span className="element-model-title">{title}</span></h3>
+            <h3 className="properties-title elements-title">{elements.length} <span className="element-model-title">{title}</span></h3>
 
             <div className="elements-wrapper">
-              {attributePageDataState.elements.map(element => (
+              {elements.map(element => (
                 <Link to={"/"+attributePageDataState.model+"/" + element.uuid}>
                   <Chip
                     icon={getIcon(attributePageDataState.model)}
@@ -125,8 +141,8 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
           </Paper>
 
           {/* todo: remove when elements have been added via api*/}
-          {/*{displayChronology(attributePageDataState.elements)}*/}
-          {/*{displayElements(attributePageDataState.elements)}*/}
+          {displayChronology(attributePageDataState.elements)}
+          {displayElements(attributePageDataState.elements)}
         </Container>
       </Layout>
     </div>

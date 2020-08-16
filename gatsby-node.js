@@ -26,7 +26,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   // const filmsCount = 5;
   // const numbersCount = 5;
   // const songsCount = 5;
-  // const attributesCount = 100;
+  // const attributesCount = 5;
   // const peopleCount = 5;
 
   // manage films
