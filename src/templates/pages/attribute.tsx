@@ -22,7 +22,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
     model: attribute.model,
   };
 
-  const apiLink = process.env.MC3_REST_URL+'/attributes/';
+  const apiLink = process.env.MC3_REST_URL+'/attributes/'; //todo replace with /elements/elementU uid.json
 
   const [attributePageDataState, setAttributePageDataState] = useState(attributeData);
   const [isFetchingState, setIsFetching] = useState(false);
@@ -124,8 +124,9 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
             </section>
           </Paper>
 
-          {displayChronology(attributePageDataState.elements)}
-          {displayElements(attributePageDataState.elements)}
+          {/* todo: remove when elements have been added via api*/}
+          {/*{displayChronology(attributePageDataState.elements)}*/}
+          {/*{displayElements(attributePageDataState.elements)}*/}
         </Container>
       </Layout>
     </div>
