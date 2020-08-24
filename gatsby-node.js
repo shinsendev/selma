@@ -74,7 +74,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   }`
   )
   if (filmsGraphQL.errors) {
-    console.log(errors);
+    console.log(filmsGraphQL.errors);
     // reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
@@ -206,11 +206,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         }
       }
     }`
-  )
-  if (filmsGraphQL.errors) {
-    console.log(errors);
-    return
-  };
+  );
 
   attributesGraphQL.data.mc3.attributes.edges.forEach(({ node }) => {
     createPage({
