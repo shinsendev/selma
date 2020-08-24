@@ -40,7 +40,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
 
     // because of .env used only at build time
     if (typeof(apiLink) == 'undefined' || apiLink == '') {
-      apiLink = 'http://api.mc2.website/api';
+      apiLink = 'https://api.mc2.website/api';
     }
 
     fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.json')
