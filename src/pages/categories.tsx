@@ -3,7 +3,6 @@ import { graphql, Link } from "gatsby";
 import { Paper, Container, Typography, Grid, Box, Chip } from "@material-ui/core";
 import Layout from "../templates/layout/layout";
 import "../styles/categoryPage.css";
-import BuildIcon from "@material-ui/icons/BubbleChart";
 
 const CategoriesPage = ({data}) =>  {
   const [categoriesState, setCategoriesState] = useState(data.mc3.categories.edges);
@@ -65,7 +64,6 @@ const CategoriesPage = ({data}) =>  {
       attributes.map(attribute => (
         <Link to={/attribute/ + attribute.uuid}>
           <Chip
-            icon={<BuildIcon />}
             label={attribute.title+" ("+attribute.elementsCount+")"}
             variant="outlined"
             className='chip'
@@ -113,7 +111,7 @@ const CategoriesPage = ({data}) =>  {
     models.map((model) => {
       const modelCategoriesList = getCategoriesByModel(model, categoriesList);
 
-      response.push(<h2 className="model-title">{model} Categories</h2>);
+      response.push(<h2 className="model-title">Categories for {model}</h2>);
       response.push(<hr/>);
       modelCategoriesList.map( category => {
         response.push(displayCategory(category));

@@ -50,7 +50,7 @@ const Melviz = (comparisons) => {
 
     let items = [];
     types.map((item:{code:string, label:string})=>{
-      items.push(<MenuItem value={item.code}>{item.label}</MenuItem>)
+      items.push(<MenuItem value={item.code} key={item.code}>{item.label}</MenuItem>)
     })
 
     return (
@@ -81,7 +81,7 @@ const Melviz = (comparisons) => {
 
   function displayBullets(data, i:number) {
     return (
-      <div className="bullets">
+      <div className="bullets" key={i}>
         <div className="label">
           <Property data={{ "content": data.attributeTitle, "uuid": data.attributeUuid, "type": 'attribute', "model":"attribute" }}/>
         </div>
@@ -132,7 +132,6 @@ const Melviz = (comparisons) => {
     return result;
   }
 
-  console.log(comparisons.data);
   const dataByType = getDataForType(typeState, comparisons.data);
   return displayMelviz();
 }

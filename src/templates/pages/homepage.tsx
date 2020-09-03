@@ -38,7 +38,7 @@ export default ({ pageContext: { homepage } }) => {
             <Typography className="top-performers-legend">This ranking display the {homepage.performers.length} persons having the most direct connections to numbers as performer.</Typography>
             <section className="performers-container">
               {homepage.performers.map(performer => (
-                <Link to={/person/ + performer.uuid}>
+                <Link to={/person/ + performer.uuid} key={performer.uuid}>
                   <Chip
                     icon={<FaceIcon />}
                     label={performer.fullname}
