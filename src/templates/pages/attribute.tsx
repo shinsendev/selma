@@ -10,7 +10,7 @@ import MusicNoteIcon from "@material-ui/icons/MusicNote";
 
 import { Link } from "gatsby";
 
-const AttributePage = ({ pageContext: { attribute } }) =>  {
+const AttributePage = ({ pageContext: { attribute } }) =>  {t
   const attributeData = {
     uuid: attribute.uuid,
     title: attribute.title,
