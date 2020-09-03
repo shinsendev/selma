@@ -19,9 +19,9 @@ const PersonCartel = ({data}) => {
               <Highlight attribute="fullname" hit={person} tagName="mark" />
             </Typography>
           </header>
-
-          <Property data={{"title": "Profession(s)", "content": person.professions }}/>
+        <Property data={{"title": "Profession(s)", "content": person.professions, "type":'list'}}/>
       </Link>
+
     </article>
   )
 }
