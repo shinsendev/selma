@@ -202,6 +202,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               description
               example
               model
+              countByYears
             }
           }
         }

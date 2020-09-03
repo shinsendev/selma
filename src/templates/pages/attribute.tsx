@@ -10,7 +10,7 @@ import MusicNoteIcon from "@material-ui/icons/MusicNote";
 
 import { Link } from "gatsby";
 
-const AttributePage = ({ pageContext: { attribute } }) =>  {t
+const AttributePage = ({ pageContext: { attribute } }) =>  {
   const attributeData = {
     uuid: attribute.uuid,
     title: attribute.title,
@@ -20,6 +20,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {t
     example: attribute.example,
     elements: [],
     model: attribute.model,
+    stats: attribute.countByYears,
   };
 
   const [attributePageDataState, setAttributePageDataState] = useState(attributeData);
@@ -119,20 +120,6 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {t
     }
   }
 
-  function displayChronology(elements) {
-    if (isFetchingState) {
-      return (
-        <div className='loader-wrapper'>
-            <Paper elevation={0}>
-            <Typography>Loading Chronology chart...</Typography>
-            <CircularProgress className='loader' color="primary" />
-          </Paper>
-        </div>
-      )}
-
-    return <Chronology data={elements}/>
-  }
-
   return (
     <div className="attribute-page">
       <Layout>
@@ -146,7 +133,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {t
             </section>
           </Paper>
 
-          {displayChronology(attributePageDataState.elements)}
+          return <Chronology data={attribute}/>
           {displayElements(attributePageDataState.elements)}
         </Container>
       </Layout>
