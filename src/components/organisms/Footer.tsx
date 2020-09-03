@@ -42,8 +42,8 @@ const Footer = () => {
 
         <Grid item xs={12} md={6}>
             <Grid container alignItems="center" justify="center">
-              <img src="https://mc3-website.s3.eu-west-3.amazonaws.com/logo/labex.png" alt="Logo Labex Arts-H2H" />
-              <img src="https://mc3-website.s3.eu-west-3.amazonaws.com/logo/artec.png" alt="Logo Artec"/>
+              <a href="http://www.labex-arts-h2h.fr" target="_blank"><img src="https://mc3-website.s3.eu-west-3.amazonaws.com/logo/labex.png" alt="Logo Labex Arts-H2H" /></a>
+              <a href="http://eur-artec.fr" target="_blank"><img src="https://mc3-website.s3.eu-west-3.amazonaws.com/logo/artec.png" alt="Logo Artec"/></a>
             </Grid>
         </Grid>
 

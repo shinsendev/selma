@@ -108,7 +108,7 @@ const CategoriesPage = ({data}) =>  {
   }
 
   // get all the categories group by all the models
-  function getResponseForAllCategoriesByModels(models:Array<any>, categoriesList:Array<string>):Array<any> {
+  function displayCategories(models:Array<any>, categoriesList:Array<string>):Array<any> {
     const response = [];
     models.map((model) => {
       const modelCategoriesList = getCategoriesByModel(model, categoriesList);
@@ -121,10 +121,6 @@ const CategoriesPage = ({data}) =>  {
     })
 
     return response;
-  }
-
-  function displayCategories() {
-    return getResponseForAllCategoriesByModels(modelsState, getOrderedCategories());
   }
 
   function displayMenuCategoriesByModel(model:string):Array<any> {
@@ -166,7 +162,7 @@ const CategoriesPage = ({data}) =>  {
             <Container className='container' maxWidth="lg">
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={12} md={9} lg={8}>
-                  {displayCategories()}
+                  {displayCategories(modelsState, getOrderedCategories())}
                 </Grid>
                 <Grid item xs={12} sm={12} md={3} lg={4}>
                   {displayMenu()}
