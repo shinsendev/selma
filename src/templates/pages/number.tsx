@@ -1,10 +1,12 @@
 import React from "react";
 import Layout from "../layout/layout";
-import { Paper, Container, Typography, Grid } from "@material-ui/core"
+import { Paper, Container, Typography, Grid, Tooltip } from "@material-ui/core"
 import "../../styles/numberPage.css";
 import Property from "../../components/molecules/Property";
 import MusicVideoIcon from "@material-ui/icons/MusicVideo";
 import Timecode from "../../helpers/timecode";
+import InfoIcon from "@material-ui/icons/Info"
+import { Link } from "gatsby"
 
 const NumberPage = ({ pageContext: { number } }) =>  {
   function computeAverageShotLength():number {
@@ -13,14 +15,14 @@ const NumberPage = ({ pageContext: { number } }) =>  {
 
   return (
     <Layout>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" className="number">
 
         <div className="main-item-title-wrapper">
           <Typography variant="h2" className="main-item-title">
           <MusicVideoIcon className="icon-main-item"/>
             {number.title}
           </Typography>
-          <h3 className="film">{number.film}</h3>
+          <h3 className="film"><Link to={/film/+number.filmUuid}>{number.title}{number.film}</Link></h3>
         </div>
 
         <section className="main-content">
@@ -39,8 +41,8 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Property data={{"title": "Shots", "content": number.shots, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Average shot length", "content": computeAverageShotLength()+ ' sec' }}/>
                 <Property data={{"title": "Performance", "content": number.performance, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
-                <Property data={{"title": "Director(s)", "content": number.directors, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
-                <Property data={{"title": "Performer(s)", "content": number.performers, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Director(s)", "content": number.directors, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
+                <Property data={{"title": "Performer(s)", "content": number.performers, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
                 <Property data={{"title": "Cast", "content": number.cast, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Stars who don't participate", "content": number.noParticipationStars, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
               </Paper>
@@ -48,8 +50,12 @@ const NumberPage = ({ pageContext: { number } }) =>  {
 
             <Grid item xs={12} md={4} lg={4}>
               <Paper className='category-section' elevation={0}>
-
-                <h2 className='properties-title'>Backstage</h2>
+                <header className="properties-header">
+                  <h2 className='properties-title'>Backstage</h2>
+                  <Tooltip title="Describes the diegetic stakes of the number and its potential ambiguities" aria-label="Backstage" className="tooltip">
+                    <InfoIcon />
+                  </Tooltip>
+                </header>
                 <Property data={{"title": "Spectators", "content": number.spectators, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Diegetic performance?", "content": number.diegeticPerformance, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Visible musicians", "content": number.visibleMusicians, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
@@ -67,6 +73,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
               <Paper className='category-section' elevation={0}>
 
                 <h2 className='properties-title'>Music & dance</h2>
+
                 <Property data={{"title": "Song", "content": number.songs, "type":'attributeList', "model":"song", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Musical ensemble", "content": number.musicalEnsemble, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
 
@@ -83,8 +90,12 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Property data={{"title": "Dance subgenre", "content": number.dancingType, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Dance content", "content": number.danceSubgenre, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
 
-                <h2 className='properties-title'>Intertextuality</h2>
-
+                <header className="properties-header">
+                  <h2 className='properties-title'>Intertextuality</h2>
+                  <Tooltip title="Describes the references made by the number to other works or personalities" aria-label="Intertextuality" className="tooltip">
+                    <InfoIcon />
+                  </Tooltip>
+                </header>
                 <Property data={{"title": "Source", "content": number.sources, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Quotation", "content": number.quotation, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
               </Paper>
