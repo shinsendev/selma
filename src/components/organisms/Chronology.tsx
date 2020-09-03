@@ -9,70 +9,21 @@ const Chronology = (data) => {
   function getTooltip(info) {
     return (
       <div>
-        <Property data={{"title": "Date", "content": info.point.data.year}} />
+        <Property data={{"title": "Date", "content": info.point.data.releasedYear}} />
         <Property data={{"title": "Count", "content": info.point.data.count}} />
       </div>
     )
   }
 
-
-  function getData(data):any[] {
-
-    let computedData = [];
-
-    data.map(element => {
-      // if there are more than on year
-      if (element.years.length > 1) {
-        element.years.map(year => {
-          // if the data already exists for the year, we increment to 1
-          if (typeof(computedData[year]) !== 'undefined') {
-            computedData[year].value = computedData[year].value + 1;
-          }
-          else { // we set the value to 1
-            computedData[year] = {
-              "year": year,
-              "value": 1,
-            };
-          }
-        });
-      }
-      // there is only one year
-      else {
-        let year = element.years[0];
-        if (typeof(computedData[year]) !== 'undefined') {
-          computedData[year].value = computedData[year].value + 1;
-        } else { // we set the value to 1
-          computedData[year] = {
-            "year": year,
-            "value": 1,
-          }
-        }
-      }
-    });
-
-    let finalData = [];
-    // remove 0 date
-    computedData.map((element, index) => {
-      if (element.year > 0) {
-        finalData.push({
-          "year": element.year,
-          "count": element.value,
-        })
-      }
-    })
-
-    return finalData;
-  }
-
   return (
     <Paper elevation={0} className="chronology-wrapper">
-      <Chart className="chronology" dataSource={getData(data.data)}>
+      <Chart className="chronology" dataSource={data.data.countByYears}>
         <Series
           valueField="count"
-          argumentField="year"
-          name="Attributes by year"
+          argumentField="releasedYear"
+          name="Amount of production numbers by year"
           type="bar"
-          color="#ffaa66" />
+          color="#3c506b" />
         <Legend
           position="outside"
           horizontalAlignment="center"

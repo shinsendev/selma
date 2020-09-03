@@ -103,6 +103,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               uuid
               title
               film
+              filmUuid
               startingTc
               endingTc
               beginning
@@ -201,6 +202,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               description
               example
               model
+              countByYears
             }
           }
         }

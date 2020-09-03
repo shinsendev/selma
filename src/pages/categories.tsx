@@ -3,7 +3,6 @@ import { graphql, Link } from "gatsby";
 import { Paper, Container, Typography, Grid, Box, Chip } from "@material-ui/core";
 import Layout from "../templates/layout/layout";
 import "../styles/categoryPage.css";
-import BuildIcon from "@material-ui/icons/BubbleChart";
 
 const CategoriesPage = ({data}) =>  {
   const [categoriesState, setCategoriesState] = useState(data.mc3.categories.edges);
@@ -65,7 +64,6 @@ const CategoriesPage = ({data}) =>  {
       attributes.map(attribute => (
         <Link to={/attribute/ + attribute.uuid}>
           <Chip
-            icon={<BuildIcon />}
             label={attribute.title+" ("+attribute.elementsCount+")"}
             variant="outlined"
             className='chip'
@@ -108,12 +106,12 @@ const CategoriesPage = ({data}) =>  {
   }
 
   // get all the categories group by all the models
-  function getResponseForAllCategoriesByModels(models:Array<any>, categoriesList:Array<string>):Array<any> {
+  function displayCategories(models:Array<any>, categoriesList:Array<string>):Array<any> {
     const response = [];
     models.map((model) => {
       const modelCategoriesList = getCategoriesByModel(model, categoriesList);
 
-      response.push(<h2 className="model-title">{model} Categories</h2>);
+      response.push(<h2 className="model-title">Categories for {model}</h2>);
       response.push(<hr/>);
       modelCategoriesList.map( category => {
         response.push(displayCategory(category));
@@ -121,10 +119,6 @@ const CategoriesPage = ({data}) =>  {
     })
 
     return response;
-  }
-
-  function displayCategories() {
-    return getResponseForAllCategoriesByModels(modelsState, getOrderedCategories());
   }
 
   function displayMenuCategoriesByModel(model:string):Array<any> {
@@ -166,7 +160,7 @@ const CategoriesPage = ({data}) =>  {
             <Container className='container' maxWidth="lg">
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={12} md={9} lg={8}>
-                  {displayCategories()}
+                  {displayCategories(modelsState, getOrderedCategories())}
                 </Grid>
                 <Grid item xs={12} sm={12} md={3} lg={4}>
                   {displayMenu()}

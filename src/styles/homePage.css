@@ -49,3 +49,12 @@
 .homepage .chip {
     font-size: 1.3rem;
 }
+
+.homepage .top-performers-legend {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.homepage a {
+    text-decoration: none;
+}

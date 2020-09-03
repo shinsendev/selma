@@ -62,7 +62,7 @@ const FilmTimeline = ({numbers}) => {
 
     let items = [];
     types.map((item:{code:string, label:string})=>{
-      items.push(<MenuItem value={item.code}>{item.label}</MenuItem>)
+      items.push(<MenuItem value={item.code} key={item.code}>{item.label}</MenuItem>)
     })
 
     return (

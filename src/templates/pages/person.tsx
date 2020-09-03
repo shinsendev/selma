@@ -46,7 +46,6 @@ const PersonPage = ( { pageContext: { person } }) => {
   function getPropertiesData() {
       return [
         {title: "Gender", content: person.gender},
-        {title: "VIAF", type:"viaf", content: person.viaf},
         {title: "Profession", type:"list", content: person.professions},
       ];
   }
@@ -95,11 +94,11 @@ const PersonPage = ( { pageContext: { person } }) => {
       return (
         <Paper className='category-section' elevation={0}>
           <h2 className='properties-title'>{films.length} Films with {name} as performer</h2>
-          <h3>Average shot length for {name}</h3>
+          <h3>Average shot length</h3>
           <Typography variant="h6"><strong>{average/100}</strong> seconds</Typography>
 
           <List dense={true} className="performedFilmsList">
-            <h3>Presence of {name} in the film numbers</h3>
+            <h3>Presence in the film numbers</h3>
             <Grid container spacing={0}>
               {films.map((film) => {
                 return (
@@ -146,7 +145,7 @@ const PersonPage = ( { pageContext: { person } }) => {
         <PropertiesList title='General informations' data={getPropertiesData()}></PropertiesList>
 
         {/* films list */}
-        <FilmsList title='Films' films={person.relatedFilms}></FilmsList>
+        <FilmsList title='Films currently in the database' films={person.relatedFilms}></FilmsList>
 
         {/* numbers list  // if relatedNumbersByProfession // Fred Astaire uuid  = c6395587-ee36-4610-b87e-fd0e6fd40086 */}
         {displayNumbers(person.relatedNumbers)}
@@ -159,11 +158,11 @@ const PersonPage = ( { pageContext: { person } }) => {
         </Grid>
         <Grid item xs={12} md={6} lg={6} key={'coworker-'+person.uuid}>
           {/* associated people list */}
-          <CoworkersList title='Choregraphers' data={person.choregraphers}></CoworkersList>
-          <CoworkersList title='Composers' data={person.composers}></CoworkersList>
-          <CoworkersList title='Lyricists' data={person.lyricists}></CoworkersList>
+          <CoworkersList title='Associated Choregraphers' data={person.choregraphers}></CoworkersList>
+          <CoworkersList title='Associated Composers' data={person.composers}></CoworkersList>
+          <CoworkersList title='Associated Lyricists' data={person.lyricists}></CoworkersList>
 
-          <Melviz data={person.comparisons}/>
+          <Melviz data={person.comparisons} title="Tendencies for the performer’s numbers" />
         </Grid>
 
       </Grid>

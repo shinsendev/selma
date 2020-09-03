@@ -14,3 +14,8 @@
 .bullets {
     padding-top:1rem;
 }
+
+.melviz .label a{
+    text-transform: capitalize;
+    text-decoration: none;
+}

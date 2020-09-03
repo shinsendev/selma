@@ -50,7 +50,7 @@ const Melviz = (comparisons) => {
 
     let items = [];
     types.map((item:{code:string, label:string})=>{
-      items.push(<MenuItem value={item.code}>{item.label}</MenuItem>)
+      items.push(<MenuItem value={item.code} key={item.code}>{item.label}</MenuItem>)
     })
 
     return (
@@ -68,9 +68,8 @@ const Melviz = (comparisons) => {
 
   function getCustomizeTooltip(data) {
     return {
-      text: `Attribute: <strong>${data.attributeTitle}</strong>
-        <br>Current: <strong>${data.current/100}%</strong>
-        <br>Average: <strong>${data.average/100}%</strong>`
+      text: `Current performer: <strong>${data.current/100}%</strong>
+        <br>All numbers: <strong>${data.average/100}%</strong>`
     };
   }
 
@@ -81,11 +80,11 @@ const Melviz = (comparisons) => {
   }
 
   function displayBullets(data, i:number) {
-    console.log(data.attributeUuid);
-
     return (
-      <div className="bullets">
-        <Property data={{ "content": data.attributeTitle, "uuid": data.attributeUuid, "type": 'attribute', "model":"attribute",}}/>
+      <div className="bullets" key={i}>
+        <div className="label">
+          <Property data={{ "content": data.attributeTitle, "uuid": data.attributeUuid, "type": 'attribute', "model":"attribute" }}/>
+        </div>
         <Bullet
           className="bullet"
           startScaleValue={0}
@@ -106,10 +105,9 @@ const Melviz = (comparisons) => {
   function displayMelviz() {
     // hide if there is no data
     if (dataByType.length === 0) return null;
-    
     return (
       <Paper elevation={0} className="melviz">
-        <Typography variant="h2">Comparison for {typeState}</Typography>
+        <Typography variant="h2">{comparisons.title}</Typography>
         {displayActions()}
         {dataByType.map((data, i) => {
           return (

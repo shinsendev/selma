@@ -6,8 +6,8 @@ const Info = (props) => {
   function displayContent(content:[]):any[] {
     let result = [];
 
-    content.map( (paragraph:any) => {
-      result.push(<Typography variant="subtitle1" paragraph>{paragraph}</Typography>)
+    content.map( (paragraph:any, index:number) => {
+      result.push(<Typography variant="subtitle1" key={index} paragraph>{paragraph}</Typography>)
     });
 
     return result;

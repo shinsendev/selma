@@ -61,9 +61,9 @@ const Header = (props) => {
 
             <div className={classes.menu}>
               <Typography><Link to="/about" className={classes.item}>about</Link></Typography>
-              <Typography><Link to="/keys" className={classes.item}>keys</Link></Typography>
+              <Typography><Link to="/credits" className={classes.item}>credits</Link></Typography>
               <Typography><Link to="/search" className={classes.item}>search</Link></Typography>
-              <Typography><Link to="/categories" className={classes.item}>categories</Link></Typography>
+              <Typography><Link to="/categories" className={classes.item}>thesaurus</Link></Typography>
             </div>
 
           </Toolbar>

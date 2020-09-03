@@ -19,11 +19,11 @@ export default ({ pageContext: { homepage } }) => {
         <Container className='container' maxWidth="lg">
           <Typography variant="h2" gutterBottom>Database content</Typography>
           <Grid container spacing={1} className='stats-container'>
-            <Stat value={homepage.filmsCount} label="Films" />
+            <Stat value={homepage.filmsCount} label="Film musicals" />
             <Stat value={homepage.filmsWithNumberCount} label="Films with numbers" />
             <Stat value={homepage.numbersCount} label="Production numbers" />
             <Stat value={homepage.songsCount} label="Songs" />
-            <Stat value={homepage.personsCount} label="People" />
+            <Stat value={homepage.personsCount} label="Persons" />
             <Stat value={homepage.attributesCount} label="Thesaurus attributes" />
           </Grid>
 
@@ -35,9 +35,10 @@ export default ({ pageContext: { homepage } }) => {
 
           <Paper elevation={0} className = 'section'>
             <Typography variant="h2">Performers</Typography>
+            <Typography className="top-performers-legend">This ranking display the {homepage.performers.length} persons having the most direct connections to numbers as performer.</Typography>
             <section className="performers-container">
               {homepage.performers.map(performer => (
-                <Link to={/person/ + performer.uuid}>
+                <Link to={/person/ + performer.uuid} key={performer.uuid}>
                   <Chip
                     icon={<FaceIcon />}
                     label={performer.fullname}

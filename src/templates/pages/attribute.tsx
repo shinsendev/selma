@@ -20,6 +20,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
     example: attribute.example,
     elements: [],
     model: attribute.model,
+    stats: attribute.countByYears,
   };
 
   const [attributePageDataState, setAttributePageDataState] = useState(attributeData);
@@ -119,20 +120,6 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
     }
   }
 
-  function displayChronology(elements) {
-    if (isFetchingState) {
-      return (
-        <div className='loader-wrapper'>
-            <Paper elevation={0}>
-            <Typography>Loading Chronology chart...</Typography>
-            <CircularProgress className='loader' color="primary" />
-          </Paper>
-        </div>
-      )}
-
-    return <Chronology data={elements}/>
-  }
-
   return (
     <div className="attribute-page">
       <Layout>
@@ -146,7 +133,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
             </section>
           </Paper>
 
-          {displayChronology(attributePageDataState.elements)}
+          return <Chronology data={attribute}/>
           {displayElements(attributePageDataState.elements)}
         </Container>
       </Layout>

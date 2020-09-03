@@ -42,17 +42,17 @@ const FilmPage = ({ pageContext: { film } }) =>  {
       {"title": "Sample", "content": film.sample },
       {"title": "Studio", "content": film.studios, "type":'list', "options": { "listPropertyTitle": "name"}},
       {"title": "IMDB link", "content": <a href={'https://www.imdb.com/title/'+film.imdb} target={'_blank'}>{film.imdb}</a>},
-      {"title": "VIAF", "content": film.viaf, "type":'viaf'},
+      // {"title": "VIAF", "content": film.viaf, "type":'viaf'},
       {"title": "Director(s)", "content": film.directors, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}},
       {"title": "Release date (New York)", "content": film.releasedYear === 0 ? 'NA' : film.releasedYear },
-      {"title": "Production date",  "content": film.productionYear === 0 ? 'NA' : film.productionYear},
+      // {"title": "Production date",  "content": film.productionYear === 0 ? 'NA' : film.productionYear},
     ];
   }
 
   function getRecyclingProperties() {
     return [
       {"title": "Adaptation", "content": film.adaptation, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}},
-      {"title": "Shows", "content": film.stageshows },
+      // {"title": "Shows", "content": film.stageshows },
       {"title": "Remake", "content": film.remake },
     ];
   }
@@ -64,7 +64,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
       {"title": "States where the film was censored", "content": film.states, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
       {"title": "Legion of Decency", "content": film.legion, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
       {"title": "Protestant Motion Picture Council", "content": film.protestant, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
-      {"title": "Harrison's Report", "content": film.harrison, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
+      {"title": "Harrison's Reports", "content": film.harrison, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
       {"title": "Film Estimate Board of National Organizations", "content": film.board, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"} },
     ];
   }
@@ -89,15 +89,15 @@ const FilmPage = ({ pageContext: { film } }) =>  {
           </Grid>
 
           <Grid item xs={12} sm={12} md={8} lg={3}>
-            <PropertiesList title='Censorship' data={getGeneralProperties()} />
+            <PropertiesList title='General information' data={getGeneralProperties()} />
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={3}>
-            <PropertiesList title='Recycling' data={getRecyclingProperties()} />
+            <PropertiesList title='Recycling' data={getRecyclingProperties()} info="Describes the film's use of previous works : adaptation of a stage show or remake of another film, whether a musical or not."/>
           </Grid>
 
           <Grid item xs={12} sm={12} md={6} lg={3}>
-            <PropertiesList title='Censorship' data={getCensorshipProperties()} />
+            <PropertiesList title='Censorship / Reception' data={getCensorshipProperties()} />
           </Grid>
 
         </Grid>
@@ -121,7 +121,7 @@ const FilmPage = ({ pageContext: { film } }) =>  {
                   (<TableRow key={number.uuid} hover role="checkbox" tabIndex={-1}>
                     <TableCell component="th" scope="row">{number.order+1}</TableCell>
                     <TableCell align="left"><Link to={/number/+number.uuid}>{number.title}</Link></TableCell>
-                    <TableCell align="right"><Property data={{content: number.beginTc, type: 'timecode'}} />{number.beginTc}</TableCell>
+                    <TableCell align="right"><Property data={{content: number.beginTc, type: 'timecode'}} /></TableCell>
                     <TableCell align="right"><Property data={{content: number.endTc, type: 'timecode'}} /></TableCell>
                     <TableCell align="right"><Property data={{content: number.length, type: 'timecode'}} /></TableCell>
                     <TableCell align="right">
