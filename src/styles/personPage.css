@@ -2,3 +2,8 @@
     text-decoration: none;
     color: black;
 }
+
+.average-shot p{
+    font-size: 1.1rem;
+    padding-left: 1rem;
+}
