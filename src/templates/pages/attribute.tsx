@@ -8,10 +8,12 @@ import MusicVideoIcon from "@material-ui/icons/MusicVideo";
 import MovieIcon from "@material-ui/icons/Movie";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
 import Pagination from "../../components/organisms/Pagination";
-
 import { Link } from "gatsby";
+import AttributeContext from "../../contexts/AttributeContext"
 
 const AttributePage = ({ pageContext: { attribute } }) =>  {
+  console.log('ici le contexte est : ');
+
   const attributeData = {
     uuid: attribute.uuid,
     title: attribute.title,
@@ -27,7 +29,8 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
 
   const [attributePageDataState, setAttributePageDataState] = useState(attributeData);
   const [isFetchingState, setIsFetching] = useState(false);
-  const [elementPageState, setElementPageState] = useState(1);
+  const [currentPageState, setCurrentPageState] = useState(1);
+
   let apiLink = process.env.MC3_REST_URL;
 
   function getSongDates(item):any[] {
@@ -47,7 +50,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
       apiLink = 'https://api.mc2.website/api';
     }
 
-    fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.jsonld?page='+elementPageState)
+    fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.jsonld?page='+currentPageState)
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
         let items = [];
@@ -91,9 +94,12 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
   }
 
   function changePage(page) {
-    console.log(page);
+    if (page === currentPageState) {
+      return;
+    }
+
     setIsFetching(true);
-    setElementPageState(page);
+    setCurrentPageState(page);
     fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.jsonld?page='+page)
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
@@ -133,27 +139,34 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
         title = attributePageDataState.model+'s';
       }
       return (
-        <Paper elevation={0}>
-          <section className='elements-list'>
-            <h3 className="properties-title elements-title">{count} <span className="element-model-title">{title}</span></h3>
+          <Paper elevation={0}>
 
-            <div className="elements-wrapper">
-              {elements.map(element => (
-                <Link to={"/"+attributePageDataState.model+"/" + element.uuid} key={element.uuid}>
-                  <Chip
-                    icon={getIcon(attributePageDataState.model)}
-                    label={element.title+" ("+displayYears(element.years)+")"}
-                    variant="outlined"
-                    className='chip'
-                    clickable={true}
-                  />
-                </Link>
-              ))}
-            </div>
-          </section>
+            <section className='elements-list'>
+              <h3 className="properties-title elements-title">{count} <span className="element-model-title">{title}</span></h3>
 
-          <Pagination max={attributePageDataState.count} size={30} current={1}/>
-        </Paper>
+              <div className="elements-wrapper">
+                {elements.map(element => (
+                  <Link to={"/"+attributePageDataState.model+"/" + element.uuid} key={element.uuid}>
+                    <Chip
+                      icon={getIcon(attributePageDataState.model)}
+                      label={element.title+" ("+displayYears(element.years)+")"}
+                      variant="outlined"
+                      className='chip'
+                      clickable={true}
+                    />
+                  </Link>
+                ))}
+              </div>
+            </section>
+
+            <Pagination max={attributePageDataState.count} size={30} current={ currentPageState } changePage={changePage}/>
+            {/*<AttributeContext.Consumer>*/}
+            {/*  { ({currentElementPage})  => {*/}
+            {/*      return (<Pagination max={attributePageDataState.count} size={30} current={ currentElementPage } changePage={changePage}/>)*/}
+            {/*  }}*/}
+            {/*</AttributeContext.Consumer>*/}
+
+          </Paper>
       )
     }
   }
@@ -171,7 +184,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
             </section>
           </Paper>
 
-          return <Chronology data={attribute}/>
+          <Chronology data={attribute}/>
           {displayElements(attributePageDataState.elements, attributePageDataState.count)}
         </Container>
       </Layout>
