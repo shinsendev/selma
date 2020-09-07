@@ -9,7 +9,6 @@ import MovieIcon from "@material-ui/icons/Movie";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
 import Pagination from "../../components/organisms/Pagination";
 import { Link } from "gatsby";
-import AttributeContext from "../../contexts/AttributeContext"
 
 const AttributePage = ({ pageContext: { attribute } }) =>  {
   console.log('ici le contexte est : ');
