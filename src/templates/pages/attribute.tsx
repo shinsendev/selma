@@ -50,7 +50,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
       apiLink = 'https://api.mc2.website/api';
     }
 
-    fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.jsonld?page='+currentPageState)
+    fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.jsonld?order[title]=asc&page='+currentPageState)
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
         let items = [];
@@ -100,7 +100,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
 
     setIsFetching(true);
     setCurrentPageState(page);
-    fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.jsonld?page='+page)
+    fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.jsonld?order[title]=asc&page='+page)
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
         let items = [];
