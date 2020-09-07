@@ -7,6 +7,7 @@ import Chronology from "../../components/organisms/Chronology";
 import MusicVideoIcon from "@material-ui/icons/MusicVideo";
 import MovieIcon from "@material-ui/icons/Movie";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
+import Pagination from "../../components/organisms/Pagination";
 
 import { Link } from "gatsby";
 
@@ -138,7 +139,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
 
             <div className="elements-wrapper">
               {elements.map(element => (
-                <Link to={"/"+attributePageDataState.model+"/" + element.uuid}>
+                <Link to={"/"+attributePageDataState.model+"/" + element.uuid} key={element.uuid}>
                   <Chip
                     icon={getIcon(attributePageDataState.model)}
                     label={element.title+" ("+displayYears(element.years)+")"}
@@ -151,17 +152,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
             </div>
           </section>
 
-          {/*todo: create manually*/}
-          {/*<Pagination*/}
-          {/*  prevPageText='prev'*/}
-          {/*  nextPageText='next'*/}
-          {/*  firstPageText='first'*/}
-          {/*  lastPageText='last'*/}
-          {/*  activePage={1}*/}
-          {/*  itemsCountPerPage={30}*/}
-          {/*  totalItemsCount={count}*/}
-          {/*  onChange={changePage}*/}
-          {/*/>*/}
+          <Pagination max={attributePageDataState.count} size={30} current={1}/>
         </Paper>
       )
     }
