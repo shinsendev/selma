@@ -7,10 +7,12 @@ import Chronology from "../../components/organisms/Chronology";
 import MusicVideoIcon from "@material-ui/icons/MusicVideo";
 import MovieIcon from "@material-ui/icons/Movie";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
-
+import Pagination from "../../components/organisms/Pagination";
 import { Link } from "gatsby";
 
 const AttributePage = ({ pageContext: { attribute } }) =>  {
+  console.log('ici le contexte est : ');
+
   const attributeData = {
     uuid: attribute.uuid,
     title: attribute.title,
@@ -21,10 +23,13 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
     elements: [],
     model: attribute.model,
     stats: attribute.countByYears,
+    count: 0
   };
 
   const [attributePageDataState, setAttributePageDataState] = useState(attributeData);
   const [isFetchingState, setIsFetching] = useState(false);
+  const [currentPageState, setCurrentPageState] = useState(1);
+
   let apiLink = process.env.MC3_REST_URL;
 
   function getSongDates(item):any[] {
@@ -44,11 +49,11 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
       apiLink = 'https://api.mc2.website/api';
     }
 
-    fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.json')
+    fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.jsonld?order[title]=asc&page='+currentPageState)
       .then(response => response.json()) // parse JSON from request
       .then(resultData => {
         let items = [];
-        resultData.map(item => {
+        resultData["hydra:member"].map(item => {
           items.push({
             "uuid": item.uuid,
             "title": item.title,
@@ -58,7 +63,7 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
 
         setIsFetching(false);
         setAttributePageDataState({
-          ...attributePageDataState, elements: items
+          ...attributePageDataState,  elements: items, count: resultData["hydra:totalItems"]
         });
       })
   }, [])
@@ -87,7 +92,43 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
     return response
   }
 
-  function displayElements(elements) {
+  function changePage(page) {
+    if (page === currentPageState) {
+      return;
+    }
+
+    setIsFetching(true);
+    setCurrentPageState(page);
+    fetch(apiLink+'/attributes/'+attributePageDataState.uuid+'/'+attributePageDataState.model+'s.jsonld?order[title]=asc&page='+page)
+      .then(response => response.json()) // parse JSON from request
+      .then(resultData => {
+        let items = [];
+        resultData["hydra:member"].map(item => {
+          items.push({
+            "uuid": item.uuid,
+            "title": item.title,
+            "years": attributePageDataState.model == 'song' ? getSongDates(item): [item.releasedYear] //use a function by modeltype, for song, get the years of the films connected to the song
+          });
+        });
+
+        setIsFetching(false);
+        setAttributePageDataState({
+          ...attributePageDataState,  elements: items, count: resultData["hydra:totalItems"]
+        });
+      })
+  }
+
+  function displayElements(elements:Array<any>, count:number) {
+    if (isFetchingState) {
+      return (
+        <div className='loader-wrapper'>
+          <Paper elevation={0}>
+            <Typography>Loading elements...</Typography>
+            <CircularProgress className='loader' color="primary" />
+          </Paper>
+        </div>
+      )}
+
     if (elements.length > 0) {
       let title = '';
       if (attributePageDataState.elements.length == 1) {
@@ -97,25 +138,34 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
         title = attributePageDataState.model+'s';
       }
       return (
-        <Paper elevation={0}>
-          <section className='elements-list'>
-            <h3 className="properties-title elements-title">{elements.length} <span className="element-model-title">{title}</span></h3>
+          <Paper elevation={0}>
 
-            <div className="elements-wrapper">
-              {elements.map(element => (
-                <Link to={"/"+attributePageDataState.model+"/" + element.uuid}>
-                  <Chip
-                    icon={getIcon(attributePageDataState.model)}
-                    label={element.title+" ("+displayYears(element.years)+")"}
-                    variant="outlined"
-                    className='chip'
-                    clickable={true}
-                  />
-                </Link>
-              ))}
-            </div>
-          </section>
-        </Paper>
+            <section className='elements-list'>
+              <h3 className="properties-title elements-title">{count} <span className="element-model-title">{title}</span></h3>
+
+              <div className="elements-wrapper">
+                {elements.map(element => (
+                  <Link to={"/"+attributePageDataState.model+"/" + element.uuid} key={element.uuid}>
+                    <Chip
+                      icon={getIcon(attributePageDataState.model)}
+                      label={element.title+" ("+displayYears(element.years)+")"}
+                      variant="outlined"
+                      className='chip'
+                      clickable={true}
+                    />
+                  </Link>
+                ))}
+              </div>
+            </section>
+
+            <Pagination max={attributePageDataState.count} size={30} current={ currentPageState } changePage={changePage}/>
+            {/*<AttributeContext.Consumer>*/}
+            {/*  { ({currentElementPage})  => {*/}
+            {/*      return (<Pagination max={attributePageDataState.count} size={30} current={ currentElementPage } changePage={changePage}/>)*/}
+            {/*  }}*/}
+            {/*</AttributeContext.Consumer>*/}
+
+          </Paper>
       )
     }
   }
@@ -133,8 +183,8 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
             </section>
           </Paper>
 
-          return <Chronology data={attribute}/>
-          {displayElements(attributePageDataState.elements)}
+          <Chronology data={attribute}/>
+          {displayElements(attributePageDataState.elements, attributePageDataState.count)}
         </Container>
       </Layout>
     </div>

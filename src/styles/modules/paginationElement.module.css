@@ -1,0 +1,22 @@
+.simple {
+    border: 1px solid black;
+    padding: 0.3rem 0.6rem;
+    text-align: center;
+    width: auto;
+    margin: 0.1rem;
+    border-radius: 0.1rem;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.current {
+    border: 1px solid black;
+    padding: 0.3rem 0.6rem;
+    text-align: center;
+    width: auto;
+    margin: 0.1rem;
+    border-radius: 0.1rem;
+    display: inline-block;
+    color: #db5462;
+    text-decoration: underline;
+}

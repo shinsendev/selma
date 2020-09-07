@@ -93,9 +93,11 @@ const PersonPage = ( { pageContext: { person } }) => {
     if (films.length > 0) {
       return (
         <Paper className='category-section' elevation={0}>
-          <h2 className='properties-title'>{films.length} Films with {name} as performer</h2>
+          <h2 className='properties-title'>{films.length} Film(s) with {name} as performer</h2>
           <h3>Average shot length</h3>
-          <Typography variant="h6"><strong>{average/100}</strong> seconds</Typography>
+          <div className="average-shot">
+            <Typography><strong>{average/100}</strong> seconds</Typography>
+          </div>
 
           <List dense={true} className="performedFilmsList">
             <h3>Presence in the film numbers</h3>

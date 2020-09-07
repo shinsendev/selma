@@ -7,13 +7,13 @@ import SelmaTheme from "../../components/logic/SelmaTheme";
 const theme = SelmaTheme();
 
 export default function BaseLayout({ children }) {
-    return (
-        <ThemeProvider theme={theme}>
-            <div>
-                <Header/>
-                {children}
-                <Footer/>
-            </div>
-        </ThemeProvider>
+  return (
+    <ThemeProvider theme={theme}>
+      <div>
+        <Header/>
+        {children}
+        <Footer/>
+      </div>
+    </ThemeProvider>
   )
 }
