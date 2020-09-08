@@ -11,7 +11,6 @@ import Pagination from "../../components/organisms/Pagination";
 import { Link } from "gatsby";
 
 const AttributePage = ({ pageContext: { attribute } }) =>  {
-  console.log('ici le contexte est : ');
 
   const attributeData = {
     uuid: attribute.uuid,
@@ -95,6 +94,10 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
   function changePage(page) {
     if (page === currentPageState) {
       return;
+    }
+
+    if (typeof(apiLink) == 'undefined' || apiLink == '') {
+      apiLink = 'https://api.mc2.website/api';
     }
 
     setIsFetching(true);
