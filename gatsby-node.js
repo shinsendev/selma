@@ -248,7 +248,6 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }`
   );
 
-
   peopleGraphQL.data.mc3.people.edges.forEach(({ node }) => {
     createPage({
       path: '/person/' + node.uuid,
