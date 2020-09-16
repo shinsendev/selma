@@ -162,11 +162,6 @@ const AttributePage = ({ pageContext: { attribute } }) =>  {
             </section>
 
             <Pagination max={attributePageDataState.count} size={30} current={ currentPageState } changePage={changePage}/>
-            {/*<AttributeContext.Consumer>*/}
-            {/*  { ({currentElementPage})  => {*/}
-            {/*      return (<Pagination max={attributePageDataState.count} size={30} current={ currentElementPage } changePage={changePage}/>)*/}
-            {/*  }}*/}
-            {/*</AttributeContext.Consumer>*/}
 
           </Paper>
       )
