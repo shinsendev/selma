@@ -1,0 +1,13 @@
+h1, h2, h3 {
+    font-family: "TisaSansWeb", sans-serif;
+}
+
+h1, h2 {
+    color: #db5462;
+}
+
+
+.content-wrapper {
+    padding: 0.3rem 2rem;
+    margin-top:1rem;
+}
