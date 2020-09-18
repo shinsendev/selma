@@ -1,6 +1,6 @@
 import React,  { useState, useEffect } from "react";
 import Layout from "../layout/layout";
-import { Paper, Container, Typography, Grid, Chip, CircularProgress } from "@material-ui/core"
+import { Paper, Container, Typography, Grid, Chip, CircularProgress } from "@material-ui/core";
 import "../../styles/attribute.css";
 import Property from "../../components/molecules/Property";
 import Chronology from "../../components/organisms/Chronology";

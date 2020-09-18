@@ -49,7 +49,7 @@ const Footer = () => {
 
         <Grid item xs={12} md={6}>
           <Typography variant='h4' gutterBottom>Development</Typography>
-          <Typography>This project has been crafted by Gaétan Darquié from <a className={styles.customLink} target="_blank" href='http://shinsen.fr'>Shinsen Dev</a>.</Typography>
+          <Typography>This website has been coded by Gaétan Darquié from <a className={styles.customLink} target="_blank" href='http://shinsen.fr'>Shinsen Dev</a>.</Typography>
           <Typography>The code is open source: the frontend code is available in <a target='_blank' href='https://github.com/shinsendev/selma'  className={styles.customLink}>selma repository</a> and the  backend api code in <a target='_blank' href='https://github.com/shinsendev/mc3' className={styles.customLink}>mc3 repository</a>.</Typography>
         </Grid>
 

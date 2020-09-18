@@ -168,7 +168,7 @@ const CategoriesPage = ({data}) =>  {
               </Grid>
             </Container>
         </Layout>
-  </div>
+    </div>
     );
 };
 
