@@ -139,6 +139,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               danceDirectors
               directors
               danceSubgenre
+              reference
             }
           }
         }

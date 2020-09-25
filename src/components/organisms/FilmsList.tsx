@@ -8,7 +8,6 @@ const FilmsList = ({title, films}) => {
   const [filmsDisplayed, setFilmsDisplayed] = useState(getFilmsToDisplay());
   const filmUrl = 'https://mc3-website.s3.eu-west-3.amazonaws.com/poster/';
   const noImageUrl = 'https://mc3-website.s3.eu-west-3.amazonaws.com/website/no-image3.jpg';
-  // const filmUrlLabex = 'http://mc2.labex-arts-h2h.univ-paris8.fr/img/films/';
 
   function getFilmsToDisplay() {
     return films.slice(0, 12);
