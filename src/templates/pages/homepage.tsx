@@ -35,7 +35,7 @@ export default ({ pageContext: { homepage } }) => {
 
           <Paper elevation={0} className = 'section'>
             <Typography variant="h2">Performers</Typography>
-            <Typography className="top-performers-legend">This ranking display the {homepage.performers.length} persons having the most direct connections to numbers as performer.</Typography>
+            <Typography className="top-performers-legend">50 performers with the most data.</Typography>
             <section className="performers-container">
               {homepage.performers.map(performer => (
                 <Link to={/person/ + performer.uuid} key={performer.uuid}>
