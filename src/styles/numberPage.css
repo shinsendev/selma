@@ -20,3 +20,13 @@ h3 a {
     display:flex;
     align-items: center;
 }
+
+.number-cover-wrapper {
+    display: flex;
+}
+
+
+.number-cover {
+    max-width: 18rem;
+    margin: auto;
+}

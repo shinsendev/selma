@@ -4,11 +4,13 @@ import { Paper, Container, Typography, Grid, Tooltip } from "@material-ui/core"
 import "../../styles/numberPage.css";
 import Property from "../../components/molecules/Property";
 import MusicVideoIcon from "@material-ui/icons/MusicVideo";
-import Timecode from "../../helpers/timecode";
-import InfoIcon from "@material-ui/icons/Info"
-import { Link } from "gatsby"
+import InfoIcon from "@material-ui/icons/Info";
+import { Link } from "gatsby";
 
 const NumberPage = ({ pageContext: { number } }) =>  {
+  const numberPicturesUrl = "https://mc3-website.s3.eu-west-3.amazonaws.com/number/";
+
+
   function computeAverageShotLength():number {
     return Math.round((number.endingTc - number.startingTc)/number.shots);
   }
@@ -23,6 +25,10 @@ const NumberPage = ({ pageContext: { number } }) =>  {
             {number.title}
           </Typography>
           <h3 className="film"><Link to={/film/+number.filmUuid}>{number.title}{number.film}</Link></h3>
+        </div>
+        
+        <div className="number-cover-wrapper">
+          <img className="number-cover" src={numberPicturesUrl + number.reference + ".jpg"} alt=""/>
         </div>
 
         <section className="main-content">
