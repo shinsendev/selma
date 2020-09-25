@@ -47,7 +47,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Property data={{"title": "Shots", "content": number.shots, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Average shot length", "content": computeAverageShotLength()+ ' sec' }}/>
                 <Property data={{"title": "Performance", "content": number.performance, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
-                <Property data={{"title": "Director(s)", "content": number.directors, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
+                <Property data={{"title": "Number directed by", "content": number.directors, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
                 <Property data={{"title": "Performer(s)", "content": number.performers, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
                 <Property data={{"title": "Cast", "content": number.cast, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Stars who don't participate", "content": number.noParticipationStars, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
@@ -62,12 +62,12 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                     <InfoIcon />
                   </Tooltip>
                 </header>
-                <Property data={{"title": "Spectators", "content": number.spectators, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
-                <Property data={{"title": "Diegetic performance?", "content": number.diegeticPerformance, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Diegetic spectators", "content": number.spectators, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Diegetic status of the number", "content": number.diegeticPerformance, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Visible musicians", "content": number.visibleMusicians, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
 
                 <h2 className='properties-title'>Themes</h2>
-                <Property data={{"title": "Topic", "content": number.topic, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Topic(s)", "content": number.topic, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Diegetic place", "content": number.diegeticPlace, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Imaginary place", "content": number.imaginaryPlace, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Ethnic stereotypes", "content": number.ethnicStereotypes, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
