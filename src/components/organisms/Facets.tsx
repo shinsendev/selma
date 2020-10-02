@@ -32,19 +32,18 @@ const Facets = () => {
         </Panel>
       </div>
 
-
-        <div className="facet-wrapper">
-            <Panel header="Sample">
-              <RefinementList attribute="sample" />
-              <Tooltip title={
-                <React.Fragment>
-                  <Typography>“Sample” means that the film belongs to the first representative sample defined to start the database (about 10% of the whole corpus).</Typography>
-                </React.Fragment>
-              } arrow>
-                <HelpIcon/>
-              </Tooltip>
-            </Panel>
-        </div>
+      <div className="facet-wrapper">
+          <Panel header="Sample">
+            <RefinementList attribute="sample" />
+            <Tooltip title={
+              <React.Fragment>
+                <Typography>“Sample” means that the film belongs to the first representative sample defined to start the database (about 10% of the whole corpus).</Typography>
+              </React.Fragment>
+            } arrow>
+              <HelpIcon/>
+            </Tooltip>
+          </Panel>
+      </div>
 
       <div className="facet-wrapper">
         <Panel header="Studios">
@@ -60,7 +59,7 @@ const Facets = () => {
 
       <div className="facet-wrapper">
         <Panel header="Number Length">
-          <RangeInput attribute="numbersLength" />
+          <RangeInput attribute="numbers.length" />
         </Panel>
       </div>
 

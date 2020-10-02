@@ -10,7 +10,6 @@ import { Link } from "gatsby";
 const NumberPage = ({ pageContext: { number } }) =>  {
   const numberPicturesUrl = "https://mc3-website.s3.eu-west-3.amazonaws.com/number/";
 
-
   function computeAverageShotLength():number {
     return Math.round((number.endingTc - number.startingTc)/number.shots);
   }
