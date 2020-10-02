@@ -52,14 +52,8 @@ const Facets = () => {
       </div>
 
       <div className="facet-wrapper">
-        <Panel header="Film length">
+        <Panel header="Length">
           <RangeInput attribute="length" />
-        </Panel>
-      </div>
-
-      <div className="facet-wrapper">
-        <Panel header="Number Length">
-          <RangeInput attribute="numbers.length" />
         </Panel>
       </div>
 
