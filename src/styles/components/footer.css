@@ -1,0 +1,15 @@
+.footer-wrapper {
+    color: white;
+    background: #4d5d5d;
+    margin: 1.5rem auto auto auto;
+    position: relative;
+    padding: 2rem 1rem 4rem 1rem;
+}
+
+.footer-wrapper .custom-link {
+    text-decoration: none;
+}
+
+.footer-wrapper h2 {
+    font-size: 1rem;
+}
