@@ -24,7 +24,7 @@
     "devextreme-react": "^20.1.6",
     "fontsource-roboto": "^2.2.6",
     "gatsby": "^2.22.11",
-    "gatsby-cli": "^2.12.68",
+    "gatsby-cli": "^2.12.102",
     "gatsby-plugin-nprogress": "^2.3.10",
     "gatsby-plugin-s3": "^0.3.3",
     "gatsby-plugin-typescript": "^2.4.3",

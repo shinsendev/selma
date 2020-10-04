@@ -1,38 +1,12 @@
 import { Typography, Grid, GridList, GridListTile } from "@material-ui/core";
 import { Link } from "gatsby";
 import React from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import '../../styles/components/footer.css';
 
 const Footer = () => {
 
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      root: {
-        color: 'white',
-        background: '#4d5d5d',
-        marginTop: theme.spacing(9),
-        paddingTop: theme.spacing(3),
-        paddingBottom: theme.spacing(9),
-        paddingLeft: theme.spacing(3),
-        paddingRight: theme.spacing(3),
-        margin: 'auto',
-        position:'relative',
-      },
-
-      customLink: {
-        textDecoration:"none",
-      },
-
-      h2: {
-        fontSize: "1rem",
-      }
-    })
-  );
-
-  const styles = useStyles();
-
   return (
-    <section className = {styles.root}>
+    <section className = "footer-wrapper">
       <Grid container spacing={3}>
 
         <Grid item xs={12} md={6}>
@@ -49,8 +23,8 @@ const Footer = () => {
 
         <Grid item xs={12} md={6}>
           <Typography variant='h4' gutterBottom>Development</Typography>
-          <Typography>This website has been coded by Gaétan Darquié from <a className={styles.customLink} target="_blank" href='http://shinsen.fr'>Shinsen Dev</a>.</Typography>
-          <Typography>The code is open source: the frontend code is available in <a target='_blank' href='https://github.com/shinsendev/selma'  className={styles.customLink}>selma repository</a> and the  backend api code in <a target='_blank' href='https://github.com/shinsendev/mc3' className={styles.customLink}>mc3 repository</a>.</Typography>
+          <Typography>This website has been coded by Gaétan Darquié from <a className="custom-link" target="_blank" href='http://shinsen.fr'>Shinsen Dev</a>.</Typography>
+          <Typography>The code is open source: the frontend code is available in <a target='_blank' href='https://github.com/shinsendev/selma'  className="custom-link">selma repository</a> and the  backend api code in <a target='_blank' href='https://github.com/shinsendev/mc3' className="custom-link">mc3 repository</a>.</Typography>
         </Grid>
 
         <Grid item xs={12} md={6}>
