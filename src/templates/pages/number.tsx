@@ -23,7 +23,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
           <MusicVideoIcon className="icon-main-item"/>
             {number.title}
           </Typography>
-          <h3 className="film"><Link to={/film/+number.filmUuid}>{number.title}{number.film}</Link></h3>
+          <h3 className="film"><Link to={/film/+number.filmUuid}>{number.film}</Link></h3>
         </div>
         
         <div className="number-cover-wrapper">
@@ -38,6 +38,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <h2 className='properties-title'>Description</h2>
                 <Property data={{"title": "Starting time code", "content": number.startingTc, "type":'timecode' }}/>
                 <Property data={{"title": "Ending time code", "content": number.endingTc, "type":'timecode' }}/>
+                <Property data={{"title": "Length", "content": number.endingTc-number.startingTc + ' sec', }}/>
                 <Property data={{"title": "Beginning", "content": number.beginning, 'model': 'attribute', "type":'attributeList', "options": { "listPropertyTitle": "title"} }}/>
                 <Property data={{"title": "Ending", "content": number.ending, 'model': 'attribute', "type":'attributeList', "options": { "listPropertyTitle": "title"} }}/>
                 <Property data={{"title": "Outlines", "content": number.completenessOption, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
@@ -63,7 +64,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 </header>
                 <Property data={{"title": "Diegetic spectators", "content": number.spectators, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Diegetic status of the number", "content": number.diegeticPerformance, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
-                <Property data={{"title": "Visible musicians", "content": number.visibleMusicians, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Diegetic status of the music", "content": number.visibleMusicians, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
 
                 <h2 className='properties-title'>Themes</h2>
                 <Property data={{"title": "Topic(s)", "content": number.topic, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
