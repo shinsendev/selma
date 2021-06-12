@@ -15,13 +15,13 @@ const CreditsPage = () => {
             <h2>How to cite this website</h2>
 
             <ul>
-              <li>[FR] M. Chabrol (dir.), G. Darquié (codir.), P.-O. Toulza (codir.), Musical MC² [en ligne] http://mc2.labex-arts-h2h.univ-paris8.fr/</li>
-              <li>[EN] M. Chabrol (ed.), G. Darquié (coed.), P.-O. Toulza (coed.), Musical MC² [online] http://mc2.labex-arts-h2h.univ-paris8.fr/</li>
+              <li>[FR] M. Chabrol (dir.), G. Darquié (codir.), P.-O. Toulza (codir.), Musical MC² [en ligne] http://mc2.website</li>
+              <li>[EN] M. Chabrol (ed.), G. Darquié (coed.), P.-O. Toulza (coed.), Musical MC² [online] http://mc2.website</li>
             </ul>
 
             <h2>Phase 1 (2015-2017) :  prototype development</h2>
 
-            <p>Projet Musical MC² (Le film musical hollywoodien en contexte médiatique et culturel) & Labex Arts-H2H</p>
+            <p>Part of the collaborative project <a href='http://musicalmc2.labex-arts-h2h.fr/en' target='_blank'>Musical MC²</a> (Le film musical hollywoodien en contexte médiatique et culturel / The Hollywood Film Musical in its Mediatic and Cultural Context), funded by <a href='http://www.labex-arts-h2h.fr/?lang=fr'>Labex Arts-H2H</a></p>
 
             <h3>Project steering</h3>
             <p>Marguerite Chabrol & Pierre-Olivier Toulza</p>
@@ -54,14 +54,17 @@ const CreditsPage = () => {
 
             <h2>Phase 2 (2018-2020) : tests, exploitation and prospects</h2>
 
-            <p>Etudiant.e.s du Master 2 Cinéma et audiovisuel (Paris 8) / Master’s Degree Students from Paris 8 University
-              2018/2019 : Marine Despiegelaere, Boualem Khelifati, Amine Kouti, Inès Lopez, Federico Nipoli, Madoka Nishino, Brian Thomas, Victor Tsaconas, Jingling Wu.</p>
+            <p>Master’s Degree Students from Paris 8 University</p>
+            
+            <p>2018/2019 : Marine Despiegelaere, Boualem Khelifati, Amine Kouti, Inès Lopez, Federico Nipoli, Madoka Nishino, Brian Thomas, Victor Tsaconas, Jingling Wu.</p>
 
             <p>2019/2020 : Mélanie Birot, Esteban Carrillo, Jean-Baptiste Heimburger, Minhyoug Jo, Joshua Lehoux, Clément Marin, Théo Mathis, Anne Milojevic, Kira Vygrivach, Wei Zhao.</p>
 
-            <h2>Phase 3 (2020-?) : creation of the new website</h2>
+            <h2>Phase 3 (2020) : website redesign and technical overhaul</h2>
 
-            <p>...</p>
+            <p>Marguerite Chabrol : editor</p>
+
+            <p>Gaétan Darquié : developer and technical architect</p>
           </Paper>
         </Container>
       </Layout>
