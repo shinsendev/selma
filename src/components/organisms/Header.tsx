@@ -21,6 +21,7 @@ const Header = (props) => {
             </div>
 
             <div className="menu">
+              <Typography><a target='_blank' href="https://musicalmc2.hypotheses.org/" className="item">blog</a></Typography>
               <Typography><Link to="/about" className="item">about</Link></Typography>
               <Typography><Link to="/credits" className="item">credits</Link></Typography>
               <Typography><Link to="/search" className="item">search</Link></Typography>
