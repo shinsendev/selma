@@ -44,7 +44,7 @@ const NumberPage = ({ pageContext: { number } }) =>  {
                 <Property data={{"title": "Outlines", "content": number.completenessOption, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Completeness", "content": number.completeness, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Structure", "content": number.structure, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
-                <Property data={{"title": "Shots", "content": number.shots, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
+                <Property data={{"title": "Shots", "content": number.shots, "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Average shot length", "content": computeAverageShotLength()+ ' sec' }}/>
                 <Property data={{"title": "Performance", "content": number.performance, "type":'attributeList', "model":"attribute", "options": { "listPropertyTitle": "title"}}}/>
                 <Property data={{"title": "Number directed by", "content": number.directors, "type":'attributeList', "model":"person", "options": { "listPropertyTitle": "fullname"}}}/>
